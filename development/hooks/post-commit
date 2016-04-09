@@ -1,0 +1,12 @@
+#!/bin/bash
+
+show_error() {
+    echo -e '\e[0;33m' # Yellow
+    echo '-------------------------------- WARNING -------------------------------'
+    echo 'You have not signed your commit! Please do so now, as this allow us to'
+    echo 'verify that it is "you" writing the code.'
+    echo '------------------------------ END WARNING -----------------------------'
+    echo -e '\e[0m'
+}
+
+git verify-commit HEAD || show_error
