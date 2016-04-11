@@ -11,7 +11,7 @@ spec:
         role: nginx
     spec:
       volumes:
-        - name: gogs-etc-tls
+        - name: nginx-etc-tls
           secret:
             secretName: nginx-etc-tls
       containers:

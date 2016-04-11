@@ -42,7 +42,7 @@ build-container-%: ## Builds the $* (gollum) container, and tags it with the git
 	docker build -t ${CONTAINER_NS}/$*:${GIT_HASH} -f build/docker/$*/Dockerfile .
 
 deploy-container-%: build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
-	echo "Deployed"
+	sed "s/{{GIT_HASH}}/${GIT_HASH}/" build/kubernetes/$*.deployment.yml | kubectl apply -f -
 
 css:
 	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles.css
