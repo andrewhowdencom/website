@@ -39,7 +39,7 @@ push-tls-certificates: ## Push an update to the TLS Certificate secret
 	sed "s/{{CERT}}/${SECRET_CERT}/" build/kubernetes/nginx-etc-tls.yml | sed -e "s/{{FULL_CHAIN}}/${SECRET_FULL_CHAIN}/" | sed -e "s/{{PRIVKEY}}/${SECRET_PRIVKEY}/" | kubectl create -f -
 
 build-container-%: ## Builds the $* (gollum) container, and tags it with the git hash.
-	docker build -t ${CONTAINER_NS}/$*:${GIT_HASH} -f build/docker/$*/Dockerfile .
+	docker build --no-cache -t ${CONTAINER_NS}/$*:${GIT_HASH} -f build/docker/$*/Dockerfile .
 
 deploy-container-%: build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
 	sed "s/{{GIT_HASH}}/${GIT_HASH}/" build/kubernetes/$*.deployment.yml | kubectl apply -f -
