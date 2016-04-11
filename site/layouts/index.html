@@ -1,6 +1,13 @@
-<!DOCTYPE HTML5>
-<head>
+<!DOCTYPE html>
+<head lang="en-AU" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+
+    {{ partial "meta.html" . }}
+
     <title>{{ .Site.Title }}</title>
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="alternate" href="{{ .RSSlink }}" type="application/rss+xml" title="{{ .Site.Title }}">
+
+    {{ partial "google_tag_manager.html" }}
 </head>
 <body>
     <p>Hello, World</p>
