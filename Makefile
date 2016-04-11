@@ -41,11 +41,17 @@ push-tls-certificates: ## Push an update to the TLS Certificate secret
 build-container-%: ## Builds the $* (gollum) container, and tags it with the git hash.
 	docker build --no-cache -t ${CONTAINER_NS}/$*:${GIT_HASH} -f build/docker/$*/Dockerfile .
 
-deploy-container-%: build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
+deploy-container-%: site build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
 	sed "s/{{GIT_HASH}}/${GIT_HASH}/" build/kubernetes/$*.deployment.yml | kubectl apply -f -
 
-css:
+content: ## Build Hugo site
+	cd site && hugo
+
+css: ## Make CSS
 	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles.css
 
-static: css
-	echo "Coming soon!"
+static: css ## Compile all static assets
+	echo "Static Compiled"
+
+site: static content ## Compile the entire site
+	echo "Site Compiled"
