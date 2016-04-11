@@ -5,7 +5,8 @@
 !\.bowerrc
 
 # Generated files
-site/static/css/styles.css
+site/static/css/styles.*
+site/public/*
 
 # Ignore bower components
 site/bower_components

@@ -45,7 +45,7 @@ deploy-container-%: build-container-% push-container-% ## Pushes a container to 
 	echo "Deployed"
 
 css:
-	sassc site/static/scss/styles.scss > site/static/css/styles.css
+	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles.css
 
 static: css
 	echo "Coming soon!"
