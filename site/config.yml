@@ -2,7 +2,6 @@ baseurl: https://www.andrewhowden.com/
 languageCode: en-us
 
 title: andrewhowden.com
-theme: blackburn
 
 buildDrafts: true
 
