@@ -1,0 +1,21 @@
+{
+  "name": "www.andrewhowden.com",
+  "homepage": "https://www.andrewhowden.com/",
+  "authors": [
+    "Andrew Howden <hello@andrewhowden.com>"
+  ],
+  "description": "Andrew Howdens personal website",
+  "main": "sites/public/index.html",
+  "license": "Apache2",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2"
+  }
+}

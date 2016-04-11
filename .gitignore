@@ -1,4 +1,11 @@
 # Ignore dotfiles
+.*
+
+# Intentionally allow the following dotfiles
+!\.bowerrc
+
+# Generated files
+site/static/css/styles.css
 
 # Ignore bower components
 site/bower_components
