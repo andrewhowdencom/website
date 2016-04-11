@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: www-andrewhowden-com
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        role: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: gcr.io/littleman-co/www-andrewhowden-com-nginx:{{GIT_HASH}}
+          ports:
+             - containerPort: 80
+             - containerPort: 443
+          volumeMounts:
+            - name: nginx-etc-tls
+              readOnly: true
+              mountPath: /etc/tls
