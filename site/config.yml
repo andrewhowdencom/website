@@ -1,0 +1,19 @@
+baseurl: https://www.andrewhowden.com/
+languageCode: en-us
+
+title: andrewhowden.com
+theme: blackburn
+
+buildDrafts: true
+
+social:
+  twitter: andrewhowdencom
+  facebook: andrewhowdencom
+  github: andrewhowdencom
+
+menu:
+  main:
+    - Name: "andrewhowden.com"
+      URL: "https://andrewhowden.com"
+
+copyright: "© Andrew Howden, 2016"
