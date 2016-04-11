@@ -10,6 +10,10 @@ spec:
       labels:
         role: nginx
     spec:
+      volumes:
+        - name: gogs-etc-tls
+          secret:
+            secretName: nginx-etc-tls
       containers:
         - name: nginx
           image: gcr.io/littleman-co/www-andrewhowden-com-nginx:{{GIT_HASH}}
