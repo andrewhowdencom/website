@@ -1,7 +1,7 @@
 baseurl: https://www.andrewhowden.com/
 languageCode: en-us
 
-title: andrewhowden.com
+title: Andrew Howden
 
 buildDrafts: true
 
@@ -12,7 +12,7 @@ social:
 
 menu:
   main:
-    - Name: "andrewhowden.com"
+    - Name: "Home"
       URL: "https://andrewhowden.com"
 
 copyright: "© Andrew Howden, 2016"

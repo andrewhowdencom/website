@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <head lang="en-AU" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {{ partial "meta.html" . }}
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <meta name="description" content="{{ .Description }}">
 
     <title>{{ .Site.Title }}</title>
+
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="alternate" href="{{ .RSSlink }}" type="application/rss+xml" title="{{ .Site.Title }}">
-
-    {{ partial "google_tag_manager.html" }}
 </head>
 <body>
-    <p>Hello, World</p>
+  <div class="site-wrapper">
+       <div class="site-wrapper-inner">
+         <div class="cover-container">
+           <div class="masthead clearfix">
+             <div class="inner">
+               <h3 class="masthead-brand">{{ .Site.Title }}</h3>
+               <nav class="nav nav-masthead">
+               {{ $currentNode := . }}
+               {{ range .Site.Menus.main }}
+                   <a class="nav-link{{ if $currentNode.HasMenuCurrent "main" . }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+               {{ end }}
+             </nav>
+             </div>
+           </div>
+
+           <div class="inner cover">
+             <h1 class="cover-heading">Magneto · Web · Linux</h1>
+             <p class="lead">
+               I think simple things are usually better, the most progress is
+               made in small steps out of habit and Ghost in the Shell was the
+               most interesting anime I've seen.</p>
+             <p class="lead">hello[at]andrewhowden.com · +6143 808 0411</p>
+           </div>
+
+           <div class="mastfoot">
+             <div class="inner">
+               <p>{{ .Site.Copyright | safeHTML }}</p>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
 </body>
