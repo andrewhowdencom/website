@@ -1,6 +1,9 @@
 # Ignore dotfiles
 .*
 
+# Ignore certificates
+*.pem
+
 # Intentionally allow the following dotfiles
 !\.bowerrc
 
