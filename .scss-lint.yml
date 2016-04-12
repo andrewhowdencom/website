@@ -1,54 +1,58 @@
 ---
+# General configuration options
+scss_files: "site/static/**/*.scss"
+
+# Linter configuration
 linters:
   ColorVariable:
-    enabled: false
+    enabled: true
   Comment:
-    enabled: false
+    enabled: true
   DeclarationOrder:
-    enabled: false
+    enabled: true
   DuplicateProperty:
-    enabled: false
+    enabled: true
   ElsePlacement:
-    enabled: false
+    enabled: true
   EmptyLineBetweenBlocks:
-    enabled: false
+    enabled: true
   FinalNewline:
-    enabled: false
+    enabled: true
   HexLength:
-    enabled: false
+    enabled: true
   ImportPath:
-    enabled: false
+    enabled: true
   ImportantRule:
-    enabled: false
+    enabled: true
   Indentation:
-    enabled: false
+    enabled: true
     width: 4
   LeadingZero:
-    enabled: false
+    enabled: true
   MergeableSelector:
-    enabled: false
+    enabled: true
   NameFormat:
-    enabled: false
+    enabled: true
   NestingDepth:
-    enabled: false
+    enabled: true
   PlaceholderInExtend:
-    enabled: false
+    enabled: true
   PropertySortOrder:
-    enabled: false
+    enabled: true
   QualifyingElement:
-    enabled: false
+    enabled: true
   SelectorDepth:
-    enabled: false
+    enabled: true
   SingleLinePerSelector:
-    enabled: false
+    enabled: true
   SpaceAfterComma:
-    enabled: false
+    enabled: true
   SpaceAfterPropertyColon:
-    enabled: false
+    enabled: true
   SpaceBeforeBrace:
-    enabled: false
+    enabled: true
   StringQuotes:
-    enabled: false
+    enabled: true
   VendorPrefix:
-    enabled: false
+    enabled: true
 
