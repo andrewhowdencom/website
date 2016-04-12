@@ -1,3 +1,5 @@
 #!/bin/bash
 
-scss-lint
+set -x
+
+scss-lint || true # We do not want this to break the build. Just see if it works
