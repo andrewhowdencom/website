@@ -9,7 +9,6 @@ addons:
     packages:
     - python-docutils
     - git
-    - sassc
 
 sudo: required
 
@@ -24,7 +23,8 @@ before_install:
   "./build/scripts/CI/unpack-secrets.sh"
 
 install:
-  "./build/scripts/CI/install-dependencies.sh"
+  - "./build/scripts/CI/install-dependencies.sh"
+  - "./build/scripts/CI/install-sassc.sh"
 
 before_script:
   "./build/scripts/CI/auth.sh"
