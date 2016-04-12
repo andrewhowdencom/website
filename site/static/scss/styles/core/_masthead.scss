@@ -8,4 +8,8 @@
   height: $logo-height;
   margin-top: -.75rem;
   margin-right: $spacer-x;
+
+  .svg-logo {
+    fill: $logo-color;
+  }
 }
