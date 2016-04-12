@@ -2,9 +2,9 @@
 
 set -ex
 
-LIBSASS_VERSION="3.3.4"
-SASSC_VERSION="3.3.4"
-SASS_LIBSASS_PATH="$(pwd)/libsass"
+export LIBSASS_VERSION="3.3.4"
+export SASSC_VERSION="3.3.4"
+export SASS_LIBSASS_PATH="$(pwd)/libsass"
 
 git clone git@github.com:sass/libsass.git
 cd libsass
