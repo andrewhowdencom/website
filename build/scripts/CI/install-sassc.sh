@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 LIBSASS_VERSION="3.3.4"
 SASSC_VERSION="3.3.4"
 SASS_LIBSASS_PATH="$(pwd)/libsass"
