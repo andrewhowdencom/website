@@ -39,6 +39,7 @@ linters:
     enabled: true
   PropertySortOrder:
     enabled: true
+    order: smacss
   QualifyingElement:
     enabled: true
   SelectorDepth:

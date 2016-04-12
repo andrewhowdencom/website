@@ -1,15 +1,15 @@
-.masthead-logo,
-.masthead-brand {
-  float: left;
+.masthead-brand,
+.masthead-logo {
+    float: left;
 }
 
 .masthead-logo {
-  width: $logo-width;
-  height: $logo-height;
-  margin-top: -.75rem;
-  margin-right: $spacer-x;
+    width: $logo-width;
+    height: $logo-height;
+    margin-top: -.75rem;
+    margin-right: $spacer-x;
 
-  .svg-logo {
-    fill: $logo-color;
-  }
+    .svg-logo {
+        fill: $logo-color;
+    }
 }
