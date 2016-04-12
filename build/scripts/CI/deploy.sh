@@ -2,7 +2,10 @@
 
 set -e
 
+# Default bin
 export PATH="${PATH}:$(pwd)/bin"
-echo "${PATH}"
+
+# Google Cloud bin
+export PATH="${PATH}:$(pwd)/google-cloud-sdk/bin"
 
 make deploy-container-nginx
