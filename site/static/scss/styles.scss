@@ -1,4 +1,11 @@
-// Variable
-@import '_variables';
+// Variables
+@import 'variables';
+
+// Vendor code
 @import "../../bower_components/bootstrap/scss/bootstrap-flex";
-@import '_cover';
+
+// Custom Code
+@import 'styles/core';
+
+// Crappy CSS. Don't add more to this!
+@import 'cover';
