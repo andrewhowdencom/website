@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 export LIBSASS_VERSION="3.3.4"
 export SASSC_VERSION="3.3.4"

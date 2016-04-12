@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 export PATH="${PATH}:$(pwd)/bin"
 echo "${PATH}"

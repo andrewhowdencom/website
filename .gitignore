@@ -7,6 +7,9 @@
 # Intentionally allow the following dotfiles
 !\.bowerrc
 
+# Intentionally allow .gitkeep
+!\.gitkeep
+
 # Generated files
 site/static/css/styles.*
 site/public/*
