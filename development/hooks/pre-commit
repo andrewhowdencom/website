@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [[ -z ${SKIP_LINTS} ]]; then
+    build/scripts/lint.sh
+fi
