@@ -30,7 +30,6 @@ before_script:
   "./build/scripts/CI/auth.sh"
 
 script:
-  - "./build/scripts/CI/build.sh"
   - "./build/scripts/CI/deploy.sh"
 
 after_success:
