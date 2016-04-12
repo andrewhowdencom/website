@@ -6,9 +6,8 @@
 
 # Intentionally allow the following dotfiles
 !\.bowerrc
-
-# Intentionally allow .gitkeep
 !\.gitkeep
+!\.scss-lint.yml
 
 # Generated files
 site/static/css/styles.*
