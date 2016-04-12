@@ -26,6 +26,9 @@ google-cloud-sdk/bin/gcloud container clusters get-credentials ${KUBERNETES_CLUS
 export CONTEXT=$(google-cloud-sdk/bin/kubectl config view | grep current-context | awk '{print $2}')
 google-cloud-sdk/bin/kubectl config set-context $CONTEXT --namespace=${KUBE_NAMESPACE}
 
+# Auth Docker
+docker login -e ${GCR_SERVICE_ACCOUNT} -u _token -p "$(google-cloud-sdk/bin/gcloud auth print-access-token)" https://gcr.io
+
 # Reset the github URL so we can use the privkey
 REPO_URL=$(git config --get remote.origin.url)
 SSH_URL=$(echo "$REPO_URL" | sed 's/https:\/\/github.com\//git@github.com:/' | sed 's/git\//git/')
