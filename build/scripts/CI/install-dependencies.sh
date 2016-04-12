@@ -35,3 +35,4 @@ mv hugo_${HUGO_VERSION}_linux_amd64/hugo_${HUGO_VERSION}_linux_amd64 ./bin/hugo
 
 # Install bower
 npm install -g bower
+bower install
