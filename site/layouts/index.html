@@ -1,38 +1,22 @@
-<!DOCTYPE html>
-{{ partial "head.html" . }}
+<!DOCTYPE html> {{ partial "head.html" . }}
+
 <body>
-  {{ partial "gtm.html" . }}
-  <div class="site-wrapper">
-       <div class="site-wrapper-inner">
-         <div class="cover-container">
-           <div class="masthead clearfix">
-             <div class="inner">
-               <div class="masthead-logo">{{ partial "logo.html" . }}</div>
-               <h3 class="masthead-brand">{{ .Site.Title }}</h3>
-               <nav class="nav nav-masthead">
-               {{ $currentNode := . }}
-               {{ range .Site.Menus.main }}
-                   <a class="nav-link{{ if $currentNode.HasMenuCurrent "main" . }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
-               {{ end }}
-             </nav>
-             </div>
-           </div>
+    {{ partial "gtm.html" . }}
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+                {{ partial "masthead.html" . }}
+                <div class="inner cover">
+                    <h1 class="cover-heading">Magneto · Web · Linux</h1>
+                    <p class="lead">
+                        I think simple things are usually better, the most
+                        progress is made in small steps out of habit and Ghost
+                        in the Shell was the most interesting anime I've seen.</p>
+                    <p class="lead">hello[at]andrewhowden.com · +6143 808 0411</p>
+                </div>
 
-           <div class="inner cover">
-             <h1 class="cover-heading">Magneto · Web · Linux</h1>
-             <p class="lead">
-               I think simple things are usually better, the most progress is
-               made in small steps out of habit and Ghost in the Shell was the
-               most interesting anime I've seen.</p>
-             <p class="lead">hello[at]andrewhowden.com · +6143 808 0411</p>
-           </div>
-
-           <div class="mastfoot">
-             <div class="inner">
-               <p>{{ .Site.Copyright | safeHTML }}</p>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
+                {{ partial "footer.html" . }}
+            </div>
+        </div>
+    </div>
 </body>

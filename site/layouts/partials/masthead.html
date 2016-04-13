@@ -1,0 +1,10 @@
+<div class="masthead clearfix">
+    <div class="inner">
+        <div class="masthead-logo">{{ partial "logo.html" . }}</div>
+        <h3 class="masthead-brand">{{ .Site.Title }}</h3>
+        <nav class="nav nav-masthead">
+            {{ $currentNode := . }} {{ range .Site.Menus.main }}
+            <a class="nav-link{{ if $currentNode.HasMenuCurrent " main " . }} active{{ end }}" href="{{ .URL }}">{{ .Name }}</a> {{ end }}
+        </nav>
+    </div>
+</div>
