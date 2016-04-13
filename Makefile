@@ -40,7 +40,7 @@ push-container-%: ## Tags and pushes a container to the repo
 push-tls-certificates: ## Push an update to the TLS Certificate secret
 	sed "s/{{CERT}}/${SECRET_CERT}/" build/kubernetes/nginx-etc-tls.yml | sed -e "s/{{FULL_CHAIN}}/${SECRET_FULL_CHAIN}/" | sed -e "s/{{PRIVKEY}}/${SECRET_PRIVKEY}/" | kubectl create -f -
 
-build-container-%: ## Builds the $* (gollum) container, and tags it with the git hash.
+build-container-%: ## Builds the $* container, and tags it with the git hash.
 	docker build --no-cache -t ${CONTAINER_NS}/$*:${GIT_HASH} -f build/docker/$*/Dockerfile .
 
 deploy-container-%: site build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
@@ -48,16 +48,20 @@ deploy-container-%: site build-container-% push-container-% ## Pushes a containe
 
 clean:
 	rm -rf site/static/css/*
+	rm -rf site/static/fonts/*
 
 content: ## Build Hugo site
 	cd site && hugo
 
-css: ## Make CSS
+css: fonts ## Make CSS
 	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
 	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles-${TIMESTAMP}.css
 
-static: css ## Compile all static assets
-	echo "Static Compiled"
+fonts: ## Move the fonts into the appropriate dir
+	# Materials Design
+	cp site/bower_components/material-design-icons/iconfont/MaterialIcons* site/static/fonts/
+	cd site/static/fonts && for f in ./*; do rename "." ".${TIMESTAMP}." "$$f"; done;
+	sed -i "s/\$$materials-design-timestamp:.*/\$$materials-design-timestamp: '${TIMESTAMP}'/" site/static/scss/_variables.scss
 
-site: clean static content ## Compile the entire site
-	echo "Site Compiled"
+static: fonts css ## Compile all static assets
+	echo "Static Compiled"

@@ -12,10 +12,13 @@ social:
 
 menu:
   main:
-    - Name: "Home"
+    # Name - Font Icon
+    - Name: "home"
       URL: "/"
-    - Name: "Resume"
+      Weight: 100
+    - Name: "description"
       URL: "/resume/"
+      Weight: 110
 
 copyright: "© Andrew Howden, 2016"
 
@@ -23,4 +26,4 @@ Params:
   Gtm:
     Id: "GTM-KXPWKD"
   Css:
-    Styles: "1460545978"
+    Styles: "1460552193"

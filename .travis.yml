@@ -25,7 +25,6 @@ before_install:
 install:
   - "./build/scripts/CI/install-gems.sh"
   - "./build/scripts/CI/install-dependencies.sh"
-  - "./build/scripts/CI/install-sassc.sh"
 
 before_script:
   - "./build/scripts/lint.sh"
