@@ -20,8 +20,7 @@ env:
   GIT_SSH_COMMAND="ssh -i .privkey"
 
 before_install:
-  - "./build/scripts/lint.sh"
-  - "./build/scripts/CI/unpack-secrets.sh"
+  "./build/scripts/CI/unpack-secrets.sh"
 
 install:
   - "./build/scripts/CI/install-gems.sh"
@@ -29,7 +28,8 @@ install:
   - "./build/scripts/CI/install-sassc.sh"
 
 before_script:
-  "./build/scripts/CI/auth.sh"
+  - "./build/scripts/lint.sh"
+  - "./build/scripts/CI/auth.sh"
 
 script:
   - "./build/scripts/CI/deploy.sh"
