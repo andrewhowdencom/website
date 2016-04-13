@@ -26,6 +26,8 @@ SECRET_CERT       := $(shell base64 -w 0 etc/tls/cert.pem)
 SECRET_FULL_CHAIN := $(shell base64 -w 0 etc/tls/fullchain.pem)
 SECRET_PRIVKEY    := $(shell base64 -w 0 etc/tls/privkey.pem)
 
+TIMESTAMP := $(shell date "+%s")
+
 help: ## Show this menu
 	@echo -e $(ANSI_TITLE)www.andrewhowden.com$(ANSI_OFF)$(ANSI_SUBTITLE)" - Andrew Howden's personal website"$(ANSI_OFF)
 	@echo -e $(ANSI_TITLE)Commands:$(ANSI_OFF)
@@ -44,14 +46,18 @@ build-container-%: ## Builds the $* (gollum) container, and tags it with the git
 deploy-container-%: site build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
 	sed "s/{{GIT_HASH}}/${GIT_HASH}/" build/kubernetes/$*.deployment.yml | kubectl apply -f -
 
+clean:
+	rm -rf site/static/css/*
+
 content: ## Build Hugo site
 	cd site && hugo
 
 css: ## Make CSS
-	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles.css
+	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
+	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles-${TIMESTAMP}.css
 
 static: css ## Compile all static assets
 	echo "Static Compiled"
 
-site: static content ## Compile the entire site
+site: clean static content ## Compile the entire site
 	echo "Site Compiled"
