@@ -10,7 +10,7 @@
 !\.scss-lint.yml
 
 # Generated files
-site/static/css/styles.*
+site/static/css/*
 site/public/*
 
 # Ignore bower components

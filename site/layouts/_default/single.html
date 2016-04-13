@@ -1,0 +1,14 @@
+<!DOCTYPE html> {{ partial "head.html" . }}
+
+<body>
+    {{ partial "gtm.html" . }}
+    <div class="site-wrapper">
+        <div class="site-wrapper-inner">
+                          {{ .Content }}
+            <div class="cover-container">
+                {{ partial "masthead.html" . }}
+                {{ partial "footer.html" . }}
+            </div>
+        </div>
+    </div>
+</body>
