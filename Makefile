@@ -61,7 +61,7 @@ fonts: ## Move the fonts into the appropriate dir
 	# Materials Design
 	cp site/bower_components/material-design-icons/iconfont/MaterialIcons* site/static/fonts/
 	cd site/static/fonts && for f in ./*; do rename "." ".${TIMESTAMP}." "$$f"; done;
-	sed -i "s/\$$materials-design-timestamp:.*/\$$materials-design-timestamp: '${TIMESTAMP}'/" site/static/scss/_variables.scss
+	sed -i "s/\$$materials-design-timestamp:.*/\$$materials-design-timestamp: '${TIMESTAMP}';/" site/static/scss/_variables.scss
 
 static: fonts css ## Compile all static assets
 	echo "Static Compiled"
