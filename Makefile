@@ -53,6 +53,9 @@ clean:
 content: ## Build Hugo site
 	cd site && hugo
 
+images:
+	cp site/bower_components/Font-Awesome-SVG-PNG/white/svg/* site/static/images/icons/
+
 css: fonts ## Make CSS
 	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
 	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles-${TIMESTAMP}.css

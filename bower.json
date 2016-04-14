@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "bootstrap": "v4.0.0-alpha.2",
-    "material-design-icons": "^2.2.3"
+    "material-design-icons": "^2.2.3",
+    "Font-Awesome-SVG-PNG": "font-awesome-svg-png#^1.1.5"
   }
 }
