@@ -1,12 +1,12 @@
 <!DOCTYPE html> {{ partial "head.html" . }}
 
-<body>
+<body class="post">
     {{ partial "gtm.html" . }}
     <div class="site-wrapper">
         <div class="site-wrapper-inner">
-            {{ .Content }}
             <div class="cover-container">
                 {{ partial "masthead.html" . }}
+                {{ .Content }}
                 {{ partial "footer.html" . }}
             </div>
         </div>

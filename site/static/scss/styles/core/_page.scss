@@ -1,0 +1,9 @@
+.post {
+    .site-wrapper-inner {
+        vertical-align: top;
+
+        @media(min-width: map-get($grid-breakpoints, sm)) {
+            padding-top: 85px;
+        }
+    }
+}
