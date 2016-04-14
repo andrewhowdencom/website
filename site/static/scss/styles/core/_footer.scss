@@ -1,0 +1,11 @@
+.outlinks {
+    display: block;
+
+    li {
+        display: inline-block;
+    }
+
+    img {
+        width: $outlink-width;
+    }
+}

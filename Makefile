@@ -56,9 +56,10 @@ content: ## Build Hugo site
 images:
 	cp site/bower_components/Font-Awesome-SVG-PNG/white/svg/* site/static/images/icons/
 
-css: fonts ## Make CSS
+css: ## Make CSS
 	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
-	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles-${TIMESTAMP}.css
+	rm -rf site/static/css/styles-* # Clean previous CSS
+	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles.css
 
 fonts: ## Move the fonts into the appropriate dir
 	# Materials Design
