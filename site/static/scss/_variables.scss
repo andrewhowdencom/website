@@ -1,5 +1,6 @@
 // Colours
 $white: #fff;
+$blue-dark: #243746;
 
 // Widths
 $logo-width: 30px;
@@ -8,5 +9,15 @@ $logo-height: 30px;
 $outlink-width: 25px;
 
 // Semantic Colours
+$body-background-color: $blue-dark;
+$body-text-color: $white;
+
+$header-background-color: $blue-dark;
+
+$mastfoot-background-color: $blue-dark;
+
 $logo-color: $white;
+
+$zindex-header: 1000;
+
 $materials-design-timestamp: '1460630406';
