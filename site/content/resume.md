@@ -10,6 +10,10 @@ experiencing some disaster running my own personal fitness training business,
 and I have been faking it ever since.
 
 ## Competencies
+If you're curious about the level of knowledge I have, check out
+[my notes](https://docs.littleman.co/). They're visible as they're nicer to read
+that way, and since it's deployed by Travis CI onto Kubernetes, updating them
+is effortless.
 
 ### Languages
 I'm pretty sure I could hack around in another language reasonably quickly; it
