@@ -1,4 +1,4 @@
-FROM littleman/nginx
+FROM littleman/nginx:latest
 MAINTAINER littleman.co <support@littleman.co>
 
 ADD site/public /var/www/public
