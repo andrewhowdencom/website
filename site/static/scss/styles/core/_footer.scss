@@ -1,11 +1,12 @@
 .outlinks {
     display: block;
+    text-align: center;
+}
 
-    li {
-        display: inline-block;
-    }
+.outlinks__item {
+    display: inline-block;
+}
 
-    img {
-        width: $outlink-width;
-    }
+.outlinks__image {
+    width: $outlink-width;
 }
