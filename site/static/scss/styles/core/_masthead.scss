@@ -1,6 +1,10 @@
 .masthead {
     background: $header-background-color;
     z-index: $zindex-header;
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+        width: $page-width-large;
+    }
 }
 
 .masthead-brand,

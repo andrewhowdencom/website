@@ -1,4 +1,8 @@
 .mastfoot {
     background-color: $mastfoot-background-color;
     color: rgba(255, 255, 255, .5);
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+        width: $page-width-large;
+    }
 }

@@ -1,3 +1,13 @@
 .cover {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media(min-width: map-get($grid-breakpoints, md)) {
+        max-width: $page-width-large;
+    }
+}
+
+.cover__content {
     padding: 0 1.5rem;
 }
