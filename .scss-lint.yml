@@ -44,6 +44,9 @@ linters:
     enabled: true
   SelectorDepth:
     enabled: true
+  SelectorFormat:
+    enabled: trie
+    convention: strict_BEM
   SingleLinePerSelector:
     enabled: true
   SpaceAfterComma:
@@ -56,4 +59,3 @@ linters:
     enabled: true
   VendorPrefix:
     enabled: true
-
