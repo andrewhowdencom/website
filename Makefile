@@ -59,7 +59,7 @@ images:
 css: ## Make CSS
 	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
 	rm -rf site/static/css/styles-* # Clean previous CSS
-	sassc --sourcemap --style=compressed site/static/scss/styles.scss site/static/css/styles.css
+	sassc --sourcemap --style=compressed site/src/scss/styles.scss site/static/css/styles.css
 
 fonts: ## Move the fonts into the appropriate dir
 	# Materials Design
