@@ -1,10 +1,12 @@
+@import '../variables.css';
+
 .cover {
     width: 100%;
     margin-right: auto;
     margin-left: auto;
 
-    @media(min-width: map-get($grid-breakpoints, md)) {
-        max-width: $page-width-large;
+    @media(--screen-md) {
+        max-width: var(--page-width-large);
     }
 }
 

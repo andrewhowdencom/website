@@ -1,0 +1,5 @@
+@import '../variables.css';
+
+.button {
+  background-color: var(--main-bg-color);
+}

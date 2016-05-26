@@ -1,0 +1,17 @@
+:root {
+  /* Custom media queries*/
+  @custom-media --screen-xs (min-width: 0);
+  @custom-media --screen-sm (min-width: 544px);
+  @custom-media --screen-md (min-width: 768px);
+  @custom-media --screen-lg (min-width: 992px);
+  @custom-media --screen-xl (min-width: 1200px);
+
+  /* Css variables taken from the bootstrap 4 alpha */
+  --screen-bp-xs: 0;
+  --screen-bp-sm: 544px;
+  --screen-bp-md: 768px;
+  --screen-bp-lg: 992px;
+  --screen-bp-xl: 1200px;
+
+  --page-width-large: 62em;
+}
