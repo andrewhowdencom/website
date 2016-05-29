@@ -12,9 +12,6 @@
 
 # Generated files
 site/public/*
-site/static/js/*
-site/static/serviceworker.js
 
 # Ignore bower components
 site/bower_components
-
