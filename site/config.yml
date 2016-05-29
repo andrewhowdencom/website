@@ -27,3 +27,5 @@ Params:
     Id: "GTM-KXPWKD"
   Css:
     Styles: "1464267104"
+  Js:
+    CacheVersion: v1
