@@ -8,9 +8,12 @@
 !\.bowerrc
 !\.gitkeep
 !\.scss-lint.yml
+!\.eslintrc.yml
 
 # Generated files
 site/public/*
+site/static/js/*
+site/static/serviceworker.js
 
 # Ignore bower components
 site/bower_components

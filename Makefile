@@ -46,15 +46,18 @@ build-container-%: ## Builds the $* container, and tags it with the git hash.
 deploy-container-%: site build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
 	sed "s/{{GIT_HASH}}/${GIT_HASH}/" build/kubernetes/$*.deployment.yml | kubectl apply -f -
 
-clean:
+clean: ## Remove all compiled resources
 	rm -rf site/static/css/*
 	rm -rf site/static/fonts/*
 
 content: ## Build Hugo site
 	cd site && hugo
 
-images:
+images: ## Generate images
 	cp site/bower_components/Font-Awesome-SVG-PNG/white/svg/* site/static/images/icons/
+
+js: ## Create the JavaScript resources
+	cp --dereference --recursive site/src/js site/static/js
 
 scss: ## Make SCSS
 	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
