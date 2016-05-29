@@ -57,7 +57,9 @@ images: ## Generate images
 	cp site/bower_components/Font-Awesome-SVG-PNG/white/svg/* site/static/images/icons/
 
 js: ## Create the JavaScript resources
-	cp --dereference --recursive site/src/js site/static/js
+	- mkdir -p site/static/js
+	cp --dereference --recursive site/src/js site/static
+	cp site/src/serviceworker.js site/static/serviceworker.js
 
 scss: ## Make SCSS
 	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
