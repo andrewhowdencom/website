@@ -23,9 +23,7 @@ menu:
 copyright: "© Andrew Howden, 2016"
 
 Params:
+  CssVersion: "1464689891"
   Gtm:
     Id: "GTM-KXPWKD"
-  Css:
-    Styles: "1464689891"
-  Js:
-    CacheVersion: v1
+  JsVersion: "1464690574"

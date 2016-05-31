@@ -60,9 +60,10 @@ js: ## Create the JavaScript resources
 	- mkdir -p site/static/js
 	cp --dereference --recursive site/src/js site/static
 	cp site/src/serviceworker.js site/static/serviceworker.js
+	sed -i 's/JsVersion: .*/JsVersion: "${TIMESTAMP}"/' site/config.yml
 
 scss: ## Make SCSS
-	sed -i 's/Styles: .*/Styles: "${TIMESTAMP}"/' site/config.yml
+	sed -i 's/CssVersion: .*/CssVersion: "${TIMESTAMP}"/' site/config.yml
 	rm -rf site/static/css/styles-* # Clean previous CSS
 	sassc --sourcemap --style=compressed site/src/scss/styles.scss site/static/css/styles.css
 
