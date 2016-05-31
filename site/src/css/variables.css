@@ -13,8 +13,17 @@
   --screen-bp-lg: 992px;
   --screen-bp-xl: 1200px;
 
-  --page-width-large: 62em;
+  --logo-fill: #ffffff;
+
+  --masthead-height: 50px;
+  --masthead-background-color: #243746;
+
+  --padding-base-vertical: 6px;
+  --padding-large-vertical: 10px;
+  --padding-base-horizontal: 10px;
+  --padding-large-horizontal: 16px;
 
   --page-bg-color: #243746;
+  --page-width-large: 62em;
   --page-text-color: #ffffff;
 }

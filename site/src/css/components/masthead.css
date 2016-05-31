@@ -1,0 +1,24 @@
+@import '../variables.css';
+
+.masthead {
+  height: var(--masthead-height);
+  padding: var(--padding-large-vertical) var(--padding-large-horizontal);
+  max-width: var(--page-width-large);
+  background: var(--masthead-background-color);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.masthead__logo {
+  height: calc(var(--masthead-height) - (2 * var(--padding-base-vertical)));
+  float: left;
+  fill: var(--logo-fill);
+}
+
+.masthead__nav {
+  float: right;
+}
+
+.masthead__brand {
+  display: inline-block;
+}

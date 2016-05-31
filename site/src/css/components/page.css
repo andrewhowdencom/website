@@ -11,3 +11,13 @@ body {
   text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
 }
+
+.page__masthead{
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.page__content {
+  margin-top: var(--masthead-height);
+}

@@ -2,10 +2,10 @@
 
 <body class="post">
     {{ partial "gtm.html" . }}
-    <div class="site-wrapper">
+    {{ partial "masthead.html" . }}
+    <div class="site-wrapper page__content">
         <div class="site-wrapper-inner">
             <div class="cover">
-                {{ partial "masthead.html" . }}
                 {{ .Content }}
                 {{ partial "footer.html" . }}
             </div>
