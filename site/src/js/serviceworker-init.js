@@ -7,7 +7,7 @@
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register(
-      '/serviceworker.js',
+      '/serviceworker.js?version=v2',
       {
         scope: '/'
       }

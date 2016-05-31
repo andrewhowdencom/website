@@ -1,2 +1,2 @@
 var swOptions = {};
-swOptions.cacheVersion = 'v1';
+swOptions.cacheVersion = 'v2';

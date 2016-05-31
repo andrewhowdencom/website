@@ -1,17 +1,3 @@
-html,
-body {
-    height: 100%;
-    background-color: $body-background-color;
-}
-
-body {
-    // scss-lint:disable ColorVariable -- I think it's OK here.
-    // Todo: Think about this more.
-    color: $body-text-color;
-    text-align: center;
-    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-}
-
 .post {
     .site-wrapper-inner {
         text-align: left;

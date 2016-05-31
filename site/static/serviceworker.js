@@ -1,7 +1,9 @@
 (global => {
-  /* global toolbox, swOptions */
+  var swOptions = {};
+  swOptions.cacheVersion = 'v2';
+
+  /* global toolbox */
   global.importScripts('js/serviceworker/sw-toolbox.js');
-  global.importScripts('js/serviceworker/config.js');
 
   // toolbox.options.debug = true;
 
