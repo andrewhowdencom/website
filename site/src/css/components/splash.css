@@ -1,0 +1,8 @@
+@import '../variables';
+
+.splash {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -var(--masthead-height);
+}

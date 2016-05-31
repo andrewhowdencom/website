@@ -2,10 +2,6 @@
     .site-wrapper-inner {
         text-align: left;
         vertical-align: top;
-
-        @media(min-width: map-get($grid-breakpoints, sm)) {
-            padding-top: 85px;
-        }
     }
 }
 
