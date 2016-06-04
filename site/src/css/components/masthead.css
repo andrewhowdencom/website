@@ -4,7 +4,6 @@
   height: var(--masthead-height);
   padding: var(--padding-large-vertical) var(--padding-large-horizontal);
   max-width: var(--page-width-large);
-  background: var(--masthead-background-color);
   margin-left: auto;
   margin-right: auto;
 }
@@ -13,6 +12,10 @@
   height: calc(var(--masthead-height) - (2 * var(--padding-base-vertical)));
   float: left;
   fill: var(--logo-fill);
+}
+
+.masthead__logo:hover {
+  fill: var(--logo-fill-hover);
 }
 
 .masthead__nav {

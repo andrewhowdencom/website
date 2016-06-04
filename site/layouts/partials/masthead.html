@@ -23,7 +23,7 @@
                 </g>
             </svg>
         </a>
-        <h3 class="masthead__brand">{{ .Site.Title }}</h3>
+        <h2 class="masthead__brand">{{ .Site.Title }}</h2>
         <nav class="nav masthead__nav nav-masthead">
             {{ $currentNode := . }} {{ range .Site.Menus.main }}
             <a class="nav-link material-icons" href="{{ .URL }}">{{ .Name }}</a> {{ end }}
