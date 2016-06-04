@@ -37,6 +37,7 @@ help: ## Show this menu
 
 app-version: ## Update application version
 	sed -i "s/{{ APP_VERSION }}/$(APP_VERSION)/" "site/static/serviceworker.js"
+	sed -i 's/AppVersion: .*/AppVersion: "$(APP_VERSION)"/' site/config.yml
 
 push-container-%: ## Tags and pushes a container to the repo
 	docker tag ${CONTAINER_NS}/$*:${GIT_HASH} gcr.io/${GCR_NAMESPACE}/${PROJECT_NS}-$*:${GIT_HASH}
@@ -59,13 +60,12 @@ content: ## Build Hugo site
 	cd site && hugo
 
 images: ## Generate images
-	cp site/bower_components/Font-Awesome-SVG-PNG/white/svg/* site/static/images/icons/
+	cp site/bower_components/Font-Awesome-SVG-PNG/black/svg/* site/static/images/icons/
 
 js: ## Create the JavaScript resources
 	- mkdir -p site/static/js
 	cp --dereference --recursive site/src/js site/static
 	cp site/src/serviceworker.js site/static/serviceworker.js
-	sed -i 's/JsVersion: .*/JsVersion: "${TIMESTAMP}"/' site/config.yml
 	make app-version
 
 scss: ## Make SCSS
