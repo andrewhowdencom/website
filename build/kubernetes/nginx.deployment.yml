@@ -14,6 +14,9 @@ spec:
         - name: nginx-etc-tls
           secret:
             secretName: nginx-etc-tls
+        - name: nginx-etc-picfit
+          configMap:
+            name: nginx-etc-picfit
       containers:
         - name: nginx
           image: gcr.io/littleman-co/www-andrewhowden-com-nginx:{{GIT_HASH}}
@@ -24,3 +27,8 @@ spec:
             - name: nginx-etc-tls
               readOnly: true
               mountPath: /etc/tls
+        - name: picfit
+          image: littleman/picfit:3.0.0-1
+          volumeMounts:
+          - name: nginx-etc-picfit
+            mountPath: "/etc/picfit"
