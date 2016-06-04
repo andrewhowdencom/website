@@ -1,6 +1,6 @@
 (global => {
   var swOptions = {};
-  swOptions.cacheVersion = 'v2';
+  swOptions.cacheVersion = '{{ APP_VERSION }}';
 
   /* global toolbox */
   global.importScripts('js/serviceworker/sw-toolbox.js');
@@ -18,6 +18,7 @@
 
   global.addEventListener(
     'activate',
+    // Todo: Work out how to flush the cache.
     event => event.waitUntil(global.clients.claim())
   );
 
@@ -29,7 +30,7 @@
     /^\/(css|js|images).*/,
     toolbox.networkFirst,
     {
-      networkTimeoutSeconds: 2
+      networkTimeoutSeconds: 5
     }
 );
 })(self);

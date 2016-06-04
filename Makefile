@@ -4,6 +4,8 @@
 
 .DEFAULT_GOAL := help
 
+APP_VERSION := 45
+
 SHELL := /bin/bash
 
 PROJECT_NS   := www-andrewhowden-com
@@ -33,6 +35,9 @@ help: ## Show this menu
 	@echo -e $(ANSI_TITLE)Commands:$(ANSI_OFF)
 	@grep -E '^[a-zA-Z_-%]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "    \033[32m%-30s\033[0m %s\n", $$1, $$2}'
 
+app-version: ## Update application version
+	sed -i "s/{{ APP_VERSION }}/$(APP_VERSION)/" "site/static/serviceworker.js"
+
 push-container-%: ## Tags and pushes a container to the repo
 	docker tag ${CONTAINER_NS}/$*:${GIT_HASH} gcr.io/${GCR_NAMESPACE}/${PROJECT_NS}-$*:${GIT_HASH}
 	docker push gcr.io/${GCR_NAMESPACE}/${PROJECT_NS}-$*:${GIT_HASH}
@@ -61,6 +66,7 @@ js: ## Create the JavaScript resources
 	cp --dereference --recursive site/src/js site/static
 	cp site/src/serviceworker.js site/static/serviceworker.js
 	sed -i 's/JsVersion: .*/JsVersion: "${TIMESTAMP}"/' site/config.yml
+	make app-version
 
 scss: ## Make SCSS
 	sed -i 's/CssVersion: .*/CssVersion: "${TIMESTAMP}"/' site/config.yml
