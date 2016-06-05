@@ -24,11 +24,13 @@
 
   --nav-link-background-colour: #6bbfff;
   --nav-link-background-color-hover: #243746;
+  --nav-link-width: 25px;
 
   --padding-base-vertical: 6px;
   --padding-large-vertical: 10px;
   --padding-base-horizontal: 10px;
   --padding-large-horizontal: 16px;
 
+  --page-bg-color: #ffffff;
   --page-width-large: 62em;
 }

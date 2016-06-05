@@ -1,6 +1,7 @@
 @import '../variables.css';
 
 .masthead {
+  background-color: var(--page-bg-color);
   height: var(--masthead-height);
   padding: var(--padding-large-vertical) var(--padding-large-horizontal);
   max-width: var(--page-width-large);
@@ -19,7 +20,9 @@
 }
 
 .masthead__nav {
-  float: right;
+  @media(--screen-sm) {
+    float: right;
+  }
 }
 
 .masthead__brand {

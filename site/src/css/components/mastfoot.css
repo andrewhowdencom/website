@@ -1,3 +1,19 @@
+@import '../variables.css';
+
 .mastfoot {
+  background-color: var(--page-bg-color);
   text-align: center;
+}
+
+.outlinks {
+  display: block;
+  text-align: center;
+}
+
+.outlinks__item {
+  display: inline-block;
+}
+
+.outlinks__item img {
+  width: var(--nav-link-width);
 }

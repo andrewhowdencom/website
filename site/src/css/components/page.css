@@ -16,5 +16,5 @@ body {
 }
 
 .page__content {
-  margin-top: calc(var(--masthead-height) + var(--padding-base-vertical));
+  padding-top: calc(var(--masthead-height) + var(--padding-base-vertical));
 }

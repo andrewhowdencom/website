@@ -4,6 +4,7 @@
     width: 100%;
     margin-right: auto;
     margin-left: auto;
+    padding: 0 var(--padding-large-horizontal);
 
     @media(--screen-md) {
         max-width: var(--page-width-large);
