@@ -4,6 +4,9 @@ This site is where I undertake a lot of my web experiments.
 however if you're curious, I'm going to try and keep track of what I'm doing
 here.
 
+It's not an extensive list. Just some things you can look for when checking out
+the place.
+
 ## ServiceWorker
 This site should be available offline. Pre-caching is disabled, so you'll have
 to play around a bit to get a full demonstraton. To try it, undertake the
