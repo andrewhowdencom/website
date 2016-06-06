@@ -9,6 +9,7 @@
 !\.gitkeep
 !\.scss-lint.yml
 !\.eslintrc.yml
+\.eslintignore
 
 # Generated files
 site/public/*

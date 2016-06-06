@@ -1,6 +1,6 @@
 (global => {
   var swOptions = {};
-  swOptions.cacheVersion = '46';
+  swOptions.cacheVersion = '47';
 
   /* global toolbox */
   global.importScripts('js/serviceworker/sw-toolbox.js');

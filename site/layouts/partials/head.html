@@ -23,7 +23,18 @@
     <link rel="stylesheet" href="/css/components/splash.css?gen={{ .Site.Params.CssVersion }}">
     <link rel="stylesheet" href="/css/components/typography.css?gen={{ .Site.Params.CssVersion }}">
 
+    <script type="text/javascript">
+      var require = {
+        'baseUrl': '/js/'
+      }
+    </script>
+    <!-- require.js is a render blocking script. I haven't quite figured out how to do imports entirely
+         asynchronously -->
+    <script type="text/javascript" src="/js/vendor/require.js"></script>
+
     <script type="text/javascript" src="/js/serviceworker-init.js?gen={{ .Site.Params.AppVersion }}" async defer></script>
+    <script type="text/javascript" src="/js/modules/affix-header.js" async defer></script>
+
     <meta name="description" content="{{ .Description }}">
 
     <title>{{ .Site.Title }}</title>

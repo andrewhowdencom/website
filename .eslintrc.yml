@@ -2,3 +2,6 @@ extends: google
 installedESLint: true
 env:
   browser: true
+globals:
+  define: true
+  require: true
