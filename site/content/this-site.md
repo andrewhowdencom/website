@@ -12,9 +12,9 @@ This site should be available offline. Pre-caching is disabled, so you'll have
 to play around a bit to get a full demonstraton. To try it, undertake the
 following:
 
-#. Visit a few pages
-#. Disable your network connection
-#. Revisit the same pages
+- Visit a few pages
+- Disable your network connection
+- Revisit the same pages
 
 It should work just fine. Alternatively, open the inspector and you'll see the
 DOM document coming out of the cache (and all other assets, but they *should*
