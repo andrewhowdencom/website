@@ -4,12 +4,3 @@
         vertical-align: top;
     }
 }
-
-.site-wrapper {
-    // scss-lint:disable ColorVariable VendorPrefix - To be delt with another day.
-    display: table;
-    width: 100%;
-    // For at least Firefox
-    height: 100%;
-    min-height: 100%;
-}

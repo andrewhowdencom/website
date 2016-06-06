@@ -1,7 +1,7 @@
 <!DOCTYPE html> {{ partial "head.html" . }}
-<body>
+<body class="page">
     {{ partial "gtm.html" . }} {{ partial "masthead.html" . }}
-    <div class="site-wrapper page__content splash">
+    <div class="site-wrapper page__content page__content splash">
         <div class="site-wrapper-inner">
             <div class="cover">
                 <div class="inner cover__content">
@@ -14,8 +14,8 @@
                     <p class="lead">hello[at]andrewhowden.com · +6143 808 0411</p>
                 </div>
 
-                {{ partial "footer.html" . }}
             </div>
         </div>
     </div>
+    {{ partial "footer.html" . }}
 </body>

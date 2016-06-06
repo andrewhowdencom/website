@@ -9,12 +9,30 @@ body {
   text-align: center;
 }
 
-.page__masthead{
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.page__masthead,
+.mage__mastfoot {
+  flex: none;
+}
+
+.page__masthead {
   position: fixed;
   top: 0;
   width: 100%;
 }
 
 .page__content {
-  padding-top: calc(var(--masthead-height) + var(--padding-base-vertical));
+  flex: 1 0 auto;
+}
+
+.page__content::after {
+  content: '\00a0'; /* &nbsp; */
+  display: block;
+  height: 0;
+  visibility: hidden;
 }
