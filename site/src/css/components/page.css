@@ -28,6 +28,7 @@ body {
 
 .page__content {
   flex: 1 0 auto;
+  padding-top: var(--padding-large-vertical);
 }
 
 .page__content::after {
