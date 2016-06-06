@@ -20,11 +20,16 @@
 }
 
 .masthead__nav {
-  @media(--screen-sm) {
-    float: right;
-  }
+  float: right;
 }
 
 .masthead__brand {
   display: inline-block;
+  padding-top: var(--padding-base-vertical);
+  font-size: 1.2em;
+
+  @media(--screen-sm) {
+    padding-top: 0;
+    font-size: 2em;
+  }
 }
