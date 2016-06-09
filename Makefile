@@ -4,7 +4,7 @@
 
 .DEFAULT_GOAL := help
 
-APP_VERSION := 47
+APP_VERSION := 48
 
 SHELL := /bin/bash
 
@@ -37,6 +37,7 @@ help: ## Show this menu
 
 app-version: ## Update application version
 	sed -i "s/{{ APP_VERSION }}/$(APP_VERSION)/" "site/static/serviceworker.js"
+	sed -i "s/{{ APP_VERSION }}/$(APP_VERSION)/" "site/static/js/serviceworker-init.js"
 	sed -i 's/AppVersion: .*/AppVersion: "$(APP_VERSION)"/' site/config.yml
 
 push-container-%: ## Tags and pushes a container to the repo
@@ -65,7 +66,7 @@ images: ## Generate images
 js: ## Create the JavaScript resources
 	- mkdir -p site/static/js
 	cp --dereference --recursive site/src/js site/static
-	cp site/src/serviceworker.js site/static/serviceworker.js
+	uglifyjs site/src/serviceworker.js --output site/static/serviceworker.js --source-map site/static/serviceworker.js.map
 	make app-version
 
 scss: ## Make SCSS

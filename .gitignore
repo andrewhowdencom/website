@@ -12,6 +12,7 @@
 
 # Generated files
 site/public/*
+*.map
 
 # Ignore bower components
 site/bower_components
