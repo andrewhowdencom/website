@@ -6,7 +6,7 @@
   @custom-media --screen-lg (min-width: 992px);
   @custom-media --screen-xl (min-width: 1200px);
 
-  --alert-info-background: #57555C;
+  --alert-info-background: #39393D;
   --alert-info-color: #ffffff;
 
   /* Css variables taken from the bootstrap 4 alpha */
@@ -36,4 +36,6 @@
 
   --page-bg-color: #ffffff;
   --page-width-large: 62em;
+
+  --z-index-alert: 1000;
 }

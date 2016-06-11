@@ -37,7 +37,7 @@ help: ## Show this menu
 
 app-version: ## Update application version
 	sed -i "s/{{ APP_VERSION }}/$(APP_VERSION)/" "site/static/serviceworker.js"
-	sed -i "s/{{ APP_VERSION }}/$(APP_VERSION)/" "site/static/js/serviceworker-init.js"
+	sed -i "s/{{ APP_VERSION }}/$(APP_VERSION)/" "site/static/js/app.js"
 	sed -i 's/AppVersion: .*/AppVersion: "$(APP_VERSION)"/' site/config.yml
 
 push-container-%: ## Tags and pushes a container to the repo

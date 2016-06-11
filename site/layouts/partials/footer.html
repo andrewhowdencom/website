@@ -13,9 +13,13 @@
             </li>
         </ul>
         <p>
-          {{ .Site.Copyright | safeHTML }}<br>
-          Curious about how this site works? See <a href="/this-site/">the article</a>
+            {{ .Site.Copyright | safeHTML }}
+            <br> Curious about how this site works? See <a href="/this-site/">the article</a>
         </p>
     </div>
-    <span class="alert alert--info" data-alert>Hi</span>
+</div>
+<div class="alert" data-alerts>
+  <span class="alert__item alert__item--info alert__item--transition" data-template></span>
+  <span class="alert__item alert__item--info">Hi</span>
+  <span class="alert__item alert__item--info">Test Example</span>
 </div>
