@@ -158,9 +158,20 @@
    */
   Alert.prototype.listen = function() {
     var _ = this;
+
     document.addEventListener('alerts.lc.add', function(e) {
       _.add(e.detail.message);
     });
+
+    // Check the queue
+    if (typeof window._enqueue !== 'undefined') {
+      // Redispatch the matching events.
+      window._enqueue.forEach(function(event) {
+        if (event.type === 'alerts.lc.add') {
+          document.dispatchEvent(event);
+        }
+      });
+    }
   };
 
   return Alert;
