@@ -24,7 +24,7 @@
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register(
-      '/serviceworker.js?version=53', {
+      '/serviceworker.js?version=54', {
         scope: '/'
       }
     ).then(function(registration) {
@@ -32,7 +32,7 @@
       var message;
       var isInstalling = 'New application is being installed';
       var isWaiting = 'New application is ready. Try closing and reopening the window';
-      var isActive = 'Application version 53 installed, and available offline';
+      var isActive = 'Application version 54 installed, and available offline';
 
       if (registration.installing) {
         message = isInstalling;
