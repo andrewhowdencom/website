@@ -25,6 +25,6 @@
 }
 
 .alert__item--transition {
-  transition: opacity 200ms;
+  transition: opacity 250ms;
   opacity: 0;
 }
