@@ -8,64 +8,19 @@
  */
 (function() {
   'use strict';
-
-  /**
-   * Shows a toast message
-   */
-  function showToast(message) {
-    var event = new CustomEvent('alerts.lc.add', {
-      detail: {
-        message: message
-      }
-    });
-
-    document.dispatchEvent(event);
-  }
+  var version = '{{ APP_VERSION }}';
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register(
-      '/serviceworker.js?version={{ APP_VERSION }}', {
-        scope: '/'
-      }
-    ).then(function(registration) {
-      var serviceWorker;
-      var message;
-      var isInstalling = 'New application is being installed';
-      var isWaiting = 'New application is ready. Try closing and reopening the window';
-      var isActive = 'Application version {{ APP_VERSION }} installed, and available offline';
-
-      if (registration.installing) {
-        message = isInstalling;
-        serviceWorker = registration.installing;
-      } else if (registration.waiting) {
-        message = isWaiting;
-        serviceWorker = registration.waiting;
-      } else if (registration.active) {
-        message = isActive;
-        serviceWorker = registration.active;
-      }
-
-      // Determine which state the service worker is in immediately after installation.
-      showToast(message);
-
-      serviceWorker.addEventListener('statechange', function(e) {
-        switch (e.target.state) {
-          case 'installed':
-            showToast(isInstalling);
-            break;
-          case 'activating':
-            showToast(isWaiting);
-            break;
-          case 'activated':
-            showToast(isActive);
-            break;
-          default:
-            return;
-        }
-      });
-    }).catch(function(e) {
-      showToast('Application installation failed. Try a more modern browser (Chrome, Firefox): ' + e);
+    require(['modules/serviceworker'], function(sw) {
+      sw(version);
     });
+  } else {
+    var event = new CustomEvent('alerts.lc.add', {
+      detail: {
+        message: 'Cannot install the application: Your browser does not support serviceWorker'
+      }
+    });
+    document.dispatchEvent(event);
   }
 })();
 
@@ -75,6 +30,8 @@
 (function() {
   'use strict';
   require(['vendor/domReady'], function(domReady) {
+    // At the minute, it relies on a template defined in the DOM. I don't think this is a good idea; We'll need to
+    // supply it in the JavaScript, or ideally, with a HTMLImport (maybe?)
     domReady(function() {
       var template = document.querySelector('[data-alerts] > [data-template]');
       var elementContainer = document.querySelector('[data-alerts]');

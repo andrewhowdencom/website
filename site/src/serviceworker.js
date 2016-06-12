@@ -63,7 +63,7 @@
       return cache.match(networkFailurePage).then(function(response) {
         // This is a document. We should return a valid response.
         return response.blob().then(function(failureBlob) {
-          return new Response(failureBlob, networkFailureResponseOpts)
+          return new Response(failureBlob, networkFailureResponseOpts);
         });
       });
     });
