@@ -35,7 +35,7 @@ generated; they never exist client side.
 
 ## (Todo) Polyfilled client-hints
 The intent with this is to modify the image that's served to the user based on the
-DRP of that device, detected by JavaScript and sent to the server with 
+DPR of that device, detected by JavaScript and sent to the server with 
 ServiceWorker.
 
 ## (Todo) Application shell architecture
