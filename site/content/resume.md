@@ -3,7 +3,8 @@ Below is a short list of the more notable aspects of my career. If you're
 curious what I can do, ask me to do it!
 
 ## Education
-Self taught.
+I read a lot, and my colleagues are nice enough to impart knowledge upon me 
+where they have it.
 
 ## Competencies
 I keep [a lot of notes](https://docs.littleman.co/) which are a reasonable
@@ -26,9 +27,10 @@ might take me a couple of years to feel at home in it, though.
 
 ### Environments
 - Docker
+- Rkt
 - Kubernetes
 - Linux (Debian, Ubuntu, Arch, Minimal RHEL)
-- Windows 10
+- Windows (10)
 
 ### Tools
 - Atom
