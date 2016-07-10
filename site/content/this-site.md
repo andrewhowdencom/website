@@ -4,7 +4,7 @@ This site is where I undertake a lot of my web experiments.
 however if you're curious, I'm going to try and keep track of what I'm doing
 here.
 
-It's not an exaustive list. Just some things you can look for when checking out
+It's not an exhaustive list. Just some things you can look for when checking out
 the place.
 
 ## ServiceWorker
@@ -41,11 +41,11 @@ ServiceWorker.
 ## (Todo) Application shell architecture
 Make the site work even better offline. Not quite sure how I'll implement this
 just yet; I'm using the hugo static site generator, and it means I'll have to
-request chunks of HTML (which I generally abhore).
+request chunks of HTML (which I generally abhor).
 
 ## CSS Variables + PostCSS
 Trying to move away from meta tools around web technologies such as jQuery,
-SCSS and other nicities and work directly with the browser APIs. They're pretty
+SCSS and other niceties and work directly with the browser APIs. They're pretty
 damned good these days!
 
 ## HTTP/2
@@ -57,8 +57,8 @@ browser, you can visit the following URL:
 
 chrome://net-internals
 
-## Continious deployments
-This site is continiously deployed. There are no tests -- I'm just too lazy
+## Continuous deployments
+This site is continuously deployed. There are no tests -- I'm just too lazy
 to run the deployments manually. I've never had a problem. Deployments are
 handled by Travis
 
