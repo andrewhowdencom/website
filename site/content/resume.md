@@ -3,7 +3,7 @@ Below is a short list of the more notable aspects of my career. If you're
 curious what I can do, ask me to do it!
 
 ## Education
-I read a lot, and my colleagues are nice enough to impart knowledge upon me 
+I read a lot, and my colleagues are nice enough to impart knowledge upon me
 where they have it.
 
 ## Competencies
@@ -15,15 +15,67 @@ Travis to a Kubernetes cluster.
 I'm pretty sure I could hack around in another language reasonably quickly; it
 might take me a couple of years to feel at home in it, though.
 
-- 7/10 PHP
-- 7/10 JavaScript
-- 7/10 SCSS/CSS
-- 5/10 Bash, Shell
-- 2/10 Go
+<div class="progress__clearfix">
+  <div class="progress progress--80">
+    <span class="progress__caption">PHP</span>
+    <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
+     <g>
+      <circle class="progress__circle" r="30" cy="35" cx="35" stroke-width="3"
+        fill="none" />
+     </g>
+    </svg>
+  </div>
 
-- 6/10 English
-- 3/10 German
-- 1/10 Japanese
+  <div class="progress progress--70">
+    <span class="progress__caption">JS</span>
+    <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
+     <g>
+      <circle class="progress__circle" r="30" cy="35" cx="35" stroke-width="3"
+        fill="none" />
+     </g>
+    </svg>
+  </div>
+
+  <div class="progress progress--60">
+    <span class="progress__caption">SCSS</span>
+    <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
+     <g>
+      <circle class="progress__circle" r="30" cy="35" cx="35" stroke-width="3"
+        fill="none" />
+     </g>
+    </svg>
+  </div>
+
+  <div class="progress progress--50">
+    <span class="progress__caption">CSS</span>
+    <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
+     <g>
+      <circle class="progress__circle" r="30" cy="35" cx="35" stroke-width="3"
+        fill="none" />
+     </g>
+    </svg>
+  </div>
+
+  <div class="progress progress--50">
+    <span class="progress__caption">Bash</span>
+    <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
+     <g>
+      <circle class="progress__circle" r="30" cy="35" cx="35" stroke-width="3"
+        fill="none" />
+     </g>
+    </svg>
+  </div>
+
+  <div class="progress progress--20">
+    <span class="progress__caption">Go</span>
+    <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
+     <g>
+      <circle class="progress__circle" r="30" cy="35" cx="35" stroke-width="3"
+        fill="none" />
+     </g>
+    </svg>
+  </div>
+</div>
 
 ### Environments
 - Docker

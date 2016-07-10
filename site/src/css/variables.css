@@ -9,6 +9,11 @@
   --alert-info-background: #39393D;
   --alert-info-color: #ffffff;
 
+  /* Border things */
+  --border-width-base: 2px;
+  --border-color-primary: #243746;
+  --border-color-path: #D1E8F0;
+
   /* Css variables taken from the bootstrap 4 alpha */
   --screen-bp-xs: 0;
   --screen-bp-sm: 544px;
