@@ -21,8 +21,8 @@ spec:
         - name: nginx
           image: gcr.io/littleman-co/www-andrewhowden-com-nginx:{{GIT_HASH}}
           ports:
-             - containerPort: 80
-             - containerPort: 443
+          - containerPort: 80
+          - containerPort: 443
           volumeMounts:
             - name: nginx-etc-tls
               readOnly: true
