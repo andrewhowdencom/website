@@ -18,7 +18,16 @@ env:
   GIT_SSH_COMMAND="ssh -i .privkey"
 
 before_install:
-  "./build/scripts/CI/unpack-secrets.sh"
+  # General bin
+  # Path is ordered this way so we found our custom gcloud prior to travis's one.
+  - "PATH=$(pwd)/bin:${PATH}"
+
+  # Google Cloud Path
+  - "PATH=$(pwd)/google-cloud-sdk/bin:${PATH}"
+
+  # CI Scripts
+  - "PATH=$(pwd)/build/scripts/CI:${PATH}"
+  - "./build/scripts/CI/unpack-secrets.sh"
 
 install:
   - "./build/scripts/CI/install-gems.sh"
