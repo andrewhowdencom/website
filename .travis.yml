@@ -30,7 +30,6 @@ before_install:
   - "./build/scripts/CI/unpack-secrets.sh"
 
 install:
-  - "./build/scripts/CI/install-gems.sh"
   - "./build/scripts/CI/install-dependencies.sh"
 
 before_script:
