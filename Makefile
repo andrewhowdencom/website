@@ -51,8 +51,8 @@ build-container-%: ## Builds the $* container, and tags it with the git hash.
 	docker build --no-cache -t ${CONTAINER_NS}/$*:${GIT_HASH} -f build/docker/$*/Dockerfile .
 
 deploy-container-%: site build-container-% push-container-% ## Pushes a container to GCR. Will eventually update Kubernetes
-	which kubectl
-	sed "s/{{GIT_HASH}}/${GIT_HASH}/" build/kubernetes/$*.deployment.yml
+	kubectl version
+	type kubectl
 	sed "s/{{GIT_HASH}}/${GIT_HASH}/" build/kubernetes/$*.deployment.yml | kubectl apply -f -
 
 clean: ## Remove all compiled resources
