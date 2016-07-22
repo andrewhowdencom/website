@@ -22,7 +22,7 @@ Presumptions
 - I've configured the kubectl tool to use the appropriate namespace.
 - Your Kubernetes cluster already has the DNS server set up
 - Your Kubernetes cluster already has Prometheus set up (a blog post for another
- day!)
+  day!)
 
 The problem (or why should I care)
 ----------------------------------
@@ -490,6 +490,7 @@ for example.
 
 - http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 - http://kubernetes.io/docs/user-guide/managing-deployments/
+
 .. [1] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
 
 Things I intend to cover (or, todo)
