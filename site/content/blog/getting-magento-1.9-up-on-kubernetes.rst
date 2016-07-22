@@ -127,6 +127,9 @@ We'll start with the deployment. The deployment I'm using is below. I've heavily
 commented it, to explain what each constituent part is for. Create a file
 called `50-cache.dep.yaml`, and paste in the below.
 
+# Todo: Make a note about what a pod is, and that the deployment is creating
+# and managing some.
+
 .. Code:: yaml
 
   ---
@@ -352,6 +355,121 @@ To create a service we need a service declaration file. Create a file called
   Kubernetes will route all of them, load balancing between them in a round
   robin.
 
+Now we have the two Kubernetes definitions:
+
+- `20-m1onk8s-littleman-co.ns.yml`
+- `50-cache.dep.yml`
+- `50-cache.svc.yml`
+
+Making changes in each one and then applying them can get tiresome. Luckily,
+we don't have to do that! Kubernetes will simpily patch the resources that are
+there if you ask it to, updating them as required. We can even patch the entire
+set of resources at once! This is super nice if you're working with lots of
+files, as we will be later.
+
+.. Code:: bash
+
+  # Note: The definition files must be the only thing in the directory for this
+  # to work
+  $ cd {directory you created the files in}
+  $ kubectl apply -f .
+
+  namespace "m1onk8s-littleman-co" configured
+  deployment "cache" configured
+  service "cache" created
+
+Whoo! Looks like everything worked OK. However, how do we know our service is
+working? Let's take a look:
+
+.. Code:: bash
+
+  $ kubectl get svc
+  NAME      CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+  cache     10.59.254.85   <none>        6379/TCP   40s
+
+Yup. Kubenretes has found it. It's not an externally facing service, so that
+`<none>` is fine. However, is it working? Let's check:
+
+.. Code:: bash
+
+  $ kubectl describe svc cache
+
+  Name:			cache
+  Namespace:		m1onk8s-littleman-co
+  Labels:			application=redis,role=cache
+  Selector:		application=redis,role=cache
+  Type:			ClusterIP
+  IP:			10.59.254.85
+  Port:			redis	6379/TCP
+  Endpoints:		10.56.0.7:6379 # <-- The pod
+  Session Affinity:	None
+  No events.
+
+See the bit there called `Endpoints` and the IP next to it? That's the pod we
+started earlier! Looks like everything is working. However, that's not a good
+text - We know it's found the pod, and we know that the pod has port 6379 open
+(thanks to the earlier liveness checks). However, is Redis actually working?
+
+Well, we could query it with the Redis-cli tool. But wait - What do we query?
+There is two things:
+
+- The service IP
+- The domain name
+
+We're going to do the latter, as it's simpler, and reliable across clusters
+and service creation. Kubernetes can run an additional DNS service - most
+clusters have this enabled by default. The DNS service some information about the
+service, and turns it into a domain name. The domain names are constructed as
+follows:
+
+.. Code::
+
+  {pod-name}.{namespace}.svc.{cluster-domain}}
+
+The domain suffix is configured when the cluster is created. On GKE, mine was
+`cluster.local` - To find yours, take a look at the options the kubelet was
+started with, or consult the cluster manual.
+
+In our case, this means our DNS entry will be
+
+.. Code::
+
+  cache.m1onk8s-littleman-co.svc.cluster.local
+
+However, we don't need to enter all that. Kubernetes modifies the nameserver
+resolution behaviour such that, within this namespace, any of the following
+values are acceptable:
+
+- `cache`
+- `cache.m1onk8s-littleman-co`
+- `cache.m1onk8s-littleman-co.svc`
+- `cache.m1onk8s-littleman-co.svc.cluster.local`
+
+Unfortunately, there's no way to connect directly to the service from inside
+the cluster. However, we can create a short lived pod just to test the
+connection[1]_. We're going to use the same redis image as we're running
+the server on, as it has the `redis-cli` tool, and is already on at least
+one node.
+
+.. Code:: bash
+
+  $ kubectl run -i --tty redis --image=redis:3.2.1-alpine --restart=Never sh
+
+  Waiting for pod m1onk8s-littleman-co/redis-2j2vx to be running, status is Pending, pod ready: false
+
+  Hit enter for command prompt
+  # Hit enter
+
+  # The prompt looks like '{dir} #'
+  /data # redis-cli -h cache
+
+  cache:6379>
+
+Yeah! Looks like we're connected. Redis is up and running! You can just exit
+that pod, and it'll be disposed of.
+
+I'm going to leave it here for right now.
+
 .. _boilr: https://github.com/boilr
 .. _Check out the namespace docs for more information.: http://kubernetes.io/docs/user-guide/namespaces/
 .. _deployment: http://kubernetes.io/docs/user-guide/deployments/
@@ -367,3 +485,4 @@ for example.
 
 - http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 - http://kubernetes.io/docs/user-guide/managing-deployments/
+.. [1] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
