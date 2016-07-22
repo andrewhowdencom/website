@@ -283,6 +283,9 @@ Kubernetes API for the status of that pod
 .. Code:: bash
 
   $ kubectl get pods
+
+.. Code::
+
   NAME                     READY     STATUS    RESTARTS   AGE
   cache-4036923991-vwy3z   1/1       Running   0          22h
 
@@ -291,6 +294,9 @@ There it is! Let's take a closer look:
 .. Code:: bash
 
   $ kubectl describe pod cache-4036923991-vwy3z
+
+.. Code::
+
   Name:		cache-4036923991-vwy3z
   Namespace:	m1onk8s-littleman-co
   Node:		{node-name}/10.240.0.2
@@ -389,6 +395,9 @@ working? Let's take a look:
 .. Code:: bash
 
   $ kubectl get svc
+
+.. Code::
+
   NAME      CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
   cache     10.59.254.85   <none>        6379/TCP   40s
 
@@ -398,6 +407,8 @@ Yup. Kubenretes has found it. It's not an externally facing service, so that
 .. Code:: bash
 
   $ kubectl describe svc cache
+
+.. Code::
 
   Name:			cache
   Namespace:		m1onk8s-littleman-co
@@ -460,13 +471,20 @@ one node.
 
   $ kubectl run -i --tty redis --image=redis:3.2.1-alpine --restart=Never sh
 
+.. Code::
+
   Waiting for pod m1onk8s-littleman-co/redis-2j2vx to be running, status is Pending, pod ready: false
 
   Hit enter for command prompt
+
+.. Code:: bash
+
   # Hit enter
 
   # The prompt looks like '{dir} #'
   /data # redis-cli -h cache
+
+.. Code::
 
   cache:6379>
 
