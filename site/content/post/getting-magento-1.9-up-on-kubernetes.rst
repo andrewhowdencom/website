@@ -1,15 +1,19 @@
-=====================================
+---
+title: "Getting Magento 1.9x up on Kubernetes (1.3)"
+description: "An in depth guide on Kubernetes for Magento developers"
+date: "2016-07-22"
+---
+
 Getting Magento 1.9x up on Kubernetes
 =====================================
 
-I have been playing quite a bit recently on Kubernetes, and gotten various applications such as Sensu, NGINX, Hugo, Prometheus and a few others up and going on it. This is what amounts to one way to get Magento up on Kubernetes, on GKE. This guide is written for Magento developers looking to gain familiarity with Kubernetes, and perhaps Docker. If there are terms that you are unfamiliar with, or perhaps something I have worded badly, please let me know and I'll fix it up.
-
-Things I intend to cover (or, todo)
------------------------------------
-
-- Metrics
-- Logs
-- Resource Allocations
+I have been playing quite a bit recently on Kubernetes, and gotten various
+applications such as Sensu, NGINX, Hugo, Prometheus and a few others up and
+going on it. This is what amounts to one way to get Magento up on Kubernetes,
+on GKE. This guide is written for Magento developers looking to gain familiarity
+with Kubernetes, and perhaps Docker. If there are terms that you are unfamiliar
+with, or perhaps something I have worded badly, please let me know and I'll
+fix it up.
 
 Presumptions
 ------------
@@ -17,7 +21,8 @@ Presumptions
 - I've previously set up the cluster, and the kubectl cli tool.
 - I've configured the kubectl tool to use the appropriate namespace.
 - Your Kubernetes cluster already has the DNS server set up
-- Your Kubernetes cluster already has Prometheus set up (a blog post for another day!)
+- Your Kubernetes cluster already has Prometheus set up (a blog post for another
+ day!)
 
 The problem (or why should I care)
 ----------------------------------
@@ -486,3 +491,10 @@ for example.
 - http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 - http://kubernetes.io/docs/user-guide/managing-deployments/
 .. [1] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
+
+Things I intend to cover (or, todo)
+-----------------------------------
+
+- Metrics
+- Logs
+- Resource Allocations

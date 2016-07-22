@@ -1,0 +1,8 @@
+<!DOCTYPE html> {{ partial "head.html" . }}
+<body class="post page">
+    {{ partial "gtm.html" . }} {{ partial "masthead.html" . }}
+    <div class="page__content page__content--blog">
+        {{ .Content }}
+    </div>
+    {{ partial "footer.html" . }}
+</body>
