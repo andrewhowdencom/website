@@ -16,6 +16,8 @@ Presumptions
 
 - I've previously set up the cluster, and the kubectl cli tool.
 - I've configured the kubectl tool to use the appropriate namespace.
+- Your Kubernetes cluster already has the DNS server set up
+- Your Kubernetes cluster already has Prometheus set up (a blog post for another day!)
 
 The problem (or why should I care)
 ----------------------------------
@@ -27,17 +29,30 @@ Magento (the way I like to run it) consists of a few moving parts:
 #. Redis
 #. MySQL
 
-Each of those parts have to run somewhere *reliably* in a known location. There might be several copies of these parts (most commonly the PHP/NGINX components) for redundancy, in case requests fail or get blocked. Further, in order to make any ongoing changes to the stack, we need to be able to quickly reason about exactly what's running, including versions, where the processes are running, how much resource they're using and when they were last modified.
+Each of those parts have to run somewhere *reliably* in a known location. There
+might be several copies of these parts (most commonly the PHP/NGINX components)
+for redundancy, in case requests fail or get blocked. Further, in order to make
+any ongoing changes to the stack, we need to be able to quickly reason about
+exactly what's running, including versions, where the processes are running,
+how much resource they're using and when they were last modified.
 
-A combination of Kubernetes and Docker serve to solve a lot of those problems elegantly. Docker images (run by the Docker daemon) are encapsulated, distributable environments to run a process in. They roughly consist of the following:
+A combination of Kubernetes and Docker serve to solve a lot of those problems
+elegantly. Docker images (run by the Docker daemon) are encapsulated,
+distributable environments to run a process in. They roughly consist of the
+following:
 
 - A separate spot in the kernel to execute the process in.
 - A root file system (including the application) to run things in.
 - Reasonable isolation from other processes running on the same kernel.
 
-Because they're encapsulated, the runtime environment is largely the same from development to staging to production, and beyond. This encapsulation solves one of the hardest problems: knowing exactly what's running.
+Because they're encapsulated, the runtime environment is largely the same from
+development to staging to production, and beyond. This encapsulation solves one
+of the hardest problems: knowing exactly what's running.
 
-Kubernetes provides a system to manage and distribute these Docker images among a series of machines, without caring about exactly where the image is running or setting up networking to that image. It manages the entire cluster, and is responsible for:
+Kubernetes provides a system to manage and distribute these Docker images among
+a series of machines, without caring about exactly where the image is running or
+setting up networking to that image. It manages the entire cluster, and is
+responsible for:
 
 - Managing how much available compute resources there are in the entire cluster
 - Deciding which machine a process should run on
@@ -46,7 +61,13 @@ Kubernetes provides a system to manage and distribute these Docker images among 
 - Provisioning any required cloud resources needed by that process instance
 - Handling the failure of a machine
 
-Kubernetes is entirely declarative, and is responsible for enforcing the state of your environment. It provides a superb abstraction between "the things the developer should know about" and "the gory detail the sysadmin needs to know about". We're going to use it because it dramatically reduces the impact of failure for any one component. If a process dies, it's restarted. If a machine dies, work is scheduled elsewhere. If Kubernetes dies, you're screwed -- but at that point, you were screwed anyway.
+Kubernetes is entirely declarative, and is responsible for enforcing the state
+of your environment. It provides a superb abstraction between "the things the
+developer should know about" and "the gory detail the sysadmin needs to know
+about". We're going to use it because it dramatically reduces the impact of
+failure for any one component. If a process dies, it's restarted. If a machine
+dies, work is scheduled elsewhere. If Kubernetes dies, you're screwed -- but
+at that point, you were screwed anyway.
 
 Getting Started
 ---------------
@@ -54,9 +75,16 @@ Getting Started
 Our own, tidy workshop
 """"""""""""""""""""""
 
-Most of the resources in Kubernetes operate in the context of a namespace. A namespace prevents collisions between applications that need to be discovered, lets us sets some resource limits and (coming soon) network policy. To provision anything, we have to have a namespace to put it. `Check out the namespace docs for more information.`_
+Most of the resources in Kubernetes operate in the context of a namespace.
+A namespace prevents collisions between applications that need to be discovered,
+lets us sets some resource limits and (coming soon) network policy. To provision
+anything, we have to have a namespace to put it.
+`Check out the namespace docs for more information.`_
 
-Kubernetes creates resources based on text configuration, in either JSON or Yaml. I like Yaml, so we're going to use that. So, let's get started, and create a namespace resource. Create a file called `20-m1onk8s-littleman-co.ns.yml` with the following content:
+Kubernetes creates resources based on text configuration, in either JSON or
+Yaml. I like Yaml, so we're going to use that. So, let's get started, and
+create a namespace resource. Create a file called `20-m1onk8s-littleman-co.ns.yml`
+with the following content:
 
 .. Code:: yaml
 
@@ -71,21 +99,33 @@ Kubernetes creates resources based on text configuration, in either JSON or Yaml
 
 You'll notice a few things about this file:
 
-#. It's got a comment that indicates it's generated. I'm too lazy to generate them myself, so I use a templating tool called `boilr`_. If you like, the templates are available on `the littleman.co GitHub`_.
-#. "`net.alpha.kubernetes.io/network-isolation`_: "off"" is commented out. Alpha resources are not available on GKE; when this feature is beta, I'll try and remember to update this.
-#. The file is prefixed with the number 20. We're applying lots of configuration at once, and this number determines what order to apply the configuration in.
+#. It's got a comment that indicates it's generated. I'm too lazy to generate
+   them myself, so I use a templating tool called `boilr`_. If you like, the
+   templates are available on `the littleman.co GitHub`_.
+#. "`net.alpha.kubernetes.io/network-isolation`_: "off"" is commented out. Alpha
+   resources are not available on GKE; when this feature is beta, I'll try and
+   remember to update this.
+#. The file is prefixed with the number 20. We're applying lots of configuration
+   at once, and this number determines what order to apply the configuration in.
 
 Simple Applications
 """""""""""""""""""
 
-There are pre-build images for MySQL and Redis that can be deployed as is, and require very little effort on the part of the developer. We're going to start with those, as Kubernetes has quite the learning curve, and it's nice to start slow.
+There are pre-build images for MySQL and Redis that can be deployed as is, and
+require very little effort on the part of the developer. We're going to start
+ith those, as Kubernetes has quite the learning curve, and it's nice to start
+slow.
 
 The way I like to get applications running on Kubernetes is to have:
 
-- A `deployment`_ artifact: Something to indicate what to run on Kubernetes, and how many copies.
-- A `service`_ artifact: Something to indicate how to route things on the network, and to where.
+- A `deployment`_ artifact: Something to indicate what to run on Kubernetes,
+  and how many copies.
+- A `service`_ artifact: Something to indicate how to route things on the
+  network, and to where.
 
-We'll start with the deployment. The deployment I'm using is below. I've heavily commented it, to explain what each constituent part is for.
+We'll start with the deployment. The deployment I'm using is below. I've heavily
+commented it, to explain what each constituent part is for. Create a file
+called `50-cache.dep.yaml`, and paste in the below.
 
 .. Code:: yaml
 
@@ -245,7 +285,7 @@ There it is! Let's take a closer look:
   $ kubectl describe pod cache-4036923991-vwy3z
   Name:		cache-4036923991-vwy3z
   Namespace:	m1onk8s-littleman-co
-  Node:		{node-name}}/10.240.0.2
+  Node:		{node-name}/10.240.0.2
   ...
 
 It'll show you a bunch more information. But, it doesn't show us how how to find
@@ -261,6 +301,9 @@ for us, called "services". Services are a pointer to a set of applications -
 they provide a fixed address at which you can query an instance of an
 application.
 
+To create a service we need a service declaration file. Create a file called
+`50-cache.svc.yml`, and paste in the content below:
+
 .. Code:: yaml
 
   ---
@@ -268,21 +311,36 @@ application.
   kind: "Service"
   apiVersion: "v1"
   metadata:
+    # The name will form the first part of the URL that we can find our service
+    # at.
     name: "cache"
+    # The namespace is the same namespace we specified earlier, and will form
+    # the next part of the URL we will query
     namespace: "m1onk8s-littleman-co"
     annotations:
+      # I like monitoring services with Prometheus. This means "Find and scrape"
+      # this endpoint for metrics
       prometheus.io/scrape: "true"
     labels:
+      # These labels are how this service decides what to route traffic to. They
+      # should be a matching set as the ones defined in the deployment earlier.
+      # Note: These labels work on an "everything that matches" basis. If you
+      # have another service that routes to "applicaton: redis", it will Also
+      # match the same pods as this service.
       application: "redis"
       role: "cache"
   spec:
     selector:
+      # See above.
       application: "redis"
       role: "cache"
     ports:
+      # Which ports to route traffic for. These should be the same as the sum
+      # of all ports opened by all containers in the port.
       - protocol: "TCP"
         name: "redis"
         port: 6379
+      # Todo: Put promethus here.
       # - protocol: "TCP"
       #   name: "another-redis"
       #   port: 30redis
@@ -304,7 +362,8 @@ application.
 Referenecs
 ----------
 
-I learned things during this too! I had previously never applied resource limits for example.
+I learned things during this too! I had previously never applied resource limits
+for example.
 
 - http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 - http://kubernetes.io/docs/user-guide/managing-deployments/
