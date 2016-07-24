@@ -77,8 +77,8 @@ at that point, you were screwed anyway.
 Getting Started
 ---------------
 
-Our own, tidy workshop
-""""""""""""""""""""""
+Our own, tidy workspace
+"""""""""""""""""""""""
 
 Most of the resources in Kubernetes operate in the context of a namespace.
 A namespace prevents collisions between applications that need to be discovered,
@@ -113,6 +113,30 @@ You'll notice a few things about this file:
 #. The file is prefixed with the number 20. We're applying lots of configuration
    at once, and this number determines what order to apply the configuration in.
 
+Deploying containers... sortof
+""""""""""""""""""""""""""""""
+
+The lowest functional unit in Kubernetes is called a *pod* [KPOD]_. To quote the
+docs:
+
+  A pod (as in a pod of whales or pea pod) is a group of one or more containers
+  (such as Docker containers), the shared storage for those containers, and
+  options about how to run the containers. Pods are always co-located and
+  co-scheduled, and run in a shared context.
+
+Concretely, this means that we often deploy more then one container as a single
+unit. An example of this is Redis, where we have:
+
+=========================================== ====================================================================
+redis:3.2.1-alpine                          The container running Redis (and tools)
+`21zoo/redis_exporter`_                     A *sidecar* container, that exports metrics consumable by Prometheus
+=========================================== ====================================================================
+
+Pods have some nice characteristics, like
+
+- Being able to share Kubernetes volumes
+- Being able to access other containers in the pod at localhost
+
 Simple Applications
 """""""""""""""""""
 
@@ -131,9 +155,6 @@ The way I like to get applications running on Kubernetes is to have:
 We'll start with the deployment. The deployment I'm using is below. I've heavily
 commented it, to explain what each constituent part is for. Create a file
 called `50-cache.dep.yaml`, and paste in the below.
-
-# Todo: Make a note about what a pod is, and that the deployment is creating
-# and managing some.
 
 .. Code:: yaml
 
@@ -440,7 +461,7 @@ follows:
 
 .. Code::
 
-  {pod-name}.{namespace}.svc.{cluster-domain}}
+  {pod-name}.{namespace}.svc.{cluster-domain}
 
 The domain suffix is configured when the cluster is created. On GKE, mine was
 `cluster.local` - To find yours, take a look at the options the kubelet was
@@ -493,13 +514,6 @@ that pod, and it'll be disposed of.
 
 I'm going to leave it here for right now.
 
-.. _boilr: https://github.com/boilr
-.. _Check out the namespace docs for more information.: http://kubernetes.io/docs/user-guide/namespaces/
-.. _deployment: http://kubernetes.io/docs/user-guide/deployments/
-.. _service: http://kubernetes.io/docs/user-guide/services/
-.. _net.alpha.kubernetes.io/network-isolation: http://blog.kubernetes.io/2016/04/Kubernetes-Network-Policy-APIs.html
-.. _the littleman.co GitHub: https://github.com/littlemanco/
-
 Referenecs
 ----------
 
@@ -507,6 +521,7 @@ I learned things during this too! I had previously never applied resource limits
 for example.
 
 .. [K01] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
+.. [KPOD] http://kubernetes.io/docs/user-guide/pods/
 
 http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 http://kubernetes.io/docs/user-guide/managing-deployments/
@@ -518,3 +533,11 @@ Things I intend to cover (or, todo)
 - Metrics
 - Logs
 - Resource Allocations
+
+.. _boilr: https://github.com/boilr
+.. _Check out the namespace docs for more information.: http://kubernetes.io/docs/user-guide/namespaces/
+.. _deployment: http://kubernetes.io/docs/user-guide/deployments/
+.. _service: http://kubernetes.io/docs/user-guide/services/
+.. _net.alpha.kubernetes.io/network-isolation: http://blog.kubernetes.io/2016/04/Kubernetes-Network-Policy-APIs.html
+.. _the littleman.co GitHub: https://github.com/littlemanco/
+.. _21zoo/redis_exporter: https://hub.docker.com/r/21zoo/redis_exporter/

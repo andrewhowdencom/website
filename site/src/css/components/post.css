@@ -6,6 +6,10 @@ cite {
   color: var(--post-inline-code-color);
 }
 
+em {
+  font-weight: bold;
+}
+
 .reference {
   text-decoration: underline;
 }
