@@ -7,72 +7,80 @@ date: "22 Jul 16 17:00 +1100"
 Getting Magento 1.9x up on Kubernetes
 =====================================
 
-I have been playing quite a bit recently on Kubernetes, and gotten various
-applications such as Sensu, NGINX, Hugo, Prometheus and a few others up and
-going on it. This is what amounts to one way to get Magento up on Kubernetes,
-on GKE. This guide is written for Magento developers looking to gain familiarity
-with Kubernetes, and perhaps Docker. If there are terms that you are unfamiliar
-with, or perhaps something I have worded badly, please let me know and I'll
-fix it up.
+This guide is written for Magento developers looking to gain familiarity
+with `Kubernetes`_, and perhaps `Docker`_.
 
-Presumptions
-------------
+.. container:: tip info 
 
-- I've previously set up the cluster, and the kubectl cli tool.
-- I've configured the kubectl tool to use the appropriate namespace.
-- Your Kubernetes cluster already has the DNS server set up
-- Your Kubernetes cluster already has Prometheus set up (a blog post for another
-  day!)
+  I am new to writing these sort of articles, and this will be my first. If
+  there are parts that are unclear, or something that I have worded badly,
+  please let me know and I'll fix it up.
 
-The problem (or why should I care)
-----------------------------------
+The problem Kubernetes solves
+-----------------------------
 
-Magento (the way I like to run it) consists of a few moving parts:
+Magento consists of a few moving parts, give or take:
 
 #. PHP
 #. NGINX
 #. Redis
 #. MySQL
 
-Each of those parts have to run somewhere *reliably* in a known location. There
-might be several copies of these parts (most commonly the PHP/NGINX components)
-for redundancy, in case requests fail or get blocked. Further, in order to make
-any ongoing changes to the stack, we need to be able to quickly reason about
-exactly what's running, including versions, where the processes are running,
-how much resource they're using and when they were last modified.
+Each of these components has to run somewhere, and be discoverable by the other
+components in the stack. Further, several replicas of PHP and NGINX are often
+run so that if one copy dies (due to segfault or machine failure) other versions
+of the application can pick up the slack.
 
-A combination of Kubernetes and Docker serve to solve a lot of those problems
-elegantly. Docker images (run by the Docker daemon) are encapsulated,
-distributable environments to run a process in. They roughly consist of the
-following:
+Further, multiple need to be able to introspect the stack, including determining
+what is wrong with an application at any given time, increase the number of
+replicas of a given component or just determine what's running and where at any
+given time.
+
+A combination of Docker and Kubernetes elegantly solve a lot of these problems.
+Docker images (run by the Docker daemon) are *containers* - encapsulated,
+distributable environments to run a process in. A container is:
 
 - A separate spot in the kernel to execute the process in.
 - A root file system (including the application) to run things in.
 - Reasonable isolation from other processes running on the same kernel.
 
 Because they're encapsulated, the runtime environment is largely the same from
-development to staging to production, and beyond. This encapsulation solves one
-of the hardest problems: knowing exactly what's running.
+development to staging to production to whatever. This encapsulation solves one
+of the hardest problems: knowing exactly what's running, what version and in
+what state.
 
-Kubernetes provides a system to manage and distribute these Docker images among
-a series of machines, without caring about exactly where the image is running or
-setting up networking to that image. It manages the entire cluster, and is
+Kubernetes provides the management layer for these containers, and is
 responsible for:
 
 - Managing how much available compute resources there are in the entire cluster
-- Deciding which machine a process should run on
-- Starting and monitoring that process on the machine
-- Creating a means to route to that process
-- Provisioning any required cloud resources needed by that process instance
+- Deciding which machine a container should run on
+- Starting and monitoring that container on the machine
+- Creating a means to route to that container
+- Provisioning any required cloud resources needed by that container
 - Handling the failure of a machine
 
-Kubernetes is entirely declarative, and is responsible for enforcing the state
-of your environment. It provides a superb abstraction between "the things the
-developer should know about" and "the gory detail the sysadmin needs to know
-about". We're going to use it because it dramatically reduces the impact of
-failure for any one component. If a process dies, it's restarted. If a machine
-dies, work is scheduled elsewhere. If Kubernetes dies, you're screwed -- but
-at that point, you were screwed anyway.
+The Kubernetes spec is declarative - you indicate the state that you'd like your
+cluster to be in, and Kubernetes is responsible for making your cluster reflect
+your specification. It provides a superb abstraction for the compute resources,
+letting the sysadmin manage cluster and the machines, and the developer only
+managing Kubernetes. In otherwords:
+
+- A machine dies? You should be OK
+- A container dies? It'll be restarted
+- A container consistently dies? It'll be moved to another machine, and
+  restarted
+
+Kubernetes can be run in a highly available way, tolerating even faults in
+Kubernetes itself.
+
+Ingredients
+-----------
+
+You will need:
+
+- One Kubernetes cluster, spun up on `Google Container Engine`
+- The kubectl tool, correctly configured to your cluster
+- (Optional) Prometheus running on your cluster
 
 Getting Started
 ---------------
@@ -80,11 +88,15 @@ Getting Started
 Our own, tidy workspace
 """""""""""""""""""""""
 
-Most of the resources in Kubernetes operate in the context of a namespace.
-A namespace prevents collisions between applications that need to be discovered,
+Most of the resources in Kubernetes operate in the context of a *namespace*.
+To quote the docs (again):
+
+  Kubernetes supports multiple virtual clusters backed by the same physical
+  cluster. These virtual clusters are called namespaces.[KNS]_
+
+This namespace revents collisions between applications that need to be discovered,
 lets us sets some resource limits and (coming soon) network policy. To provision
 anything, we have to have a namespace to put it.
-`Check out the namespace docs for more information.`_
 
 Kubernetes creates resources based on text configuration, in either JSON or
 Yaml. I like Yaml, so we're going to use that. So, let's get started, and
@@ -522,6 +534,7 @@ for example.
 
 .. [K01] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
 .. [KPOD] http://kubernetes.io/docs/user-guide/pods/
+.. [KNS] http://kubernetes.io/docs/user-guide/namespaces/
 
 http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 http://kubernetes.io/docs/user-guide/managing-deployments/
@@ -541,3 +554,6 @@ Things I intend to cover (or, todo)
 .. _net.alpha.kubernetes.io/network-isolation: http://blog.kubernetes.io/2016/04/Kubernetes-Network-Policy-APIs.html
 .. _the littleman.co GitHub: https://github.com/littlemanco/
 .. _21zoo/redis_exporter: https://hub.docker.com/r/21zoo/redis_exporter/
+.. _`Kubernetes`: http://kubernetes.io/
+.. _`Docker`: https://www.docker.com/
+.. _`Google Container Engine`: https://cloud.google.com/container-engine/
