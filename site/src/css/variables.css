@@ -11,8 +11,33 @@
 
   /* Border things */
   --border-width-base: 2px;
+  --border-width-thin: 1px;
   --border-color-primary: #243746;
   --border-color-path: #D1E8F0;
+
+  /* Message Colours */
+  /* Colours from Bootstrap.
+     See https://github.com/twbs/bootstrap/blob/master/less/variables.less */
+  --colour-danger: #d9534f;
+  --colour-info: #5bc0de;
+  --colour-success: #5cb85c;
+  --colour-warning: #f0ad4e;
+
+  --danger-background-colour: #f2dede;
+  --danger-text-colour: #a94442;
+  --danger-border-colour: var(--colour-danger);
+
+  --info-background-colour: #d9edf7;
+  --info-text-colour: #colour;
+  --info-border-colour: var(--colour-info);
+
+  --success-background-colour: #dff0d8;
+  --success-text-colour: #3c763d;
+  --success-border-colour: var(--colour-success);
+
+  --warning-background-colour: #fcf8e3;
+  --warning-text-colour: #331200;
+  --warning-border-colour: var(--colour-warning);
 
   /* Css variables taken from the bootstrap 4 alpha */
   --screen-bp-xs: 0;

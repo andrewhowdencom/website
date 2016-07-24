@@ -1,0 +1,31 @@
+@import '../variables.css';
+
+.tip {
+  padding: var(--padding-base-vertical) var(--padding-base-horizontal);
+  border: solid var(--border-width-thin);
+  border-left-width: 15px;
+}
+
+.tip.success {
+  border-color: var(--success-border-colour);
+  background-color: var(--success-background-colour);
+  color: var(--success-text-colour);
+}
+
+.tip.info {
+  border-color: var(--info-border-colour);
+  background-color: var(--info-background-colour);
+  color: var(--info-text-colour);
+}
+
+.tip.danger {
+  border-color: var(--danger-border-colour);
+  background-color: var(--danger-background-colour);
+  color: var(--danger-text-colour);
+}
+
+.tip.warning {
+  border-color: var(--warning-border-colour);
+  background-color: var(--warning-background-colour);
+  color: var(--warning-text-colour);
+}
