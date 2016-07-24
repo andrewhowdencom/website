@@ -10,6 +10,11 @@ em {
   font-weight: bold;
 }
 
+
+blockquote {
+  font-style: italic;
+}
+
 .reference {
   text-decoration: underline;
 }
@@ -18,6 +23,11 @@ em {
   padding: var(--padding-base-vertical) var(--padding-base-horizontal);
   border: solid var(--border-width-thin);
   border-left-width: 15px;
+  margin-bottom: var(--padding-small-vertical);
+}
+
+.tip p {
+  margin-top: 0;
   margin-bottom: var(--padding-small-vertical);
 }
 
@@ -71,4 +81,15 @@ em {
 
 .page__content--blog .title {
   font-size: var(--font-size-h1);
+}
+
+.docutils {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+}
+
+.docutils th,
+.docutils td {
+  border: none;
 }

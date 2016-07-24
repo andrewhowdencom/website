@@ -10,7 +10,7 @@ Getting Magento 1.9x up on Kubernetes
 This guide is written for Magento developers looking to gain familiarity
 with `Kubernetes`_, and perhaps `Docker`_.
 
-.. container:: tip info 
+.. container:: tip info
 
   I am new to writing these sort of articles, and this will be my first. If
   there are parts that are unclear, or something that I have worded badly,
@@ -89,10 +89,10 @@ Our own, tidy workspace
 """""""""""""""""""""""
 
 Most of the resources in Kubernetes operate in the context of a *namespace*.
-To quote the docs (again):
+To quote the docs (again) [KNS]_:
 
   Kubernetes supports multiple virtual clusters backed by the same physical
-  cluster. These virtual clusters are called namespaces.[KNS]_
+  cluster. These virtual clusters are called namespaces.
 
 This namespace revents collisions between applications that need to be discovered,
 lets us sets some resource limits and (coming soon) network policy. To provision
@@ -116,14 +116,14 @@ with the following content:
 
 You'll notice a few things about this file:
 
-#. It's got a comment that indicates it's generated. I'm too lazy to generate
-   them myself, so I use a templating tool called `boilr`_. If you like, the
-   templates are available on `the littleman.co GitHub`_.
-#. "`net.alpha.kubernetes.io/network-isolation`_: "off"" is commented out. Alpha
-   resources are not available on GKE; when this feature is beta, I'll try and
-   remember to update this.
-#. The file is prefixed with the number 20. We're applying lots of configuration
-   at once, and this number determines what order to apply the configuration in.
+- It's got a comment that indicates it's generated. I'm too lazy to generate
+  them myself, so I use a templating tool called `boilr`_. If you like, the
+  templates are available on `the littleman.co GitHub`_.
+- "`net.alpha.kubernetes.io/network-isolation`_: "off"" is commented out. Alpha
+  resources are not available on GKE; when this feature is beta, I'll try and
+  remember to update this.
+- The file is prefixed with the number 20. We're applying lots of configuration
+  at once, and this number determines what order to apply the configuration in.
 
 Deploying containers... sortof
 """"""""""""""""""""""""""""""
@@ -140,7 +140,7 @@ Concretely, this means that we often deploy more then one container as a single
 unit. An example of this is Redis, where we have:
 
 =========================================== ====================================================================
-redis:3.2.1-alpine                          The container running Redis (and tools)
+`redis:3.2.1-alpine`_                       The container running Redis (and tools)
 `21zoo/redis_exporter`_                     A *sidecar* container, that exports metrics consumable by Prometheus
 =========================================== ====================================================================
 
@@ -164,9 +164,16 @@ The way I like to get applications running on Kubernetes is to have:
 - A `service`_ artifact: Something to indicate how to route things on the
   network, and to where.
 
-We'll start with the deployment. The deployment I'm using is below. I've heavily
-commented it, to explain what each constituent part is for. Create a file
-called `50-cache.dep.yaml`, and paste in the below.
+We'll start with the *deployment* [KDEP]_.
+
+  A Deployment provides declarative updates for Pods and Replica Sets (the
+  next-generation Replication Controller). You only need to describe the desired
+  state in a Deployment object, and the Deployment controller will change the
+  actual state to the desired state at a controlled rate for you.
+
+The deployment I'm using is below. I've heavily commented it, to explain what
+each constituent part is for. Create a file called `50-cache.dep.yaml`, and
+paste in the below.
 
 .. Code:: yaml
 
@@ -344,12 +351,14 @@ our application in the network!
   not permanent.
 
 Kubernetes provides a means to handle the discovery and routing of applications
-for us, called "services". Services are a pointer to a set of applications -
-they provide a fixed address at which you can query an instance of an
-application.
+for us, called *services*:
 
-To create a service we need a service declaration file. Create a file called
-`50-cache.svc.yml`, and paste in the content below:
+  A Kubernetes Service is an abstraction which defines a logical set of Pods
+  and a policy by which to access them - sometimes called a micro-service
+
+Concretely, this means that we can use services to provide a fixed address that
+we can access out pods on. To create a service we need a service declaration
+file. Create a file called `50-cache.svc.yml`, and paste in the content below:
 
 .. Code:: yaml
 
@@ -395,9 +404,9 @@ To create a service we need a service declaration file. Create a file called
 
 .. container:: tip info
 
-  What if you have more then one instance of an application (replica)?
-  Kubernetes will route all of them, load balancing between them in a round
-  robin.
+  If you have more then one replica (indicated earlier by the `replicas` node in
+  `50-cache.dep.yml`) then Kubernetes will load balance to each of them with a
+  simple round-robin load balancer.
 
 Now we have the two Kubernetes definitions:
 
@@ -422,8 +431,8 @@ files, as we will be later.
   deployment "cache" configured
   service "cache" created
 
-Whoo! Looks like everything worked OK. However, how do we know our service is
-working? Let's take a look:
+Looks like everything worked OK. But how do we know our service is working?
+Let's take a look:
 
 .. Code:: bash
 
@@ -434,8 +443,9 @@ working? Let's take a look:
   NAME      CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
   cache     10.59.254.85   <none>        6379/TCP   40s
 
-Yup. Kubenretes has found it. It's not an externally facing service, so that
-`<none>` is fine. However, is it working? Let's check:
+Kubenretes has found it. It's not an externally facing service, so that `<none>`
+is fine. However, is that service doing anything? Can an application connect to
+it? Let's first see whether the service has found any pods.
 
 .. Code:: bash
 
@@ -535,6 +545,7 @@ for example.
 .. [K01] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
 .. [KPOD] http://kubernetes.io/docs/user-guide/pods/
 .. [KNS] http://kubernetes.io/docs/user-guide/namespaces/
+.. [KDEP] http://kubernetes.io/docs/user-guide/deployments/
 
 http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 http://kubernetes.io/docs/user-guide/managing-deployments/
@@ -557,3 +568,4 @@ Things I intend to cover (or, todo)
 .. _`Kubernetes`: http://kubernetes.io/
 .. _`Docker`: https://www.docker.com/
 .. _`Google Container Engine`: https://cloud.google.com/container-engine/
+.. _`redis:3.2.1-alpine`: https://hub.docker.com/_/redis/
