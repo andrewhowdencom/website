@@ -149,8 +149,8 @@ Pods have some nice characteristics, like
 - Being able to share Kubernetes volumes
 - Being able to access other containers in the pod at localhost
 
-Simple Applications
-"""""""""""""""""""
+Hello, Redis - Getting the simplest application up
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 There are pre-build images for MySQL and Redis that can be deployed as is, and
 require very little effort on the part of the developer. We're going to start
@@ -304,10 +304,34 @@ paste in the below.
               port: 6379
             initialDelaySeconds: 1
             timeoutSeconds: 5
-        # Kubernetes will automatically restart containers when it detects they
-        # are unhealthy, either by failling the liveness probe or the process
-        # exiting. We usually went the application restarted, so we indicate
-        # this to Kubernetes with a `restartPolicy`
+        - name: exporter
+          image: "21zoo/redis_exporter:0.5"
+          imagePullPolicy: "IfNotPresent"
+          resources:
+            limits:
+              cpu: "50m"
+              memory: "8Mi"
+            requests:
+              cpu: "50m"
+              memory: "8Mi"
+          ports:
+          - containerPort: 6379
+            protocol: "TCP"
+            name: "redis"
+          readinessProbe:
+            tcpSocket:
+              port: 9121
+            initialDelaySeconds: 1
+            timeoutSeconds: 5
+          livenessProbe:
+            tcpSocket:
+              port: 9121
+            initialDelaySeconds: 1
+            timeoutSeconds: 5
+          # Kubernetes will automatically restart containers when it detects they
+          # are unhealthy, either by failling the liveness probe or the process
+          # exiting. We usually went the application restarted, so we indicate
+          # this to Kubernetes with a `restartPolicy`
         restartPolicy: "Always"
         # I have no idea what this does. When I do, I'll update these notes!
         securityContext: {}
@@ -396,10 +420,9 @@ file. Create a file called `50-cache.svc.yml`, and paste in the content below:
       - protocol: "TCP"
         name: "redis"
         port: 6379
-      # Todo: Put promethus here.
-      # - protocol: "TCP"
-      #   name: "another-redis"
-      #   port: 30redis
+      - protocol: "TCP"
+        name: "metrics"
+        port: 9191
     type: "ClusterIP"
 
 .. container:: tip info
