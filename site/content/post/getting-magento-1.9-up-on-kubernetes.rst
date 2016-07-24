@@ -16,6 +16,19 @@ with `Kubernetes`_, and perhaps `Docker`_.
   there are parts that are unclear, or something that I have worded badly,
   please let me know and I'll fix it up.
 
+.. container:: tip error
+
+  This isn't done just yet. In particular, I need to do:
+
+  - Turn up the Kubernetes cluster
+  - Configure Kubectl
+  - Revise (ideally remove) "ingredients"
+  - Turn down the Kubernetes cluster
+  - Delete persistent disks
+
+  Note: Also need to make a note about compute zones. Let's keep the zone
+  asia-east1-a, just for convenience
+
 The problem Kubernetes solves
 -----------------------------
 
@@ -71,15 +84,21 @@ managing Kubernetes. In otherwords:
   restarted
 
 Kubernetes can be run in a highly available way, tolerating even faults in
-Kubernetes itself.
+Kubernetes itself. Lastly, Kubernetes makes certain other sysadmin tasks easier,
+such as
+
+- Log rotation
+- Monitoring (at least with Prometheus)
 
 Ingredients
 -----------
 
 You will need:
 
+- A Google Cloud account
 - One Kubernetes cluster, spun up on `Google Container Engine`
 - The kubectl tool, correctly configured to your cluster
+- The gcloud tool, correctly configured for your account
 - (Optional) Prometheus running on your cluster
 
 Getting Started
@@ -89,7 +108,7 @@ Our own, tidy workspace
 """""""""""""""""""""""
 
 Most of the resources in Kubernetes operate in the context of a *namespace*.
-To quote the docs (again) [KNS]_:
+To quote the docs[KNS]_:
 
   Kubernetes supports multiple virtual clusters backed by the same physical
   cluster. These virtual clusters are called namespaces.
@@ -227,20 +246,16 @@ paste in the below.
       # application processes, or attach PHP to NGINX.
       # In this case, we're going to have the root process (redis) and a redis
       # metric exporter for Prometheus.
-      # Todo: Add the redis sidecar exporter: pull 21zoo/redis_exporter
       spec:
-        # Todo: Actually define a PD to keep state
         # Here's where we declare the type of storage resources that our pod
         # will need. Kubernetes allows us to use a variety of storage
         # abstractions as volumes in our container, including configuration,
         # gluster, GCE Persistent Disks and more.
-        # volumes:
-        # - name: "cache-etc-conf-d"
-        # configMap:
-        #   name: "cache-etc-conf-d"
-        # - name: "cache-data"
-        #   hostPath:
-        #     path: /data/cache/
+        volumes:
+        - name: "m1onk8s-littleman-co-redis-data"
+          gcePersistentDisk:
+            pdName: "m1onk8s-littleman-co-redis-data"
+            fsType: "ext4"
         containers:
           # Our application! Here, we're running the official redis:3.2.1-alpine
           # container. There's not much to it, except to say that it's a redis
@@ -277,18 +292,14 @@ paste in the below.
             name: "redis"
           # The below configuration tells Kubernetes to attach the persistent
           # storage we requested earlier to this container.
-          # Todo: Attach the PD.
-          # volumeMounts:
-          # - name: "cache-etc-conf-d"
-          #   readOnly: true
-          #   mountPath: "/etc/cache/conf.d"
-          # - name: "cache-data
-          #   readOnly: false
-          #   mountPath: "/data"
-          # Kubernetes provisions a container, but there's a period between
-          # "process has been started" and "application is ready". We dont want
-          # to send traffic to this application instance before its ready, so
-          # we periodically check its readiness by testing if port 6379 is open
+          volumeMounts:
+          - name: "m1onk8s-littleman-co-redis-data"
+            readOnly: false
+            mountPath: "/data""
+          # "Process has started" and "Application is ready" are two distinct
+          # phases. An application might have to do some initilisation or cache
+          # warming before it's ready to go. So, we allow it to do so - in this
+          # case, we're testing "Readiness" by testing if port 6379 is open.
           readinessProbe:
             tcpSocket:
               port: 6379
@@ -340,6 +351,22 @@ Whoa. That was a tonne of information! Luckily, I reckon that's the most
 complicated artifact that we're going to deal with for a very long time. Further,
 there's a bunch of reoccurring themes that make Kubernetes easiest to digest
 over time. Kind of like Magento!
+
+Now, we need to create the deployment. However, there's a catch - The deployment
+references a storage volume called "Persistent Disk". This is essentially
+"HDD as a service" - Virtual storage that can be mounted to a node.
+
+To create the required disk, enter the command below
+
+.. Code:: bash
+
+  $  gcloud compute disks create --size=10GB --zone=asia-east1-a m1onk8s-littleman-co-redis-data
+
+That's it - Kubernetes will handle the rest. Let's create our deloyment!
+
+.. Code:: bash
+
+  $ kubectl apply -f 50-cache.dep.yml
 
 So, we have a Redis instance running. We can check this by querying the
 Kubernetes API for the status of that pod
@@ -572,14 +599,6 @@ for example.
 
 http://kubernetes.io/docs/admin/resourcequota/walkthrough/
 http://kubernetes.io/docs/user-guide/managing-deployments/
-
-
-Things I intend to cover (or, todo)
------------------------------------
-
-- Metrics
-- Logs
-- Resource Allocations
 
 .. _boilr: https://github.com/boilr
 .. _Check out the namespace docs for more information.: http://kubernetes.io/docs/user-guide/namespaces/
