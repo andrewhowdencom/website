@@ -1,7 +1,7 @@
 ---
 title: "Getting Magento 1.9x up on Kubernetes (1.3)"
 description: "An in depth guide on Kubernetes for Magento developers"
-date: "2016-07-22"
+date: "22 Jul 16 17:00 +1100"
 ---
 
 Getting Magento 1.9x up on Kubernetes
@@ -463,7 +463,7 @@ values are acceptable:
 
 Unfortunately, there's no way to connect directly to the service from inside
 the cluster. However, we can create a short lived pod just to test the
-connection[1]_. We're going to use the same redis image as we're running
+connection [K01]_. We're going to use the same redis image as we're running
 the server on, as it has the `redis-cli` tool, and is already on at least
 one node.
 
@@ -506,10 +506,11 @@ Referenecs
 I learned things during this too! I had previously never applied resource limits
 for example.
 
-- http://kubernetes.io/docs/admin/resourcequota/walkthrough/
-- http://kubernetes.io/docs/user-guide/managing-deployments/
+.. [K01] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
 
-.. [1] http://kubernetes.io/docs/user-guide/kubectl/kubectl_run/
+http://kubernetes.io/docs/admin/resourcequota/walkthrough/
+http://kubernetes.io/docs/user-guide/managing-deployments/
+
 
 Things I intend to cover (or, todo)
 -----------------------------------

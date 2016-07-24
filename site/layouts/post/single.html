@@ -4,6 +4,11 @@
     <div class="page__content page__content--blog">
         {{ .Content }}
     </div>
+    <div clas="page__metadata">
+      <dl>
+        <dt>Written On</dt>
+        <dd id="js-written-date">{{ .Date.Format .Site.Params.DateForm }}</dd>
+    </div>
     {{ partial "footer.html" . }}
 
     <!-- This CSS isn't load bearing, so it can be included later, and force a recalc -->
