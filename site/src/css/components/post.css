@@ -40,3 +40,17 @@ cite {
 .comment {
   display: none;
 }
+
+/* rst2html2 creates multiple h1 elements, and differentiates the first h1
+  with the class "title". We're overcoming that limitation here. */
+.page__content--blog h1 {
+  font-size: var(--font-size-h2);
+}
+
+.page__content--blog h2 {
+  font-size: var(--font-size-h3);
+}
+
+.page__content--blog .title {
+  font-size: var(--font-size-h1);
+}

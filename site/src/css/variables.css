@@ -17,6 +17,11 @@
 
   --font-family-monospace: "Courier New", Courier, monospace;
 
+  /* Font sizes come from the Chrome UI Stylesheet */
+  --font-size-h1: 2em;
+  --font-size-h2: 1.5em;
+  --font-size-h3: 1.17em;
+
   /* Message Colours */
   /* Colours from Bootstrap.
      See https://github.com/twbs/bootstrap/blob/master/less/variables.less */
