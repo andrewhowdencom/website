@@ -779,6 +779,11 @@ It's much the same as the one earlier, except the new `env` directive.
         restartPolicy: "Always"
         securityContext: {}
 
+Further Reading
+---------------
+
+- ACM, the (2016) Borg, Omega, and Kubernetes. Available at: http://queue.acm.org/detail.cfm?id=2898444 (Accessed: 25 July 2016).
+
 Referenecs
 ----------
 
