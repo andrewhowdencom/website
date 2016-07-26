@@ -116,8 +116,8 @@ Bower is a nice framework for handling frontend dependencies.
 Google Cloud
 ------------
 
-The site runs on `Google Cloud` infrastructure. More particularly, the site
-runs on a `Google Container Engine` (Kubernetes) cluster, and is sitting behind
+The site runs on `Google Cloud`_ infrastructure. More particularly, the site
+runs on a `Google Container Engine`_ (Kubernetes) cluster, and is sitting behind
 `Google Cloud CDN`.
 
 Others
