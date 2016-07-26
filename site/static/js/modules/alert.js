@@ -160,10 +160,7 @@
     var _ = this;
 
     // Remove the queue listener from the document, add our own
-    document.removeEventListener('alerts.lc.add', function(e) {
-      window._enqueue.push(e);
-    });
-    
+    document.removeEventListener('alerts.lc.add');
     document.addEventListener('alerts.lc.add', function(e) {
       _.add(e.detail.message);
     });
