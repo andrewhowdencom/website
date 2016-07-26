@@ -36,14 +36,14 @@ and Safari might do it eventually. You can learn more here:
 https://jakearchibald.github.io/isserviceworkerready/
 
 Try visiting this site on mobile, and then switching it to aeroplane mode. If
-then visit `this random link`, it'll show a "network error" page as opposed to
+then visit `this random link`_, it'll show a "network error" page as opposed to
 a 404.
 
 Web App Manifest
 ----------------
 
 The web app manifest is a requirement to be prompted for the Chrome on Android
-"`add to home screen`". It shows a nice splash screen while the site is loading,
+"`add to home screen`_". It shows a nice splash screen while the site is loading,
 a nice icon on the homescreen and a title on the homescreen of my choosing.
 
 As an aside, I'm quite excited about the future of `progressive web apps`_, and
@@ -53,12 +53,12 @@ in future.
 Kubernetes / Docker
 -------------------
 
-`Kubernetes` is a cluster management system, loosely based on the Borg
+`Kubernetes`_ is a cluster management system, loosely based on the Borg
 container system used to run infrastructure at Google. Kubernetes provides
 APIs to manage the lifecycle and deployment of applications, as well as
 introspection about your application.
 
-Kubernetes runs `Docker` containers as its simplest managed unit. In particular,
+Kubernetes runs `Docker`_ containers as its simplest managed unit. In particular,
 This site `runs on NGINX and Picfit`_.
 
 Picfit
@@ -83,18 +83,18 @@ you're going to have a bad time; generally, most people will have one, though.
 If you're curious whether you're on a H/2 connection and you're using the Chrome
 browser, you can visit the following URL:
 
-chrome://net-internals
+`chrome://net-internals`_
 
 TLS, Backed by Lets Encrypt
 ---------------------------
 
 All connections to this site should be either encrypted over TLS, or a redirect
-to the encrypted version of content. Further, *.andrewhowden.com uses
-`HSTS` including subdomains. This makes the requirements for TLS stricter, and
+to the encrypted version of content. Further, andrewhowden.com uses
+`HSTS`_ including subdomains. This makes the requirements for TLS stricter, and
 does not allow the site to be served any longer over an insecure connection for
 browsers that support HSTS.
 
-The site is part of the `HSTS preload` list for most modern browsers, meaning
+The site is part of the `HSTS preload`_ list for most modern browsers, meaning
 browsers with more modern lists will never connect to it over an insecure
 connection. This saves a few valuable round trips!
 
@@ -140,3 +140,4 @@ Others
 .. _`Google Cloud`: https://cloud.google.com/
 .. _`Google Container Engine`: https://cloud.google.com/container-engine/
 .. _`Google Cloud CDN`: https://cloud.google.com/cdn/
+.. _`chrome://net-internals`: chrome://net-internals
