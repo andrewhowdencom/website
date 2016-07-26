@@ -78,7 +78,7 @@ The Kubernetes spec is declarative - you indicate the state that you'd like your
 cluster to be in, and Kubernetes is responsible for making your cluster reflect
 your specification. It provides a superb abstraction for the compute resources,
 letting the sysadmin manage cluster and the machines, and the developer only
-managing Kubernetes. In otherwords:
+managing Kubernetes. In other words:
 
 - A machine dies? You should be OK
 - A container dies? It'll be restarted
@@ -125,7 +125,7 @@ To quote the docs[KNS]_:
   Kubernetes supports multiple virtual clusters backed by the same physical
   cluster. These virtual clusters are called namespaces.
 
-This namespace revents collisions between applications that need to be discovered,
+This namespace prevents collisions between applications that need to be discovered,
 lets us sets some resource limits and (coming soon) network policy. To provision
 anything, we have to have a namespace to put it.
 
@@ -185,7 +185,7 @@ Hello, Redis - Getting the simplest application up
 
 There are pre-build images for MySQL and Redis that can be deployed as is, and
 require very little effort on the part of the developer. We're going to start
-ith those, as Kubernetes has quite the learning curve, and it's nice to start
+with those, as Kubernetes has quite the learning curve, and it's nice to start
 slow.
 
 The way I like to get applications running on Kubernetes is to have:
@@ -374,7 +374,7 @@ To create the required disk, enter the command below
 
   $  gcloud compute disks create --size=10GB --zone=asia-east1-a m1onk8s-littleman-co-redis-data
 
-That's it - Kubernetes will handle the rest. Let's create our deloyment!
+That's it - Kubernetes will handle the rest. Let's create our deployment!
 
 .. Code:: bash
 
@@ -477,7 +477,7 @@ Now we have the two Kubernetes definitions:
 - `50-cache.svc.yml`
 
 Making changes in each one and then applying them can get tiresome. Luckily,
-we don't have to do that! Kubernetes will simpily patch the resources that are
+we don't have to do that! Kubernetes will simply patch the resources that are
 there if you ask it to, updating them as required. We can even patch the entire
 set of resources at once! This is super nice if you're working with lots of
 files, as we will be later.
@@ -505,7 +505,7 @@ Let's take a look:
   NAME      CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
   cache     10.59.254.85   <none>        6379/TCP   40s
 
-Kubenretes has found it. It's not an externally facing service, so that `<none>`
+Kubernetes has found it. It's not an externally facing service, so that `<none>`
 is fine. However, is that service doing anything? Can an application connect to
 it? Let's first see whether the service has found any pods.
 
@@ -598,7 +598,7 @@ that pod, and it'll be disposed of. Now we've got:
 
 - MySQL
 - PHP
-- Nginx
+- NGINX
 
 The next simplest is MySQL, and is much the same as Redis. As before, we'll need
 some persistent storage to back the database, so let's go ahead and create that
