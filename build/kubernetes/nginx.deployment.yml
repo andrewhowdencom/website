@@ -14,7 +14,7 @@ spec:
       volumes:
         - name: nginx-etc-tls
           secret:
-            secretName: nginx-etc-tls
+            secretName: nginx-etc-tls-automated
         - name: nginx-etc-picfit
           configMap:
             name: nginx-etc-picfit
