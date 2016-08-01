@@ -36,7 +36,7 @@ PageSpeed Insights (desktop)               89/100    https://developers.google.c
 PageSpeed Insights (mobile)                73/100    https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=mobile
 Qualys SSL Report                          A+        https://www.ssllabs.com/ssltest/analyze.html?d=www.andrewhowden.com
 Lighthouse PWA                             84/100    None. See https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk
-========================================== ========= ==================================================================================================================
+========================================== ========= =================================================================================================================
 
 ServiceWorker
 -------------
