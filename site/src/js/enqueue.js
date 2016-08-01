@@ -1,6 +1,7 @@
 window._enqueue = [];
 
 // Queue the required events.
-document.addEventListener('alerts.lc.add', function(e) {
+window._enqueueMethod = function(e) {
   window._enqueue.push(e);
-});
+}
+document.addEventListener('alerts.lc.add', window._enqueueMethod);
