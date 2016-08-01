@@ -10,7 +10,7 @@ This Site
 
 This site is where I undertake a lot of my web experiments.
 `You can see it on GitHub`_, however if you're curious, a brief summary of the
-the various technologies used is below. It's not an exhaustive list, however,
+various technologies used is below. It's not an exhaustive list, however,
 it's some of the things I think are most interesting at the minute.
 
 TL, DR
@@ -27,7 +27,9 @@ Page Load                  2.06
 ========================== ========
 
 I'm quite unhappy with the above. Looks like the service worker has been broken
-for a while - haven't set up JS error log pushback just yet.
+for a while - haven't set up JS error log pushback just yet. I've since fixed
+the service worker, and anticipate those to drop to around 300 - 400ms on
+average.
 
 ========================================== ========= =================================================================================================================
 Testing                                    Score     URL
