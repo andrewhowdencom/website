@@ -97,7 +97,7 @@ Full time developer at Fontis, PTY LTD.
 
 ## Employment History
 ### 3/10/14 - Present; Fontis, PTY LTD
-Developer, specialising in the LEMP stack.
+Developer, specializing in the LEMP stack.
 
 ### 1/3/14 - 1/10/14 - Shop At, PTY LTD
 Developer, developing a custom Magento based platform for multiple buyers and
@@ -126,6 +126,11 @@ design, but the design was ported to bootstrap 3.x and made responsive.
 ### Provisioning of a Kubernetes cluster on CoreOS
 Still ongoing, but the goal is to have a Kubernetes stack that can be run on
 anything from bare metal to a cloud provider.
+
+Highlights of this were:
+- Creating several systemd units with various dependencies to manage the boot
+  process.
+- The need to drain the node as part of the CoreOS upgrade/reboot process
 
 ## References
 If you'd like to talk to some people about the quality of my work, let me know
