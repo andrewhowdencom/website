@@ -13,6 +13,31 @@ This site is where I undertake a lot of my web experiments.
 the various technologies used is below. It's not an exhaustive list, however,
 it's some of the things I think are most interesting at the minute.
 
+TL, DR
+-------
+
+Page speeds fetch from Google Analytics on 1/6/16 for "/"
+
+========================== ========
+Metric                     Average
+-------------------------- --------
+Document Interactive       1.14s
+Content Loaded             1.13
+Page Load                  2.06
+========================== ========
+
+I'm quite unhappy with the above. Looks like the service worker has been broken
+for a while - haven't set up JS error log pushback just yet.
+
+========================================== ========= =================================================================================================================
+Testing                                    Score     URL
+------------------------------------------ --------- -----------------------------------------------------------------------------------------------------------------
+PageSpeed Insights (desktop)               89/100    https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=desktop
+PageSpeed Insights (mobile)                73/100    https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=mobile
+Qualys SSL Report                          A+        https://www.ssllabs.com/ssltest/analyze.html?d=www.andrewhowden.com
+Lighthouse PWA                             84/100    None. See https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk
+========================================== ======== ==================================================================================================================
+
 ServiceWorker
 -------------
 
