@@ -8,7 +8,7 @@
  */
 (function() {
   'use strict';
-  var version = '59';
+  var version = '60';
 
   if ('serviceWorker' in navigator) {
     require(['modules/serviceworker'], function(sw) {
