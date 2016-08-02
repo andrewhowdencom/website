@@ -80,5 +80,8 @@
 
   --post-inline-code-color: #d44950;
 
+  --table-header-background-color: #6bbfff;
+  --table-header-text-color: #ffffff;
+
   --z-index-alert: 1000;
 }
