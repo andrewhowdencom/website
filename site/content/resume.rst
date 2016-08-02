@@ -26,7 +26,7 @@ A (non-exhaustive) list of the books I've read):
 Competencies
 ------------
 
-Predominently, I have quite a bit of experience with Magento, and am passionate
+Predominantly, I have quite a bit of experience with Magento, and am passionate
 about performance, user interface and, to a lesser extent, security.
 
 I keep [a lot of notes](https://docs.littleman.co/) which are a reasonable
@@ -155,7 +155,7 @@ Implementation if automated lints as part of the normal code review process
 '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 Now part of the standard workflow, lints are run as part of code review, and
-issues highlighted (and generally solved) before a human reviwer inspects the
+issues highlighted (and generally solved) before a human reviewer inspects the
 work. This reduces the nitpicking associated with code review, and provides some
 clear standards for code style to follow.
 
@@ -194,7 +194,7 @@ A complete reimplementation of a one step checkout, requiring as little
 information from the user as is required by the other information
 specified during the checkout.
 
-This required considerable restructuring of Magento's core validation logic,
+This required considerable restructuring of Magentos core validation logic,
 additional validation and reasonably complex implementation of various
 JavaScript driven features.
 
