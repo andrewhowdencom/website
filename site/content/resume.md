@@ -25,7 +25,6 @@ might take me a couple of years to feel at home in it, though.
      </g>
     </svg>
   </div>
-
   <div class="progress progress--70">
     <span class="progress__caption">JS</span>
     <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +34,6 @@ might take me a couple of years to feel at home in it, though.
      </g>
     </svg>
   </div>
-
   <div class="progress progress--60">
     <span class="progress__caption">SCSS</span>
     <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
@@ -45,8 +43,7 @@ might take me a couple of years to feel at home in it, though.
      </g>
     </svg>
   </div>
-
-  <div class="progress progress--50">
+  <div class="progress progress--70">
     <span class="progress__caption">CSS</span>
     <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
      <g>
@@ -55,8 +52,7 @@ might take me a couple of years to feel at home in it, though.
      </g>
     </svg>
   </div>
-
-  <div class="progress progress--50">
+  <div class="progress progress--70">
     <span class="progress__caption">Bash</span>
     <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
      <g>
@@ -65,8 +61,7 @@ might take me a couple of years to feel at home in it, though.
      </g>
     </svg>
   </div>
-
-  <div class="progress progress--20">
+  <div class="progress progress--50">
     <span class="progress__caption">Go</span>
     <svg class="progress__container" xmlns="http://www.w3.org/2000/svg">
      <g>

@@ -19,6 +19,7 @@
 
 .progress__clearfix {
   display: flex;
+  flex-flow: row wrap;
 }
 
 .progress__circle {
