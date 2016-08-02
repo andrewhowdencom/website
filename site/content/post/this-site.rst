@@ -31,14 +31,14 @@ for a while - haven't set up JS error log pushback just yet. I've since fixed
 the service worker, and anticipate those to drop to around 300 - 400ms on
 average.
 
-========================================== ========= =================================================================================================================
-Testing                                    Score     URL
------------------------------------------- --------- -----------------------------------------------------------------------------------------------------------------
-PageSpeed Insights (desktop)               89/100    https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=desktop
-PageSpeed Insights (mobile)                73/100    https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=mobile
-Qualys SSL Report                          A+        https://www.ssllabs.com/ssltest/analyze.html?d=www.andrewhowden.com
-Lighthouse PWA                             84/100    None. See https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk
-========================================== ========= =================================================================================================================
+========================================== =========
+Testing                                    Score
+------------------------------------------ ---------
+`PageSpeed Insights (desktop)`_            89/100
+`PageSpeed Insights (mobile)`_             73/100
+`Qualys SSL Report`_                       A+
+`Lighthouse PWA`_                          84/100
+========================================== =========
 
 ServiceWorker
 -------------
@@ -168,3 +168,7 @@ Others
 .. _`Google Container Engine`: https://cloud.google.com/container-engine/
 .. _`Google Cloud CDN`: https://cloud.google.com/cdn/
 .. _`chrome://net-internals`: chrome://net-internals
+.. _`PageSpeed Insights (Desktop)`: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=desktop
+.. _`PageSpeed Insights (Mobile)`: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=mobile
+.. _`Qualys SSL Report`: https://www.ssllabs.com/ssltest/analyze.html?d=www.andrewhowden.com
+.. _`Lighthouse PWA`: https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk
