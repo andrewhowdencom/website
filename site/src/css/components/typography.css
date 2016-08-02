@@ -19,9 +19,10 @@ h5 {
 }
 
 ul li::before {
-  content: '-  '
+  content: '- ';
+  margin-right: var(--padding-small-horizontal);
 }
 
 ul {
-  padding-left: var(--padding-base-horizontal);
+  padding-left: 0;
 }
