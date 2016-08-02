@@ -60,7 +60,7 @@ new content is available.
 This is also only available in Firefox and Chrome. IE is getting support soon,
 and Safari might do it eventually. You can learn more here:
 
-https://jakearchibald.github.io/isserviceworkerready/
+`Is service worker ready`_
 
 Try visiting this site on mobile, and then switching it to aeroplane mode. If
 then visit `this random link`_, it'll show a "network error" page as opposed to
@@ -172,3 +172,4 @@ Others
 .. _`PageSpeed Insights (Mobile)`: https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.andrewhowden.com%2F&tab=mobile
 .. _`Qualys SSL Report`: https://www.ssllabs.com/ssltest/analyze.html?d=www.andrewhowden.com
 .. _`Lighthouse PWA`: https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk
+.. _`Is service worker ready`: https://jakearchibald.github.io/isserviceworkerready/
