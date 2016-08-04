@@ -9,8 +9,8 @@ filters according to facets the user clicks:
 
 .. raw:: html
 
-<p data-height="265" data-theme-id="light" data-slug-hash="vKVLPm" data-default-tab="result" data-user="andrewhowdencom" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/andrewhowdencom/pen/vKVLPm/">vKVLPm</a> by Andrew Howden (<a href="http://codepen.io/andrewhowdencom">@andrewhowdencom</a>) on <a href="http://codepen.io">CodePen</a>.</p>
-<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+  <p data-height="265" data-theme-id="light" data-slug-hash="vKVLPm" data-default-tab="result" data-user="andrewhowdencom" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/andrewhowdencom/pen/vKVLPm/">vKVLPm</a> by Andrew Howden (<a href="http://codepen.io/andrewhowdencom">@andrewhowdencom</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+  <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 You've had an awesome idea; you're going to add a quick view to each of your awesome things! Now, the user won't even have
 to navigate to the next page. You add the quick view links in:
