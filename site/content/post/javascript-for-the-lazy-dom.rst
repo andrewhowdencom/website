@@ -7,27 +7,10 @@ Time spent writing this: 30 minutes so far.
 So, let's take a journey down one step checkout lane. You've built a lovely category page shows a series of awesome things,
 filters according to facets the user clicks:
 
-.. code:: html
+.. raw:: html
 
-  <!DOCTYPE html5>
-  <!-- Boilrplate goes here -->
-    <ul class="facets">
-      <li><a href="#" data-facet="blue-awesome-things">Blue awesome Things</a></li>
-      <li><a href="#" data-facet="red-awesome-things">Red Awesome Things</a></li>
-    </ul>
-    
-    <div class="item-list">
-      <div class="item-list__item">
-        <a class="item-list__item__title"
-           href="/my-awesome-thing-1">My Awesome Thing 1</a>
-        <img class="item-list__item__img" src="/img/my-awesome-thing-1.jpg>
-      </div>
-      <div class="item-list__item">
-        <a class="item-list__item__title"
-           href="my-awesome-thing-2">My Awesome Thing 2</a>
-        <img class="item-list__item__img" src="/img/my-awesome-thing-2.jpg>
-      </div>
-  <!-- More boilerplate goes here -->
+<p data-height="265" data-theme-id="light" data-slug-hash="vKVLPm" data-default-tab="result" data-user="andrewhowdencom" data-embed-version="2" class="codepen">See the Pen <a href="https://codepen.io/andrewhowdencom/pen/vKVLPm/">vKVLPm</a> by Andrew Howden (<a href="http://codepen.io/andrewhowdencom">@andrewhowdencom</a>) on <a href="http://codepen.io">CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 You've had an awesome idea; you're going to add a quick view to each of your awesome things! Now, the user won't even have
 to navigate to the next page. You add the quick view links in:
