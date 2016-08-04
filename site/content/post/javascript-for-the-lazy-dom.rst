@@ -2,7 +2,7 @@
 JavaScript for the lazy DOM
 ===========================
 
-Time spent writing this: 30 minutes so far.
+Time spent writing this: 90 minutes so far.
 
 So, let's take a journey down one step checkout lane. You've built a lovely category page shows a series of awesome things,
 filters according to facets the user clicks:
