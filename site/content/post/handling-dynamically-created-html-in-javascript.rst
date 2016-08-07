@@ -20,7 +20,7 @@ It's becoming much harder to reason about the state of the document when our Jav
 
 - Content might be populated after the JavaScript has been run by AJAX, such as category facets
 - Content might be constructed by other JavaScript that our JavaScript doesn't know about, such as third party scripts
-- Our scripts might be loaded and executed asyncronously.
+- Our scripts might be loaded and executed asynchronously.
 
 Making HTML content interactive with JavaScript is a hugely common requirement; triggering modals, tracking users
 or showing a quick view are all pretty common tasks. More often then not, developers do something like the following:
@@ -41,9 +41,9 @@ or showing a quick view are all pretty common tasks. More often then not, develo
     });
   </script>
 
-In that example, the developer adds an event handler to the element that listens for the users "click" action.
+In that example, the developer adds an *event handler* to the element that listens for the users `Click` action.
 However, the only way this is possible is if the JavaScript can guarantee that these elements will exist
-when it's executed - something that we can't guarantee. A simple example is below; we have a set of boxes
+when it's executed - something that we can't. A simple example is below; we have a set of boxes
 that change when the user clicks a button:
 
 .. raw:: html
@@ -57,7 +57,7 @@ that change when the user clicks a button:
   post, but if you're curious feel free to poke around.
 
 Consider a new requirement - Each of these elements much create an alert that says "Hello". On the face of it, it seems
-pretty trivial - the example above works fine:
+pretty trivial; the style might should work fine:
 
 .. Code:: javascript
 
@@ -84,7 +84,7 @@ pretty trivial - the example above works fine:
   <p data-height="265" data-theme-id="light" data-slug-hash="pbxrrQ" data-default-tab="result" data-user="andrewhowdencom" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/andrewhowdencom/pen/pbxrrQ/">pbxrrQ</a> by Andrew Howden (<a href="http://codepen.io/andrewhowdencom">@andrewhowdencom</a>) on <a href="http://codepen.io">CodePen</a>.</p>
   <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-This initially appears to work. Indeed, quite often a solution like this will make it to the production site!
+This initially appears to work. Quite often a solution like this will make it to the production site!
 However, after using for a short period it's pretty apparent it's broken. On the first click, it works fine,
 but once a user has applied the filter the click does not work anymore. Examining the source of the facet JS
 makes it apparent why:
@@ -104,13 +104,13 @@ makes it apparent why:
     this.container.innerHTML = output; // <-- This bit is the important bit
   }
 
-The elements that the event listeners were bound to are gone! Deleted and replaced with the new facets in the
-query function above. So, whats to be done? There are two alteratives:
+The elements that the *event listeners* were bound to are gone! Deleted and replaced with the new facets in the
+query function above. So, whats to be done? There are two alternatives:
 
 1. Rebind the event handlers in the query function
-2. Take advantage of `event bubbling` to capture the event on a parent event
+2. Take advantage of *event bubbling* to capture the event on a parent event
 
-Each has its own advantages, but in this case option 2 is better. To explain why event bubbling needs some
+Each has its own advantages, but in this case option 2 is better. To explain why *event bubbling* needs some
 explanation:
 
   Event bubbling and capturing are two ways of event propagation in the HTML DOM API, when an event occurs in an
@@ -119,7 +119,7 @@ explanation:
 
     - `Arun P Johny`_
 
-Event bubbling allows the handling of the event on a parent DOM element, not the one that dispatched the
+*Event bubbling* allows the handling of the event on a parent DOM element, not the one that dispatched the
 event. The most stable element is the document, and is thus the easiest to use. So, modifying the example
 from earlier:
 
@@ -153,7 +153,7 @@ start working after it executes. Success!
 
 This can be applied to even more complex examples. Quite often some sort of complex initialisation is required
 with a JavaScript class; doing that on every click is needlessly expensive. An excellent solution is used by
-the bootstrap library - the JavaScript is initialised in the click handler and the result stored on the
+`the Bootstrap library`_ - the JavaScript is initialised in the click handler and the result stored on the
 element in `Element.dataset`. The click handler also checks to see whether the plugin has previously been
 initialised, and skips initialisation where it is pointless.
 
@@ -193,7 +193,7 @@ An example of this is below:
 
 The above example has a three second delay attached to the alert to simulate a particularly nasty server response
 time, or some truly horrific JS initialisation. Making users wait through that is awful - it needs to be better.
-Luckily, it's not too hard - storing the results on `Element.dataset` means that initilisation needs only be
+Luckily, it's not too hard - storing the results on `Element.dataset` means that initialisation needs only be
 performed once per element:
 
 .. Code:: JavaScript
@@ -236,6 +236,8 @@ performed once per element:
 
 That's quite a bit better. The first click still takes the 3 seconds, however the next click of that same element
 is immediate.
+
+.. _`the Bootstrap library`: https://github.com/twbs/bootstrap/blob/master/js/collapse.js#L167-L180
 
 Performance Implications
 ------------------------
