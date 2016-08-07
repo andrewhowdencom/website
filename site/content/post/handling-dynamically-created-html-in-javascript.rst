@@ -1,8 +1,8 @@
-===================================================
-Handling dynamically created elements in JavaScript
-===================================================
+===============================================
+Handling dynamically created HTML in JavaScript
+===============================================
 
-Time spent writing this: 210 minutes so far.
+Time spent writing this: 230 minutes so far.
 
 TL,DR
 -----
