@@ -1,3 +1,9 @@
+---
+title: "Handling dynamically created HTML in JavaScript"
+description: "A small detour into event binding and lazy initialisation"
+date: "08 Aug 16 18:00 +1100"
+---
+
 ===============================================
 Handling dynamically created HTML in JavaScript
 ===============================================
@@ -31,7 +37,6 @@ or showing a quick view are all pretty common tasks. More often then not, develo
   <div class="item-list__item">Alert</div>
 
   <script type="text/javascript">
-    // Todo: Sanity check this javascript actually works
     document.querySelectorAll('.item-list__item').forEach(function(el) {
       el.addEventListener(
         'click',
@@ -41,10 +46,9 @@ or showing a quick view are all pretty common tasks. More often then not, develo
     });
   </script>
 
-In that example, the developer adds an *event handler* to the element that listens for the users `Click` action.
-However, the only way this is possible is if the JavaScript can guarantee that these elements will exist
-when it's executed - something that we can't. A simple example is below; we have a set of boxes
-that change when the user clicks a button:
+In that example, the developer adds an *event handler* to the element that listens for the users `Click` event.
+This is possible as the JavaScript is executed immediately after the elements are declared in the DOM - the
+elements are guaranteed to exist. However, this isn't always possible - consider the example below:
 
 .. raw:: html
 
@@ -56,7 +60,8 @@ that change when the user clicks a button:
   There is a lot of boilrplate code in the examples to make the filtering work. Mostly, it's irrelevant to this
   post, but if you're curious feel free to poke around.
 
-Consider a new requirement - Each of these elements much create an alert that says "Hello". On the face of it, it seems
+The JavaScript creates new elements when the user clicks the filter buttons. However, Consider a new requirement
+with this example - each of these elements much create an alert that says "Hello". On the face of it, it seems
 pretty trivial; the style might should work fine:
 
 .. Code:: javascript
@@ -84,9 +89,9 @@ pretty trivial; the style might should work fine:
   <p data-height="265" data-theme-id="light" data-slug-hash="pbxrrQ" data-default-tab="result" data-user="andrewhowdencom" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/andrewhowdencom/pen/pbxrrQ/">pbxrrQ</a> by Andrew Howden (<a href="http://codepen.io/andrewhowdencom">@andrewhowdencom</a>) on <a href="http://codepen.io">CodePen</a>.</p>
   <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-This initially appears to work. Quite often a solution like this will make it to the production site!
-However, after using for a short period it's pretty apparent it's broken. On the first click, it works fine,
-but once a user has applied the filter the click does not work anymore. Examining the source of the facet JS
+At first glance, this seems to work. Quite often a solution like this will make it to the production site!
+However, after using for a short period it's apparent it's broken. On the first click, it works fine, but
+once a user has applied the filter the click does not work anymore. Examining the source of the filter JS 
 makes it apparent why:
 
 .. code:: JavaScript
@@ -104,14 +109,14 @@ makes it apparent why:
     this.container.innerHTML = output; // <-- This bit is the important bit
   }
 
-The elements that the *event listeners* were bound to are gone! Deleted and replaced with the new facets in the
-query function above. So, whats to be done? There are two alternatives:
+The elements that the *event listeners* were bound to are gone; deleted and replaced with the new facets in the
+query function above. So, how can this issue be resolved? There are two alternatives:
 
 1. Rebind the event handlers in the query function
 2. Take advantage of *event bubbling* to capture the event on a parent event
 
-Each has its own advantages, but in this case option 2 is better. To explain why *event bubbling* needs some
-explanation:
+Each has its own advantages, but in this case option 2 is better. To explain why, we need to define
+*event bubbling*
 
   Event bubbling and capturing are two ways of event propagation in the HTML DOM API, when an event occurs in an
   element inside another element, and both elements have registered a handle for that event. With bubbling, the
@@ -146,18 +151,14 @@ from earlier:
     })
   })();
 
-It works! The line `document.addEventListener('DOMContentLoaded')` is also gone; previously, it was required
-as the JavaScript would not have worked if it was executed before the elements were part of the document.
-However, now it doesn't matter - the JavaScript can be executed before or after those elements exist, and will
-start working after it executes. Success!
+It works! The user can rearrange the items how they wish and the click will work just fine. Notice the line
+`document.addEventListener('DOMContentLoaded')` is also gone. Previously, it was required but now it
+doesn't matter - the JavaScript can be executed before or after those elements exist, and will work anytime
+after it has been executed.
 
 This can be applied to even more complex examples. Quite often some sort of complex initialisation is required
-with a JavaScript class; doing that on every click is needlessly expensive. An excellent solution is used by
-`the Bootstrap library`_ - the JavaScript is initialised in the click handler and the result stored on the
-element in `Element.dataset`. The click handler also checks to see whether the plugin has previously been
-initialised, and skips initialisation where it is pointless.
-
-An example of this is below:
+with a JavaScript class and doing that on every event is needlessly expensive. An example of this complexity
+is simulated below, where every click event handler sleeps for three seconds before alerting:
 
 .. Code:: JavaScript
 
@@ -191,10 +192,11 @@ An example of this is below:
   <p data-height="265" data-theme-id="light" data-slug-hash="RRqbAg" data-default-tab="result" data-user="andrewhowdencom" data-embed-version="2" class="codepen">See the Pen <a href="http://codepen.io/andrewhowdencom/pen/RRqbAg/">RRqbAg</a> by Andrew Howden (<a href="http://codepen.io/andrewhowdencom">@andrewhowdencom</a>) on <a href="http://codepen.io">CodePen</a>.</p>
   <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-The above example has a three second delay attached to the alert to simulate a particularly nasty server response
-time, or some truly horrific JS initialisation. Making users wait through that is awful - it needs to be better.
-Luckily, it's not too hard - storing the results on `Element.dataset` means that initialisation needs only be
-performed once per element:
+The sleep is an example, but it could be replaced by a slow server response or some super nasty JS initialisation.
+An excellent solution is used by `the Bootstrap library`_. Every click, the event handler on the document will
+fire and check whether the initialised JavaScript object exists in the `Element.dataset`. If it does, it skips
+initialisation and invokes the method normally invoked by the event. However, If it doesn't, the click handler
+will initialise the class and store that object on `Element.dataset`, then invoke the method:
 
 .. Code:: JavaScript
 
