@@ -25,6 +25,11 @@ Also refers to commands that might be literally typed by the user.
 Refers to text that should be supplied with user supplied values, or other
 values determined by the context.
 
+Tips
+----
+
+Containers that communicate:
+
 .. container:: tip idea
 
   An idea, or helpful note
@@ -40,3 +45,8 @@ values determined by the context.
 .. container:: tip info
 
   Additional, supplementary information such as definitions.
+
+Footnote [#f1]_
+---------------
+
+.. [#f1] Some sort of reference, likely a definition of some kind. Usually found at the footer of a document.

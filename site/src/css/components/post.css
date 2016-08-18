@@ -55,11 +55,13 @@ blockquote {
   display: none;
 }
 
-.citation-reference {
+.citation-reference,
+.footnote-reference {
   vertical-align: super;
   font-size: .75em;
 }
 
+/*
 .fn-backref {
   margin-right: var(--padding-small-horizontal);
 }
@@ -67,7 +69,7 @@ blockquote {
 .fn-backref::after {
   content: '-';
   margin-left: var(--padding-small-horizontal);
-}
+}*/
 
 /* rst2html2 creates multiple h1 elements, and differentiates the first h1
   with the class "title". We're overcoming that limitation here. */
@@ -104,4 +106,15 @@ blockquote {
   text-transform: uppercase;
   font-weight: bold;
   color: var(--table-header-text-color);
+}
+
+.docutils.footnote tr:first-of-type td {
+  background: transparent;
+  font-weight: normal;
+  color: #000;
+  text-transform: none;
+}
+
+.footnote td:first-of-type {
+  width: 15px;
 }
