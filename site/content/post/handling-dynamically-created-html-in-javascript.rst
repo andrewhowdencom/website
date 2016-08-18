@@ -8,8 +8,6 @@ date: "08 Aug 16 18:00 +1100"
 Handling dynamically created HTML in JavaScript
 ===============================================
 
-Time spent writing this: 230 minutes so far.
-
 TL,DR
 -----
 
@@ -91,7 +89,7 @@ pretty trivial; the style might should work fine:
 
 At first glance, this seems to work. Quite often a solution like this will make it to the production site!
 However, after using for a short period it's apparent it's broken. On the first click, it works fine, but
-once a user has applied the filter the click does not work anymore. Examining the source of the filter JS 
+once a user has applied the filter the click does not work anymore. Examining the source of the filter JS
 makes it apparent why:
 
 .. code:: JavaScript
