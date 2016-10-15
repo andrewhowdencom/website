@@ -1,0 +1,10 @@
+  ---
+  apiVersion: "stable.k8s.psg.io/v1"
+  kind: "Certificate"
+  metadata:
+    name: "www-andrewhowden-com"
+  spec:
+    domain: "www.andrewhowden.com"
+    email: "hello@andrewhowden.com"
+    provider: "googlecloud"
+    secretName: tls-www-andrewhowden-com
