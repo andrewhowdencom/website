@@ -46,7 +46,7 @@ spec:
             - name: tls-andrewhowden-com
               readOnly: true
               mountPath: /etc/tls/andrewhowden-com/
-       - name: picfit
+        - name: picfit
           image: littleman/picfit:3.0.0-1
           volumeMounts:
           - name: nginx-etc-picfit
