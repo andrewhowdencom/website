@@ -12,9 +12,6 @@ spec:
         role: nginx
     spec:
       volumes:
-        - name: tls-www-andrewhowden-com-old
-          secret:
-            secretName: nginx-etc-tls-automated
         - name: tls-www-andrewhowden-com
           secret:
             secretName: tls-www-andrewhowden-com
@@ -34,9 +31,6 @@ spec:
           - containerPort: 80
           - containerPort: 443
           volumeMounts:
-            - name: tls-www-andrewhowden-com-old
-              readOnly: true
-              mountPath: /etc/tls/www-andrewhowden-com-old/
             - name: tls-www-andrewhowden-com
               readOnly: true
               mountPath: /etc/tls/www-andrewhowden-com/
