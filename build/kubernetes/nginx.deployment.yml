@@ -24,7 +24,7 @@ spec:
         - name: tls-andrewhowden-com
           secret:
             secretName: tls-andrewhowden-com
-       - name: nginx-etc-picfit
+        - name: nginx-etc-picfit
           configMap:
             name: nginx-etc-picfit
       containers:
