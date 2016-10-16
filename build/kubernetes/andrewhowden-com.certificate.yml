@@ -1,0 +1,12 @@
+---
+apiVersion: "stable.k8s.psg.io/v1"
+kind: "Certificate"
+metadata:
+  name: "andrewhowden-com"
+  namespace: "www-andrewhowden-com"
+spec:
+  domain: "andrewhowden.com"
+  email: "hello@andrewhowden.com"
+  provider: "http"
+  secretName: tls-andrewhowden-com
+
