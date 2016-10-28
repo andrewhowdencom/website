@@ -92,7 +92,7 @@ define(function() {
 
     // Install the service worker if it doesn't eixst.
     sw.getRegistration().then(function(registration) {
-      if (typeof registration === undefined) {
+      if (typeof registration === "undefined") {
         install();
       } else if (!isVersionCurrent(version)) {
         install();
