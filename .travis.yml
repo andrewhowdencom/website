@@ -20,10 +20,10 @@ env:
 before_install:
   # General bin
   # Path is ordered this way so we found our custom gcloud prior to travis's one.
-  - "PATH=$(pwd)/bin:${PATH}"
+  - "export PATH=$(pwd)/bin:${PATH}"
 
   # Google Cloud Path
-  - "PATH=$(pwd)/google-cloud-sdk/bin:${PATH}"
+  - "export PATH=$(pwd)/google-cloud-sdk/bin:${PATH}"
 
   # CI Scripts
   - "PATH=$(pwd)/build/scripts/CI:${PATH}"
@@ -37,12 +37,12 @@ before_script:
   - "./build/scripts/CI/auth.sh"
 
 script:
-  - "./build/scripts/CI/deploy.sh"
+  - "make content"
+  - "make build-container-nginx"
+  - "make push-container-nginx"
 
 after_success:
-  "./build/scripts/CI/success.sh"
 
 after_failure:
-  "./build/scripts/CI/failure.sh"
 
 after_script:

@@ -1,0 +1,8 @@
+---
+## The version of the website
+## Default: "latest"
+# siteVersion: 
+
+## The version of the picfit container
+## Default: "latest"
+# picfitVersion: 

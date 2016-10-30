@@ -26,7 +26,7 @@ spec:
             name: nginx-etc-picfit
       containers:
         - name: nginx
-          image: gcr.io/littleman-co/www-andrewhowden-com-nginx:{{GIT_HASH}}
+          image: gcr.io/littleman-co/www-andrewhowden-com-nginx:{{ .Values.siteVersion }}
           ports:
           - containerPort: 80
           - containerPort: 443
@@ -41,7 +41,7 @@ spec:
               readOnly: true
               mountPath: /etc/tls/andrewhowden-com/
         - name: picfit
-          image: littleman/picfit:3.0.0-1
+          image: littleman/picfit:{{ .Values.picfitVersion }}
           volumeMounts:
           - name: nginx-etc-picfit
             mountPath: "/etc/picfit"
