@@ -73,9 +73,10 @@ scss: ## Make SCSS
 
 fonts: ## Move the fonts into the appropriate dir
 	# Materials Design
+	rm -rf site/static/fonts//*
 	cp site/bower_components/material-design-icons/iconfont/MaterialIcons* site/static/fonts/
-	cd site/static/fonts && for f in ./*; do rename "." ".${TIMESTAMP}." "$$f"; done;
-	sed -i "s/\$$materials-design-timestamp:.*/\$$materials-design-timestamp: '${TIMESTAMP}';/" site/static/scss/_variables.scss
+	cd site/static/fonts && rename "s/\./\.${TIMESTAMP}\./" *
+	sed -i "s/\$$materials-design-timestamp:.*/\$$materials-design-timestamp: '${TIMESTAMP}';/" site/src/scss/_variables.scss
 
-static: fonts css ## Compile all static assets
+static: fonts scss ## Compile all static assets
 	echo "Static Compiled"
