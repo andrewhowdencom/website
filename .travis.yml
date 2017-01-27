@@ -22,9 +22,6 @@ env:
   GIT_SSH_COMMAND="ssh -i .privkey"
 
 before_install:
-  - test "notstatic"="static" && TEST_FILTER='--filter "Magento\\Test\\Php\\LiveCodeTest"' || true
-  - echo "${TEST_FILTER}"
-  - "phpunit test.php"
   # General bin
   # Path is ordered this way so we found our custom gcloud prior to travis's one.
   - "export PATH=$(pwd)/bin:${PATH}"
