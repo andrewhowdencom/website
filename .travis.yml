@@ -10,6 +10,10 @@ addons:
 
 sudo: required
 
+env:
+  global:
+    - TEST_SUITE=static
+
 services:
 - docker
 
@@ -18,6 +22,8 @@ env:
   GIT_SSH_COMMAND="ssh -i .privkey"
 
 before_install:
+  - test $TEST_SUITE = "static" && TEST_FILTER='--filter "Magento\\Test\\Php\\LiveCodeTest"' || true
+  - echo "${TEST_FILTER}"
   - "phpunit test.php"
   # General bin
   # Path is ordered this way so we found our custom gcloud prior to travis's one.
