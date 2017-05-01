@@ -1,4 +1,4 @@
-G# How do you even person
+# How do you even person
 
 I'm writing this blog post on impulse, not entirely sure how it's going to end. For context, it comes after some
 thinking about how to co-exist with other people. To "manage expectations", I am not going to heavily research or put
