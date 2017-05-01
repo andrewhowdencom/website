@@ -66,10 +66,15 @@ js: ## Create the JavaScript resources
 	uglifyjs site/src/serviceworker.js --output site/static/serviceworker.js --source-map site/static/serviceworker.js.map
 	make app-version
 
-scss: ## Make SCSS
+styles: ## Make SCSS
 	sed -i 's/CssVersion: .*/CssVersion: "${TIMESTAMP}"/' site/config.yml
 	rm -rf site/static/css/styles-* # Clean previous CSS
 	sassc --sourcemap --style=compressed site/src/scss/styles.scss site/static/css/styles.css
+	# Do the css
+	mkdir -p site/static/css/components
+	mkdir -p site/static/css/vendor
+	postcss --config=postcss.json site/src/css/components/* --dir site/static/css/components	
+	postcss --config=postcss.json site/src/css/vendor/*     --dir site/static/css/vendor
 
 fonts: ## Move the fonts into the appropriate dir
 	# Materials Design
@@ -78,5 +83,5 @@ fonts: ## Move the fonts into the appropriate dir
 	cd site/static/fonts && rename "s/\./\.${TIMESTAMP}\./" *
 	sed -i "s/\$$materials-design-timestamp:.*/\$$materials-design-timestamp: '${TIMESTAMP}';/" site/src/scss/_variables.scss
 
-static: fonts scss ## Compile all static assets
+static: fonts styles ## Compile all static assets
 	echo "Static Compiled"

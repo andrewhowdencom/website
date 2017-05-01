@@ -1,0 +1,1 @@
+.alert{position:fixed;bottom:0;right:0}.alert__item{float:right;clear:both;margin:0 16px 10px;padding:6px 10px;z-index:1}.alert__item:empty{display:none}.alert__item--info{background:#39393d;color:#fff;opacity:1}.alert__item--transition{-webkit-transition:opacity .25s;transition:opacity .25s;opacity:0}
