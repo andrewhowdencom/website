@@ -116,5 +116,4 @@ To mitigate that, those in power must either
    power.
 2. Be sufficiently diverse as to mitigate the risk of a % of bad actors corrupting the system.
 
-1. is infinitely better.
-
+Do #1. It's way better.
