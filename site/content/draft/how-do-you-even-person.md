@@ -7,7 +7,7 @@ significant amounts of thought into this -- it's merely me trying to articulate 
 So, the crux of the problem I am thinking about is social retribution. More generally,
 
 1. How do you decide the scope of the social community of which you are a member?
-2. How do you decide when someone has violated the (potentially unwritten) guidelines that the community?
+2. How do you decide when someone has violated the (potentially unwritten) guidelines of the community?
 3. How do you decide what the appropriate retribution of the violation should warrant?
 4. How do you decide when to take responsibility for dealing that retribution, and communicating that role to others in
    the social group?
@@ -56,7 +56,7 @@ determining the appropriate retribution.
 ### Particularly large social structures
 
 In some cases, there exists a community of 100's or 1000's of people, or several levels of hierarchy within that
-community. In those cases, the leaders of the community need to achieve consensus, but not the entire community.
+community. In those cases, the leaders of the community need to achieve consensus; all members of the community do not.
 
 ## How do you decide when to take responsibility for dealing that retribution, and communicating that role to others in the social group?
 
