@@ -1,3 +1,9 @@
+---
+title: "A simple recipe to manage secrets in version control (git)"
+description: "Bake yourself a lovely project with git, git-crypt, pgp and envsubst"
+date: "28 May 17 16:00 +0100"
+---
+
 ==========================================================
 A simple recipe to manage secrets in version control (git)
 ==========================================================
