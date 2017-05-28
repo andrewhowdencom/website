@@ -1,6 +1,9 @@
-# A simple recipe to manage secrets in version control (git)
+==========================================================
+A simple recipe to manage secrets in version control (git)
+==========================================================
 
-## WHY WOULD YOU DO THIS
+WHY WOULD YOU DO THIS
+---------------------
 
 So, I think a centralised model of secret management (such as Hashicorps Vault) is a superior model, as it allows
 
@@ -12,31 +15,34 @@ So, I think a centralised model of secret management (such as Hashicorps Vault) 
 However, that requires a certain level of infrastructure (running vault, and having the procedures in place to manage
 service outages and other maintenance). So, a reasonable intermediary as this infrastructure is being set up is below.
 
-## Recipe
+Recipe
+------
 
-### Ingredients
+Ingredients
+'''''''''''
 
 You will need:
 
 - `git`_
 - `git-crypt`_
-- `GnuPG`_ 
+- `GnuPG`_
 - `envsubst`_
 
 .. _git: https://git-scm.com/
 .. _git-crypt: https://www.agwa.name/projects/git-crypt/
 .. _GnuPG: https://gnupg.org/
-.. _envsubst: https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html)
+.. _envsubst: https://www.gnu.org/software/gettext/manual/html_node/envsubst-Invocation.html
 
-### Instructions
+Instructions
+''''''''''''
 
 First, let's start by creating an empty git repo
 
 .. code:: bash
 
-    $ mkdir -p /tmp/foo
-    $ cd /tmp/foo
-    $ git init .
+    mkdir -p /tmp/foo
+    cd /tmp/foo
+    git init .
 
 Next, we need to initialize `git-crypt`. `git-crypt` is the magic behind this type of secret management. It
 transparently encrypts resources in version control based on a .gitattributes file. We'll be using GnuPG as our
@@ -53,7 +59,8 @@ Okay, let's continue! Let's initialise git-crypt
 
 .. code:: bash
 
-    $ git-crypt init
+    git-crypt init
+
     Generating key...
 
 We also need to add our key the repository so that resources will be encrypted with it. Please note: this key will
@@ -61,8 +68,8 @@ need to be trusted!
 
 .. code:: bash
 
-    $ export YOUR_EMAIL="totallylegit@andrewhowden.com" # Replace with the email for your PGP key
-    $ git-crypt add-gpg-user ${YOUR_EMAIL}
+    export YOUR_EMAIL="totallylegit@andrewhowden.com" # Replace with the email for your PGP key
+    git-crypt add-gpg-user ${YOUR_EMAIL}
 
     [master (root-commit) ccaef5f] Add 1 git-crypt collaborator
     2 files changed, 3 insertions(+)
@@ -91,14 +98,14 @@ Let's create this file
 
 .. code:: bash
 
-    $ echo 'MYSQL_PASSWORD="this-is-a-totally-secure-mysql-password"' > .env
+    echo 'MYSQL_PASSWORD="this-is-a-totally-secure-mysql-password"' > .env
 
 However, the file is not encrypted just yet. `git-crypt` works by using a `git-attribute` hook to encrypt the files as
 they're being committed. So, we need to create a `.gitattributes` file.
 
 .. code:: bash
 
-    $ echo ".env filter=git-crypt diff=git-crypt" > .gitattributes
+    echo ".env filter=git-crypt diff=git-crypt" > .gitattributes
 
 You can read more about git attributes here:
 
@@ -113,7 +120,7 @@ Now, we can stage those files:
     #
     # https://github.com/mroth/scmpuff
 
-    $ git add .env .gitattributes
+    git add .env .gitattributes
 
     # On branch: master  |  [*] => $e*
     #
@@ -127,7 +134,7 @@ Once they're staged, we can verify that file is to be encrypted:
 
 .. code:: bash
 
-    $ git-crypt status -e
+    git-crypt status -e
         encrypted: .env
 
 Aaand commit!
@@ -136,7 +143,7 @@ Aaand commit!
 
     # Just ignore the bit about "all keys". It will make sense shortly.
 
-    $ git commit -F - <<EOF
+    git commit -F - <<EOF
     Added encrypted database information to .env
 
     Previously, this repository was initialised with git-crypt, allowing
@@ -152,7 +159,7 @@ That's it! That file is encrypted, and only you can decrypted it. But don't trus
 
 .. code:: bash
 
-    $ cat .env
+    cat .env
     MYSQL_PASSWORD="this-is-a-totally-secure-mysql-password"
 
     # AAH WHAT THIS ISNT ENCRYPTED YOU DECEIVED ME!
@@ -162,7 +169,7 @@ the repository is "locked". You can do this manually:
 
 .. code:: bash
 
-    $ git-crypt lock
+    git-crypt lock
     cat .env
     GITCRYPT��X�f�{gL�#�@K>���Ox��s܊��WhE�g
                                               �i����
@@ -176,15 +183,17 @@ Or, you can verify this by cloning the repository again and verifying that it's 
 
     # Unlock your current repository, so we can sanity check it still clones the encrypted version from a decrypted
     # repo
-    $ git-crypt unlock
+    git-crypt unlock
 
     # Clone the current repo to a new dir. There's no special magic here.
-    $ git clone /tmp/foo /tmp/bar
+    git clone /tmp/foo /tmp/bar
+
     Cloning into '/tmp/bar'...
     done.
 
     # Cat the file
-    $ cat .env
+    cat .env
+
     GITCRYPT��X�f�{gL�#�@K>���Ox��s܊��WhE�g
                                               �i����
     �j��9�Q�2�|f�R�Z�Ğ��
@@ -194,8 +203,8 @@ Perfect! It appears to be encrypted. Let's clean up, and go back to our previous
 
 .. code:: bash
 
-    $ cd /tmp/foo
-    $ rm -rf /tmp/bar
+    cd /tmp/foo
+    rm -rf /tmp/bar
 
 If you're using one of the aforementioned packages, such as dotenv for either ruby or php, you can stop here. However,
 the vast majority of applications do not have support for environment configuration. So, we use envsubst to polyfill
@@ -205,16 +214,16 @@ Let's use Magento's local.xml as an example:
 
 .. code:: bash
 
-    $ mkdir -p etc/magento
-    $ cd etc/magento
-    $ wget https://raw.githubusercontent.com/OpenMage/magento-mirror/magento-1.9/app/etc/local.xml.template
+    mkdir -p etc/magento
+    cd etc/magento
+    wget https://raw.githubusercontent.com/OpenMage/magento-mirror/magento-1.9/app/etc/local.xml.template
 
 `cat` that file yourself, so you can see the contents. I'm not going to print them inline, as it's long, and I don't
 want to.
 
 .. code:: bash
 
-    $ cat local.xml.template
+    cat local.xml.template
     # It's a bunch of XML with placeholders that look like "{{value}}"
 
 We're deliberately not going to explore what all of these values mean, and which ones should be secret. Instead,
@@ -236,32 +245,32 @@ placeholders that look like `$VARIABLE_NAME`, like bash.
 .. code:: bash
 
     # This replaces {{whatever}} with $WHATEVER
-    $ sed --in-place 's/{{key}}/$KEY/' local.xml.template
-    $ sed --in-place 's/{{db_pass}}/$DB_PASS/' local.xml.template
+    sed --in-place 's/{{key}}/$KEY/' local.xml.template
+    sed --in-place 's/{{db_pass}}/$DB_PASS/' local.xml.template
 
 That's it! Now, we can generate our local.xml file with the secret information:
 
 .. code:: bash
 
     # Broadly, this does a few things:
-    # $ cat local.xml.template        # Read the file from local.xml.template into stdout
-    # $ eval $(cat .env | xargs)      # Read .env into stdout, and convert it into a sting of the form
+    #   cat local.xml.template        # Read the file from local.xml.template into stdout
+    #   eval $(cat .env | xargs)      # Read .env into stdout, and convert it into a sting of the form
     #                                 #   'FOO="bar" BAZ="herp" envsubst'. eval then executes that as a bash command
-    $ cat local.xml.template | eval "$(cat .env | xargs) envsubst" > local.xml
+    cat local.xml.template | eval "$(cat .env | xargs) envsubst" > local.xml
 
 That's it! Our local.xml is generated, and filled with the appropriate information. To be safe, we should add that file
 to .gitignore:
 
 .. code:: bash
 
-    $ echo "local.xml" > .gitignore
+    echo "local.xml" > .gitignore
 
 Commit it
 
 .. code:: bash
 
-    $ git add local.xml.template .env .gitignore
-    $ git commit -F - <<EOF
+    git add local.xml.template .env .gitignore
+    git commit -F - <<EOF
     Add local.xml.template, encrypted .env
 
     This commit stores the local.xml used in the production environment,
@@ -280,7 +289,8 @@ Commit it
 That's it! Protip: It's a good idea to comment how to generate the template file *in* the template file, so your
 colleagues can understand what's going on. Or, point them here. ;)
 
-## Handling CI/CD
+Handling CI/CD
+--------------
 
 If you're using CI/CD it's quite often that you will need to be able some form of secret in order to build or deploy
 the application. If you are doing so, my recommendation is that you generate a PGP key pair on the build server, and
@@ -288,7 +298,8 @@ encrypt the resources with CIs private key. If you're unsure how to do this, see
 
 https://help.github.com/articles/generating-a-new-gpg-key/
 
-## Primitive ACLs
+Primitive ACLs
+--------------
 
 `git-crypt` can be used to encrypt secrets that should only be visible by certain users, such as robot accounts used by
 the build service. Check out the documentation here:
