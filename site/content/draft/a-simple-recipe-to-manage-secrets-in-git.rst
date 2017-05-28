@@ -84,17 +84,20 @@ This file is a simple key => value pairing, fashioned after other environment fi
 On my development machine, `/etc/environment` looks like:
 
 .. code::
+
     COMPOSER_HOME=/opt/composer
 
 Let's create this file
 
 .. code:: bash
+
     $ echo 'MYSQL_PASSWORD="this-is-a-totally-secure-mysql-password"' > .env
 
 However, the file is not encrypted just yet. `git-crypt` works by using a `git-attribute` hook to encrypt the files as
 they're being committed. So, we need to create a `.gitattributes` file.
 
 .. code:: bash
+
     $ echo ".env filter=git-crypt diff=git-crypt" > .gitattributes
 
 You can read more about git attributes here:
@@ -104,6 +107,7 @@ You can read more about git attributes here:
 Now, we can stage those files:
 
 .. code:: bash
+
     # Note: You'll notice that my staged summary looks a little different than normal. I use a git plugin called "scmpuff"
     # to add numbered shortcuts to my git files. It's excellent, and recommend you take a look:
     #
@@ -122,12 +126,14 @@ Now, we can stage those files:
 Once they're staged, we can verify that file is to be encrypted:
 
 .. code:: bash
+
     $ git-crypt status -e
         encrypted: .env
 
 Aaand commit!
 
 .. code:: bash
+
     # Just ignore the bit about "all keys". It will make sense shortly.
 
     $ git commit -F - <<EOF
@@ -145,6 +151,7 @@ Aaand commit!
 That's it! That file is encrypted, and only you can decrypted it. But don't trust me, let's sanity check it:
 
 .. code:: bash
+
     $ cat .env
     MYSQL_PASSWORD="this-is-a-totally-secure-mysql-password"
 
@@ -154,6 +161,7 @@ Don't panic! git-crypt works by encrypting files *as they commit*. You usually w
 the repository is "locked". You can do this manually:
 
 .. code:: bash
+
     $ git-crypt lock
     cat .env
     GITCRYPT��X�f�{gL�#�@K>���Ox��s܊��WhE�g
@@ -165,6 +173,7 @@ the repository is "locked". You can do this manually:
 Or, you can verify this by cloning the repository again and verifying that it's locked by default
 
 .. code:: bash
+
     # Unlock your current repository, so we can sanity check it still clones the encrypted version from a decrypted
     # repo
     $ git-crypt unlock
@@ -184,6 +193,7 @@ Or, you can verify this by cloning the repository again and verifying that it's 
 Perfect! It appears to be encrypted. Let's clean up, and go back to our previous repo:
 
 .. code:: bash
+
     $ cd /tmp/foo
     $ rm -rf /tmp/bar
 
@@ -194,6 +204,7 @@ these applications by generating the "secret" configuration with a template file
 Let's use Magento's local.xml as an example:
 
 .. code:: bash
+
     $ mkdir -p etc/magento
     $ cd etc/magento
     $ wget https://raw.githubusercontent.com/OpenMage/magento-mirror/magento-1.9/app/etc/local.xml.template
@@ -202,6 +213,7 @@ Let's use Magento's local.xml as an example:
 want to.
 
 .. code:: bash
+
     $ cat local.xml.template
     # It's a bunch of XML with placeholders that look like "{{value}}"
 
@@ -210,6 +222,7 @@ we're just going to pretend that the rest is all filled out, and that `{{db_pass
 we need to generate a .env file similar to the one from earlier:
 
 .. code:: bash
+
     # If you copy paste this, be careful not to copy the linebreak after the last EOF.
     # See https://stackoverflow.com/questions/2953081/how-can-i-write-a-here-doc-to-a-file-in-bash-script
     cat << EOF > .env
@@ -221,6 +234,7 @@ Next, we have to modify the `local.xml.template` file to be in the format that `
 placeholders that look like `$VARIABLE_NAME`, like bash.
 
 .. code:: bash
+
     # This replaces {{whatever}} with $WHATEVER
     $ sed --in-place 's/{{key}}/$KEY/' local.xml.template
     $ sed --in-place 's/{{db_pass}}/$DB_PASS/' local.xml.template
@@ -228,6 +242,7 @@ placeholders that look like `$VARIABLE_NAME`, like bash.
 That's it! Now, we can generate our local.xml file with the secret information:
 
 .. code:: bash
+
     # Broadly, this does a few things:
     # $ cat local.xml.template        # Read the file from local.xml.template into stdout
     # $ eval $(cat .env | xargs)      # Read .env into stdout, and convert it into a sting of the form
@@ -238,11 +253,13 @@ That's it! Our local.xml is generated, and filled with the appropriate informati
 to .gitignore:
 
 .. code:: bash
+
     $ echo "local.xml" > .gitignore
 
 Commit it
 
 .. code:: bash
+
     $ git add local.xml.template .env .gitignore
     $ git commit -F - <<EOF
     Add local.xml.template, encrypted .env
