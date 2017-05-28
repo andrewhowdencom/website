@@ -61,7 +61,7 @@ Okay, let's continue! Let's initialise git-crypt
 
     git-crypt init
 
-    Generating key...
+    # Generating key...
 
 We also need to add our key the repository so that resources will be encrypted with it. Please note: this key will
 need to be trusted!
@@ -71,11 +71,10 @@ need to be trusted!
     export YOUR_EMAIL="totallylegit@andrewhowden.com" # Replace with the email for your PGP key
     git-crypt add-gpg-user ${YOUR_EMAIL}
 
-    [master (root-commit) ccaef5f] Add 1 git-crypt collaborator
-    2 files changed, 3 insertions(+)
-    create mode 100644 .git-crypt/.gitattributes
-    create mode 100644 .git-crypt/keys/default/0/THIS_WILL_BE_YOUR_KEY_ID.gpg
-    ```
+    # [master (root-commit) ccaef5f] Add 1 git-crypt collaborator
+    # 2 files changed, 3 insertions(+)
+    # create mode 100644 .git-crypt/.gitattributes
+    # create mode 100644 .git-crypt/keys/default/0/THIS_WILL_BE_YOUR_KEY_ID.gpg
 
 We can now encrypt things in version control! Let's create a simple secret as an example. We'll create a file called
 `.env`. This file can be consumed by several credential managers, such as:
@@ -135,7 +134,7 @@ Once they're staged, we can verify that file is to be encrypted:
 .. code:: bash
 
     git-crypt status -e
-        encrypted: .env
+    #    encrypted: .env
 
 Aaand commit!
 
@@ -171,9 +170,10 @@ the repository is "locked". You can do this manually:
 
     git-crypt lock
     cat .env
-    GITCRYPT��X�f�{gL�#�@K>���Ox��s܊��WhE�g
-                                              �i����
-    �j��9�Q�2�|f�R�Z�Ğ��
+
+    # GITCRYPT��X�f�{gL�#�@K>���Ox��s܊��WhE�g
+    #                                           �i����
+    # �j��9�Q�2�|f�R�Z�Ğ��
 
     # Ahh much better
 
@@ -188,16 +188,15 @@ Or, you can verify this by cloning the repository again and verifying that it's 
     # Clone the current repo to a new dir. There's no special magic here.
     git clone /tmp/foo /tmp/bar
 
-    Cloning into '/tmp/bar'...
-    done.
+    # Cloning into '/tmp/bar'...
+    # done.
 
     # Cat the file
     cat .env
 
-    GITCRYPT��X�f�{gL�#�@K>���Ox��s܊��WhE�g
-                                              �i����
-    �j��9�Q�2�|f�R�Z�Ğ��
-    ```
+    # GITCRYPT��X�f�{gL�#�@K>���Ox��s܊��WhE�g
+    #                                           �i����
+    # �j��9�Q�2�|f�R�Z�Ğ��
 
 Perfect! It appears to be encrypted. Let's clean up, and go back to our previous repo:
 
@@ -280,11 +279,11 @@ Commit it
     level of the repository.
     EOF
 
-    [master b1517a9] Add local.xml.template, encrypted .env
-     3 files changed, 67 insertions (+)
-     create mode 100644 etc/magento/.env
-     create mode 100644 etc/magento/.gitignore
-     create mode 100644 etc/magento/local.xml.template
+    # [master b1517a9] Add local.xml.template, encrypted .env
+    #  3 files changed, 67 insertions (+)
+    #  create mode 100644 etc/magento/.env
+    #  create mode 100644 etc/magento/.gitignore
+    #  create mode 100644 etc/magento/local.xml.template
 
 That's it! Protip: It's a good idea to comment how to generate the template file *in* the template file, so your
 colleagues can understand what's going on. Or, point them here. ;)
