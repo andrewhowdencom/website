@@ -4,7 +4,7 @@
 
 .DEFAULT_GOAL := help
 
-APP_VERSION := 101
+APP_VERSION := 102
 
 SHELL := /bin/bash
 
