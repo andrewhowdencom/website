@@ -2,19 +2,17 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: www-andrewhowden-com
+  namespace: andrewhowden-com
 spec:
   ports:
   - name: http
     port: 80
     protocol: TCP
     targetPort: 80
-    nodePort: 30193
   - name: https
     port: 443
     protocol: TCP
     targetPort: 443
-    nodePort: 32584
   selector:
     role: nginx
   type: NodePort

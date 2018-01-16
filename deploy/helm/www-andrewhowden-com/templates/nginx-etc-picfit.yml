@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: nginx-etc-picfit
-  namespace: www-andrewhowden-com
+  namespace: andrewhowden-com
 data:
   config.json: |
     {

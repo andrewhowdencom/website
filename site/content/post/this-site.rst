@@ -1,6 +1,7 @@
 ---
 title: "This Site"
 description: "A summary of the experiments in progress on my personal site"
+categories: ["Site"]
 date: "26 Jul 16 20:50 +1100"
 ---
 

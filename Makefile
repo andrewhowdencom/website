@@ -1,6 +1,6 @@
 # Task runner
 
-.PHONY: help build
+.PHONY: help build deploy
 
 .DEFAULT_GOAL := help
 
@@ -85,3 +85,10 @@ fonts: ## Move the fonts into the appropriate dir
 
 static: fonts styles ## Compile all static assets
 	echo "Static Compiled"
+
+deploy: ## Deploys the app
+	helm upgrade --install \
+	    www-andrewhowd \
+	    deploy/helm/www-andrewhowden-com/ \
+	    --set="siteVersion=$(GIT_HASH)"
+	

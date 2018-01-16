@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: www-andrewhowden-com
+  namespace: andrewhowden-com
 spec:
   replicas: 1
   template:
@@ -41,7 +41,7 @@ spec:
               readOnly: true
               mountPath: /etc/tls/andrewhowden-com/
         - name: picfit
-          image: littleman/picfit:{{ .Values.picfitVersion }}
+          image: littleman/picfit:{{ default "latest" .Values.picfitVersion }}
           volumeMounts:
           - name: nginx-etc-picfit
             mountPath: "/etc/picfit"

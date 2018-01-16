@@ -2,8 +2,4 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: nginx-etc-tls
-  namespace: www-andrewhowden-com
-data:
-  cert.pem: {{CERT}}
-  fullchain.pem: {{FULL_CHAIN}}
-  privkey.pem: {{PRIVKEY}}
+  namespace: andrewhowden-com
