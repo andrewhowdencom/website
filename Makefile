@@ -86,7 +86,7 @@ fonts: ## Move the fonts into the appropriate dir
 static: fonts styles ## Compile all static assets
 	echo "Static Compiled"
 
-deploy: clean content styles js build-container-nginx push-container-nginx ## Deploys the app
+deploy: clean app-version content styles js fonts build-container-nginx push-container-nginx ## Deploys the app
 	helm upgrade --install \
 	    www-andrewhowd \
 	    deploy/helm/www-andrewhowden-com/ \
