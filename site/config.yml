@@ -20,10 +20,10 @@ menu:
       URL: "/resume/"
       Weight: 110
 
-copyright: "© Andrew Howden, 2016"
+copyright: "© Andrew Howden, 2017"
 
 Params:
-  CssVersion: "1495978972"
+  CssVersion: "1516123610"
   Gtm:
     Id: "GTM-KXPWKD"
   AppVersion: "104"
