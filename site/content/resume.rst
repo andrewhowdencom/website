@@ -120,13 +120,18 @@ Tools
 Current Employment
 ------------------
 
-Full time developer at Fontis, PTY LTD.
+Full time developer at Sitewards GmbH
 
 Employment History
 ------------------
 
-3/10/14 - Present; Fontis, PTY LTD
-''''''''''''''''''''''''''''''''''
+10/10/16 - Present - Sitewards GmbH
+''''''''''''''''''''''''''''''''''''
+
+Developer, specializing in the development, deployment and ongoing management of Magento 2.
+
+3/10/14 - 10/10/16 - Fontis, PTY LTD
+''''''''''''''''''''''''''''''''''''
 
 Developer, specializing in the LEMP stack.
 
