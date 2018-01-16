@@ -4,7 +4,7 @@
 
 .DEFAULT_GOAL := help
 
-APP_VERSION := 104
+APP_VERSION := $(shell date +%s)
 
 SHELL := /bin/bash
 
