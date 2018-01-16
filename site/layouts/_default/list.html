@@ -1,0 +1,35 @@
+<!DOCTYPE html> {{ partial "head.html" . }}
+<body class="post page">
+{{ partial "gtm.html" . }} {{ partial "masthead.html" . }}
+<div class="page__content">
+        <h1 class='title'>
+            {{- if eq .Kind "taxonomy" -}}
+            <span class='taxonomy-type'>
+{{- ( ( i18n .Data.Singular 1 ) | default .Data.Singular ) | title -}}
+{{- print ": " -}}
+</span>
+            {{- end -}}
+            {{- if eq .Data.Singular "author" -}}
+            {{- partial "data/author/displayName" . -}}
+            {{- else -}}
+            {{- .Title -}}
+            {{- end -}}
+        </h1>
+        {{ if .Description }}
+          {{ .Description }}
+        {{ end }}
+    {{ if .Content }}
+        {{ .Content }}
+    {{ end }}
+
+    <div class='list-container'>
+        <ul class='list'>
+            {{ range .Paginator.Pages }}
+            {{ .Render "li" }}
+            {{ end }}
+        </ul>
+
+    </div>
+</div>
+{{ partial "footer.html" . }}
+</body>
