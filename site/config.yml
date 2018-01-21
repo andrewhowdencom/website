@@ -12,18 +12,21 @@ social:
 
 menu:
   main:
-    # Name - Font Icon
+    # Name - Font Ico n
     - Name: "home"
       URL: "/"
       Weight: 100
     - Name: "description"
       URL: "/resume/"
       Weight: 110
+    - Name: "book"
+      URL: "https://medium.com/@andrewhowdencom/"
+      Weight: 120
 
 copyright: "© Andrew Howden, 2017"
 
 Params:
-  CssVersion: "1516127637"
+  CssVersion: "1516549884"
   Gtm:
     Id: "GTM-KXPWKD"
   AppVersion: "1516127640"

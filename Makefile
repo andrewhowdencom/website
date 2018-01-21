@@ -76,7 +76,7 @@ styles: ## Make SCSS
 	postcss --config=postcss.json site/src/css/components/* --dir site/static/css/components	
 	postcss --config=postcss.json site/src/css/vendor/*     --dir site/static/css/vendor
 
-fonts: ## Move the fonts into the appropriate dir
+fonts: styles ## Move the fonts into the appropriate dir
 	# Materials Design
 	rm -rf site/static/fonts//*
 	cp site/bower_components/material-design-icons/iconfont/MaterialIcons* site/static/fonts/
