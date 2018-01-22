@@ -12,7 +12,7 @@ social:
 
 menu:
   main:
-    # Name - Font Ico n
+    # Name - Font Icon
     - Name: "home"
       URL: "/"
       Weight: 100
@@ -22,12 +22,18 @@ menu:
     - Name: "book"
       URL: "https://medium.com/@andrewhowdencom/"
       Weight: 120
+    - name: "lightbulb_outline"
+      URL: "/concepts/"
+      weight: 130
+    - name: "record_voice_over"
+      URL: "/talks/"
+      weight: 140
 
 copyright: "© Andrew Howden, 2017"
 
 Params:
-  CssVersion: "1516549884"
+  CssVersion: "1516643452"
   Gtm:
     Id: "GTM-KXPWKD"
-  AppVersion: "1516127640"
+  AppVersion: "1516553607"
   DateForm: "02 Jan 06 15:04 -0700"

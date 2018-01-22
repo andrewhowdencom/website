@@ -61,16 +61,6 @@ blockquote {
   font-size: .75em;
 }
 
-/*
-.fn-backref {
-  margin-right: var(--padding-small-horizontal);
-}
-
-.fn-backref::after {
-  content: '-';
-  margin-left: var(--padding-small-horizontal);
-}*/
-
 /* rst2html2 creates multiple h1 elements, and differentiates the first h1
   with the class "title". We're overcoming that limitation here. */
 .page__content--blog h1 {

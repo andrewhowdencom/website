@@ -1,0 +1,6 @@
+<li class="taxonomy__item">
+    <a href='{{ .Permalink | relURL }}'><h3 class="taxonomy__item__title">{{- .Title -}}</h3></a>
+    {{ if .Description }}
+    <p>{{ .Description }}</p>
+    {{ end }}
+</li>

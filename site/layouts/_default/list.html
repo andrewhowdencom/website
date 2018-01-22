@@ -1,7 +1,8 @@
 <!DOCTYPE html> {{ partial "head.html" . }}
 <body class="post page">
 {{ partial "gtm.html" . }} {{ partial "masthead.html" . }}
-<div class="page__content">
+<div class="page__content page__content--list">
+    <div class="site-wrapper-inner">
         <h1 class='title'>
             {{- if eq .Kind "taxonomy" -}}
             <span class='taxonomy-type'>
@@ -16,20 +17,19 @@
             {{- end -}}
         </h1>
         {{ if .Description }}
-          {{ .Description }}
+        {{ .Description }}
         {{ end }}
-    {{ if .Content }}
+        {{ if .Content }}
         {{ .Content }}
-    {{ end }}
+        {{ end }}
 
-    <div class='list-container'>
-        <ul class='list'>
+        <ul class='taxonomy'>
             {{ range .Paginator.Pages }}
             {{ .Render "li" }}
             {{ end }}
         </ul>
-
     </div>
 </div>
+
 {{ partial "footer.html" . }}
 </body>
