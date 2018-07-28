@@ -27,8 +27,8 @@ before_install:
   # Google Cloud Path
   - "export PATH=$(pwd)/google-cloud-sdk/bin:${PATH}"
 
-  # CI Scripts
-  - "PATH=$(pwd)/build/scripts/CI:${PATH}"
+  # Node path
+  - "export PATH=$(pwd)/node_modules/.bin:${PATH}"
 
 install:
   - "./ci/scripts/install-dependencies.sh"
