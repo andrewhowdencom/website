@@ -15,8 +15,8 @@ it's useful to retain identity across different contexts, such as Twitter, Githu
 
 ### Colours
 
-| Primary Colour                                           | Alternative Colours                                                                         |
-|----------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| ![#ff8884](https://placehold.it/15/ff8884/000000?text=+) | ![#ffd5cb](https://placehold.it/15/ffd5cb/000000?text=+)                                    |
-| ![#6bbfff](https://placehold.it/15/6bbfff/000000?text=+) | ![#bbdeff](https://placehold.it/15/bbdeff/000000?text=+)                                    |
-| ![#397eb2](https://placehold.it/15/397eb2/000000?text=+) | ![#c1dbef](https://placehold.it/15/c1dbef/000000?text=+)                                    |
+| Primary Colour                                           | Alternative Colours                                                                                               |
+|----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
+| ![#ff8884](https://placehold.it/15/ff8884/000000?text=+) | ![#ffd5cb](https://placehold.it/15/ffd5cb/000000?text=+)                                                          |
+| ![#6bbfff](https://placehold.it/15/6bbfff/000000?text=+) | ![#bbdeff](https://placehold.it/15/bbdeff/000000?text=+)                                                          |
+| ![#397eb2](https://placehold.it/15/397eb2/000000?text=+) | ![#243A5F](https://placehold.it/15/243A5F/000000?text=+), ![#c1dbef](https://placehold.it/15/c1dbef/000000?text=+)|                                    |
