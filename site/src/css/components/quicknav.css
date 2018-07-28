@@ -1,9 +1,0 @@
-@import '../variables.css';
-
-/*ul*/.quicknav {
-  padding-left: 0;
-}
-
-.nav-link {
-    color: var(--nav-link-background-colour);
-}

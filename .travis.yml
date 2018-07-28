@@ -1,25 +1,16 @@
+---
 branches:
   only:
-  - master
-
-addons:
-  apt:
-    packages:
-    - python-docutils
-    - git
+    - master
 
 sudo: required
 
-env:
-  global:
-    - TEST_SUITE=static
-
 services:
-- docker
+  - docker
 
 env:
-- CLOUDSDK_PYTHON_SITEPACKAGES=1
-  GIT_SSH_COMMAND="ssh -i .privkey"
+  - CLOUDSDK_PYTHON_SITEPACKAGES=1
+    GIT_SSH_COMMAND="ssh -i .privkey"
 
 before_install:
   # General bin
