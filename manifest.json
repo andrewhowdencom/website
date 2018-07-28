@@ -4,17 +4,27 @@
   "description": "I think simple things are usually better, and most progress is made in small steps out of habit.",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#3f51b5",
-  "background_color": "#3f51b5",
+  "theme_color": "#ff8884",
+  "background_color": "#243A5F",
   "icons": [
     {
-      "src": "images/manifest/icon-192x192.png",
-      "sizes": "192x192",
+      "src": "images/manifest/icon-32x32.png",
+      "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "images/manifest/icon-512x512.png",
-      "sizes": "512x512",
+      "src": "images/manifest/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "images/manifest/icon-192x192.png",
+      "sizes": "192x192",
       "type": "image/png"
     }
   ]
