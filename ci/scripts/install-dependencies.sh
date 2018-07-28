@@ -19,5 +19,9 @@ tar -xvf google-cloud-sdk-${GOOGLE_CLOUD_VERSION}-linux-x86_64.tar.gz
 
 google-cloud-sdk/install.sh --additional-components bq core gsutil gcloud alpha beta kubectl --quiet
 
+# Install node
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
 # Polymer
 sudo npm install -g polymer-cli
