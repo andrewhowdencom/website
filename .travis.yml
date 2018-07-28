@@ -28,10 +28,13 @@ before_install:
   - "export PATH=$(pwd)/bin:${PATH}"
 
   # Google Cloud Path
-  - "export PATH=$(pwd)/google-cloud-sdk/bin:${PATH}"
+  - 'export PATH="$(pwd)/google-cloud-sdk/bin:${PATH}"'
 
   # Node path
-  - "export PATH=$(pwd)/node_modules/.bin:${PATH}"
+  - 'export PATH="$(pwd)/node_modules/.bin:${PATH}"'
+
+  # Show path
+  - echo "${PATH}"
 
 install:
   - "./ci/scripts/install-dependencies.sh"
