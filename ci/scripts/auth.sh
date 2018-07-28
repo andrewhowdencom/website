@@ -10,6 +10,10 @@ set -e
 
 KUBE_NAMESPACE=www-andrewhowden-com
 
+# Unlock repository
+echo "${BASE64_GIT_CRYPT_KEY}" | base64 --decode > ~/.repository-key
+git-crypt unlock ~/.repository-key
+
 # Google Cloud bin
 export PATH="${PATH}:$(pwd)/google-cloud-sdk/bin"
 
