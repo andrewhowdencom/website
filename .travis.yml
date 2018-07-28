@@ -20,6 +20,9 @@ env:
     GIT_SSH_COMMAND="ssh -i .privkey"
 
 before_install:
+  - 'echo "${BASE64_GIT_CRYPT_KEY}" | base64 --decode > ~/.repository-key'
+  - 'git-crypt unlock ~/.repository-key'
+
   # General bin
   # Path is ordered this way so we found our custom gcloud prior to travis's one.
   - "export PATH=$(pwd)/bin:${PATH}"
