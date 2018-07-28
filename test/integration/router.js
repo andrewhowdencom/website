@@ -35,7 +35,6 @@ describe('routing tests', function() {
     await page.waitForSelector('my-app', {visible: true});
 
     await testNavigation(page, 'resume', 'Resume');
-    await testNavigation(page, 'view3', 'View Three');
     await testNavigation(page, 'home', 'Home');
   });
 
@@ -60,7 +59,6 @@ describe('routing tests', function() {
     });
 
     await testNavigationInADifferentWay(page, 'resume', 'Resume');
-    await testNavigationInADifferentWay(page, 'view3', 'View Three');
     await testNavigationInADifferentWay(page, 'home', 'Home');
   });
 });

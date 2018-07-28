@@ -169,7 +169,7 @@ class MyApp extends connect(store)(LitElement) {
       <nav class="drawer-list">
         <a selected?="${_page === 'home'}" href="/home">Home</a>
         <a selected?="${_page === 'resume'}" href="/resume">Resume</a>
-        <a selected?="${_page === 'view3'}" href="/view3">View Three</a>
+        <a href="https://medium.com/@andrewhowdencom" target="_blank" rel="noopener">Blog</a>
       </nav>
     </app-drawer>
 
@@ -177,7 +177,6 @@ class MyApp extends connect(store)(LitElement) {
     <main role="main" class="main-content">
       <my-home class="page" active?="${_page === 'home'}"></my-home>
       <my-resume class="page" active?="${_page === 'resume'}"></my-resume>
-      <my-view3 class="page" active?="${_page === 'view3'}"></my-view3>
       <my-view404 class="page" active?="${_page === 'view404'}"></my-view404>
     </main>
 
