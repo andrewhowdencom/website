@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "My App",
-  "description": "My App description",
+  "name": "andrewhowdencom",
+  "short_name": "andrewhowdencom",
+  "description": "I think simple things are usually better, and most progress is made in small steps out of habit.",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3f51b5",
