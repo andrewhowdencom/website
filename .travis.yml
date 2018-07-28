@@ -3,6 +3,11 @@ branches:
   only:
     - master
 
+addons:
+  apt:
+    packages:
+      - "git-crypt"
+
 sudo: required
 
 services:
