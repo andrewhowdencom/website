@@ -181,7 +181,7 @@ class MyApp extends connect(store)(LitElement) {
     </main>
 
     <footer>
-      <p>Made with &hearts; by the Polymer team.</p>
+      <p>&hearts; to the Polymer team, who built the vast majority of this website.</p>
     </footer>
 
     <snack-bar active?="${_snackbarOpened}">
