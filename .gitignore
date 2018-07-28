@@ -1,18 +1,5 @@
-# Ignore dotfiles
-.*
-
-# Ignore certificates
-*.pem
-
-# Intentionally allow the following dotfiles
-!\.bowerrc
-!\.gitkeep
-!\.scss-lint.yml
-!\.eslintrc.yml
-
-# Generated files
-site/public/*
-*.map
-
-# Ignore bower components
-site/bower_components
+build/
+node_modules/
+test/integration/screenshots-current/
+_site/
+.DS_Store
