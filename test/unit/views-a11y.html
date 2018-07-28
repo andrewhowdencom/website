@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- Import the element to test -->
     <script type="module" src="../../src/components/ahc-home.js"></script>
-    <script type="module" src="../../src/components/my-view2.js"></script>
+    <script type="module" src="../../src/components/ahc-resume.js"></script>
     <script type="module" src="../../src/components/my-view3.js"></script>
     <script type="module" src="../../src/components/my-view404.js"></script>
   </head>
@@ -37,9 +37,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <my-home active></my-home>
       </template>
     </test-fixture>
-    <test-fixture id="view2">
+    <test-fixture id="resume">
       <template>
-        <my-view2 active></my-view2>
+        <my-resume active></my-resume>
       </template>
     </test-fixture>
     <test-fixture id="view3">
@@ -63,8 +63,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return axeReport(el);
         });
 
-        test('my-view2', function() {
-          const el = fixture('view2');
+        test('my-resume', function() {
+          const el = fixture('resume');
           return axeReport(el);
         });
 

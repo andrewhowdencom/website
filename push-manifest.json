@@ -27,12 +27,12 @@
       "weight": 1
     }
   },
-  "/view2": {
+  "/resume": {
     "src/components/my-app.js": {
       "type": "script",
       "weight": 1
     },
-    "src/components/my-view2.js": {
+    "src/components/ahc-resume.js": {
       "type": "script",
       "weight": 1
     },

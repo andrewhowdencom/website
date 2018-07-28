@@ -30,7 +30,7 @@ import './counter-element.js';
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
 
-class MyView2 extends connect(store)(PageViewElement) {
+class AhcResume extends connect(store)(PageViewElement) {
   _render(props) {
     return html`
       ${SharedStyles}
@@ -69,4 +69,4 @@ class MyView2 extends connect(store)(PageViewElement) {
   }
 }
 
-window.customElements.define('my-view2', MyView2);
+window.customElements.define('my-resume', AhcResume);

@@ -35,8 +35,8 @@ const loadPage = (page) => (dispatch) => {
         // navigating to home after ahc-home.js is loaded.
       });
       break;
-    case 'view2':
-      import('../components/my-view2.js');
+    case 'resume':
+      import('../components/ahc-resume.js');
       break;
     case 'view3':
       import('../components/my-view3.js');
