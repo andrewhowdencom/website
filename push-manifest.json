@@ -4,7 +4,7 @@
       "type": "script",
       "weight": 1
     },
-    "src/components/my-view1.js": {
+    "src/components/my-home.js": {
       "type": "script",
       "weight": 1
     },
@@ -13,12 +13,12 @@
       "weight": 1
     }
   },
-  "/view1": {
+  "/home": {
     "src/components/my-app.js": {
       "type": "script",
       "weight": 1
     },
-    "src/components/my-view1.js": {
+    "src/components/my-home.js": {
       "type": "script",
       "weight": 1
     },
