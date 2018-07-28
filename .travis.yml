@@ -29,7 +29,6 @@ before_install:
 
   # CI Scripts
   - "PATH=$(pwd)/build/scripts/CI:${PATH}"
-  - "ci/scripts//unpack-secrets.sh"
 
 install:
   - "./ci/scripts/install-dependencies.sh"
