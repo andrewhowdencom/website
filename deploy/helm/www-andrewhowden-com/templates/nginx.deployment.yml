@@ -1,0 +1,47 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: andrewhowden-com
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        role: nginx
+    spec:
+      volumes:
+        - name: tls-www-andrewhowden-com
+          secret:
+            secretName: tls-www-andrewhowden-com
+        - name: tls-pgp-andrewhowden-com
+          secret:
+            secretName: tls-pgp-andrewhowden-com
+        - name: tls-andrewhowden-com
+          secret:
+            secretName: tls-andrewhowden-com
+        - name: nginx-etc-picfit
+          configMap:
+            name: nginx-etc-picfit
+      containers:
+        - name: nginx
+          image: gcr.io/littleman-co/www-andrewhowden-com-nginx:{{ .Values.siteVersion }}
+          ports:
+          - containerPort: 80
+          - containerPort: 443
+          volumeMounts:
+            - name: tls-www-andrewhowden-com
+              readOnly: true
+              mountPath: /etc/tls/www-andrewhowden-com/
+            - name: tls-pgp-andrewhowden-com
+              readOnly: true
+              mountPath: /etc/tls/pgp-andrewhowden-com/
+            - name: tls-andrewhowden-com
+              readOnly: true
+              mountPath: /etc/tls/andrewhowden-com/
+        - name: picfit
+          image: littleman/picfit:{{ default "latest" .Values.picfitVersion }}
+          volumeMounts:
+          - name: nginx-etc-picfit
+            mountPath: "/etc/picfit"
