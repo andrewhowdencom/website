@@ -2,8 +2,7 @@
 
 set -e
 
-GOOGLE_CLOUD_VERSION=114.0.0
-KUBECTL_VERSION=1.2.1
+GOOGLE_CLOUD_VERSION=206.0.0
 PATH=$PATH:$(pwd)/bin
 
 # Defined in Travis

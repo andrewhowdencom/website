@@ -44,7 +44,7 @@ application.dependencies: ## Install application dependencies
 application.content: ## Build site
 	polymer build
 
-deploy: clean app-version content styles js fonts build-container-nginx push-container-nginx ## Deploys the app
+deploy: ## Deploys the app
 	helm upgrade --install \
 	    www-andrewhowd \
 	    deploy/helm/www-andrewhowden-com/ \
