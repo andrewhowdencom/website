@@ -4,7 +4,7 @@
       "type": "script",
       "weight": 1
     },
-    "src/components/my-home.js": {
+    "src/components/ahc-home.js": {
       "type": "script",
       "weight": 1
     },
@@ -18,7 +18,7 @@
       "type": "script",
       "weight": 1
     },
-    "src/components/my-home.js": {
+    "src/components/ahc-home.js": {
       "type": "script",
       "weight": 1
     },
