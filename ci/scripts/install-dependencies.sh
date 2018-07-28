@@ -18,3 +18,6 @@ wget "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sd
 tar -xvf google-cloud-sdk-${GOOGLE_CLOUD_VERSION}-linux-x86_64.tar.gz
 
 google-cloud-sdk/install.sh --additional-components bq core gsutil gcloud alpha beta kubectl --quiet
+
+# Polymer
+sudo npm install -g polymer-cli
