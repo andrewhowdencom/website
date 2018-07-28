@@ -22,14 +22,13 @@ before_install:
 
   # CI Scripts
   - "PATH=$(pwd)/build/scripts/CI:${PATH}"
-  - "./build/scripts/CI/unpack-secrets.sh"
+  - "ci/scripts//unpack-secrets.sh"
 
 install:
-  - "./build/scripts/CI/install-dependencies.sh"
+  - "./ci/scripts/install-dependencies.sh"
 
 before_script:
-  - "./build/scripts/lint.sh"
-  - "./build/scripts/CI/auth.sh"
+  - "./ci/scripts/auth.sh"
 
 script:
   - "make content"
