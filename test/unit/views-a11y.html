@@ -33,12 +33,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body>
     <test-fixture id="home">
       <template>
-        <my-home active></my-home>
+        <ahc-home active></ahc-home>
       </template>
     </test-fixture>
     <test-fixture id="resume">
       <template>
-        <my-resume active></my-resume>
+        <ahc-resume active></ahc-resume>
       </template>
     </test-fixture>
     <test-fixture id="view404">
@@ -52,12 +52,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       import {axeReport} from 'pwa-helpers/axe-report.js';
 
       suite('views a11y tests', function() {
-        test('my-home', function() {
+        test('ahc-home', function() {
           const el = fixture('home');
           return axeReport(el);
         });
 
-        test('my-resume', function() {
+        test('ahc-resume', function() {
           const el = fixture('resume');
           return axeReport(el);
         });

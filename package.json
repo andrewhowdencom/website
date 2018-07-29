@@ -22,6 +22,7 @@
   "dependencies": {
     "@polymer/app-layout": "^3.0.0-pre.19",
     "@polymer/lit-element": "^0.5.2",
+    "@polymer/paper-card": "^3.0.0-pre.20",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "pwa-helpers": "^0.8.2",
     "redux": "^3.7.2",
@@ -37,7 +38,7 @@
     "gulp-replace": "^1.0.0",
     "mocha": "^5.1.0",
     "pixelmatch": "^4.0.2",
-    "polymer-cli": "^1.7.4",
+    "polymer-cli": "^1.7.7",
     "polyserve": "^0.27.0",
     "prpl-server": "^1.1.0",
     "puppeteer": "^1.4.0",

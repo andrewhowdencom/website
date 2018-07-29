@@ -169,14 +169,16 @@ class MyApp extends connect(store)(LitElement) {
       <nav class="drawer-list">
         <a selected?="${_page === 'home'}" href="/home">Home</a>
         <a selected?="${_page === 'resume'}" href="/resume">Resume</a>
+        <a selected?="${_page === 'portfolio'}" href="/portfolio">Portfolio</a>
         <a href="https://medium.com/@andrewhowdencom" target="_blank" rel="noopener">Blog</a>
       </nav>
     </app-drawer>
 
     <!-- Main content -->
     <main role="main" class="main-content">
-      <my-home class="page" active?="${_page === 'home'}"></my-home>
-      <my-resume class="page" active?="${_page === 'resume'}"></my-resume>
+      <ahc-home class="page" active?="${_page === 'home'}"></ahc-home>
+      <ahc-resume class="page" active?="${_page === 'resume'}"></ahc-resume>
+      <ahc-portfolio class="page" active?="${_page === 'portfolio'}"></ahc-portfolio>
       <my-view404 class="page" active?="${_page === 'view404'}"></my-view404>
     </main>
 

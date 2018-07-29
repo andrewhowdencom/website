@@ -38,6 +38,9 @@ const loadPage = (page) => (dispatch) => {
     case 'resume':
       import('../components/ahc-resume.js');
       break;
+    case 'portfolio':
+      import('../components/ahc-portfolio.js');
+      break;
     default:
       page = 'view404';
       import('../components/my-view404.js');
@@ -79,7 +82,7 @@ export const updateLayout = (wideLayout) => (dispatch, getState) => {
   dispatch({
     type: UPDATE_WIDE_LAYOUT,
     wideLayout
-  })
+  });
   // Open the drawer when we are switching to wide layout and close it when we are
   // switching to narrow.
   dispatch(updateDrawerState(wideLayout));

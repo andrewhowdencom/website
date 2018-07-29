@@ -27,4 +27,4 @@ class AhcHome extends PageViewElement {
   }
 }
 
-window.customElements.define('my-home', AhcHome);
+window.customElements.define('ahc-home', AhcHome);
