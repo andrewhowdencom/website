@@ -10,7 +10,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -88,9 +87,6 @@ class AhcResume extends PageViewElement {
         <h4>3rd October, 2014 → 10th October, 2016: Fontis PTY LTD</h4>
         <p>Developer, specializing in the LEMP stack.</p>
         <h4>Notable Work</h4>
-        <h5>Port the MageAudit Magento analysis tool from Laravel 2 to Magento 1.x</h5>
-        <p>Most of the analysis existed, however the initial design had some inefficient designs, and the opportunity
-           was taken to restructure the design to make additional analysis far easier to implement in future.</p>
         <h5>Implementation if automated lints as part of the normal code review process</h5>
         <p>Now part of the standard workflow, lints are run as part of code review, and issues highlighted (and
            generally solved) before a human reviewer inspects the work. This reduces the nitpicking associated with code

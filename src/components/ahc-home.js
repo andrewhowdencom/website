@@ -18,7 +18,7 @@ class AhcHome extends PageViewElement {
   _render(props) {
     return html`
       ${SharedStyles}
-      <section>
+      <section class="home">
         <h2>Welcome</h2>
         <p>I think simple things are usually better, and most progress is made in small steps out of habit.</p>
         <p>hello[at]andrewhowden.com · +61 3 9005 6411 · +49 162 7074036</p>

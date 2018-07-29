@@ -22,7 +22,7 @@ export const SharedStyles = html`
     background: var(--app-section-odd-color);
   }
 
-  section > * {
+  section.home > * {
     max-width: 600px;
     margin-right: auto;
     margin-left: auto;

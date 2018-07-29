@@ -183,7 +183,8 @@ class MyApp extends connect(store)(LitElement) {
     </main>
 
     <footer>
-      <p>&hearts; to the Polymer team, who built the vast majority of this website.</p>
+      <p>&hearts; to the Polymer team, who built the vast majority of this website · Icons made by Freepik from 
+      www.flaticon.com and is licensed by CC 3.0 BY</p>
     </footer>
 
     <snack-bar active?="${_snackbarOpened}">
