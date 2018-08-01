@@ -12,15 +12,9 @@ spec:
         role: nginx
     spec:
       volumes:
-        - name: tls-www-andrewhowden-com
+        - name: andrewhowden-com
           secret:
-            secretName: tls-www-andrewhowden-com
-        - name: tls-pgp-andrewhowden-com
-          secret:
-            secretName: tls-pgp-andrewhowden-com
-        - name: tls-andrewhowden-com
-          secret:
-            secretName: tls-andrewhowden-com
+            secretName: andrewhowden-com
         - name: nginx-etc-picfit
           configMap:
             name: nginx-etc-picfit
@@ -31,15 +25,9 @@ spec:
           - containerPort: 80
           - containerPort: 443
           volumeMounts:
-            - name: tls-www-andrewhowden-com
+            - name: andrewhowden-com
               readOnly: true
-              mountPath: /etc/tls/www-andrewhowden-com/
-            - name: tls-pgp-andrewhowden-com
-              readOnly: true
-              mountPath: /etc/tls/pgp-andrewhowden-com/
-            - name: tls-andrewhowden-com
-              readOnly: true
-              mountPath: /etc/tls/andrewhowden-com/
+              mountPath: /etc/tls
         - name: picfit
           image: littleman/picfit:{{ default "latest" .Values.picfitVersion }}
           volumeMounts:
