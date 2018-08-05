@@ -83,46 +83,12 @@ class AhcResume extends PageViewElement {
            with.</p>
         <h4>10th October, 2016 → Now: Sitewards GmbH</h4>
         <p>Developer, specializing in the development, deployment and ongoing management of PHP Projects</p>
-        <h4>Notable Work</h4>
         <h4>3rd October, 2014 → 10th October, 2016: Fontis PTY LTD</h4>
         <p>Developer, specializing in the LEMP stack.</p>
-        <h4>Notable Work</h4>
-        <h5>Implementation if automated lints as part of the normal code review process</h5>
-        <p>Now part of the standard workflow, lints are run as part of code review, and issues highlighted (and
-           generally solved) before a human reviewer inspects the work. This reduces the nitpicking associated with code
-           review, and provides some clear standards for code style to follow.</p>
-        <p>Implemented lints are:</p>
-        <ul>
-          <li>PHP</li>
-          <li>PHPCS</li>
-          <li>scss-lint</li>
-          <li>Spelling</li>
-          <li>Git Merge</li>
-          <li>File Permissions</li>
-        </ul>
-        <h5>Implementation of lints on git commit, that prevent commit unless lints pass</h5>
-        <p>In order to keep my own code as clean as possible, all the repos I work with run the lints over all files
-           that have changed. If the lints are violated the violations are displayed in the terminal, and the commit
-           cancelled.</p>
-        <p>The lints can be skipped by ensuring the environment variable "SKIP_LINTS" exists. However, to ensure I don't
-           become lazy, a large warning notice is shown, and the commit is paused for 5 seconds.</p>
-        <p>You can see this git hook on GitHub</p>
-        <h5>Redesign of the GAZ MAN website</h5>
-        <p>The design for the desktop site was kept as similar as possible to the current design, but the design was
-           ported to bootstrap 3.x and made responsive.</p>
-        <h5>Redesign of the Bing Lee checkout</h5>
-        <p>A complete reimplementation of a one step checkout, requiring as little information from the user as is
-           required by the other information specified during the checkout.</p>
-        <p>This required considerable restructuring of Magentos core validation logic, additional validation and
-           reasonably complex implementation of various JavaScript driven features.</p>
-        <h5>Provisioning of a Kubernetes cluster on CoreOS</h5>
-        <p>Still ongoing, but the goal is to have a Kubernetes stack that can be run on anything from bare metal to a
-           cloud provider.</p>
-        <p>Highlights of this were:</p>
-        <ul>
-          <li>Creating several systemd units with various dependencies to manage the boot process.</li>
-          <li>The need to drain the node as part of the CoreOS upgrade/reboot process</li>
-        </ul>
+      </section>
+      <section>
+        <h3>Notable Work</h3>
+        <p>For work samples, please see the <a href="/portfolio">"portfolio"</a> section.</p>
       </section>
       <section>
         <h3>References</h3>
