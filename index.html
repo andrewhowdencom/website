@@ -38,6 +38,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         gtag('config', 'UA-53227254-3');
     </script>
 
+    <!-- Error Handler for JS -->
+    <script type="text/javascript">
+        (function(root) {
+            /**
+             * A small function designed to handle an error.
+             *
+             * @param {ErrorEvent} event
+             */
+            const handleError = function(event) {
+                if (typeof gtag !== "function") return;
+
+                gtag('event', 'exception', {
+                    'description': event.message
+                })
+            };
+
+            root.addEventListener('error', handleError);
+        })(window);
+    </script>
 
     <link rel="icon" href="images/favicon.ico">
 
