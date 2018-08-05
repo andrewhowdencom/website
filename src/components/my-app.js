@@ -72,6 +72,11 @@ class MyApp extends connect(store)(LitElement) {
         border-bottom: 1px solid #eee;
       }
 
+      app-drawer,
+      app-header {
+        z-index: 1;
+      }
+
       .toolbar-top {
         background-color: var(--app-header-background-color);
       }
