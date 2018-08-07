@@ -11,11 +11,13 @@ import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 
 // These are the elements needed by this element
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/paper-card/paper-card.js';
 import '@polymer/paper-button/paper-button.js';
-import {repeat} from 'lit-html/lib/repeat.js';
+
+import { repeat} from 'lit-html/lib/repeat.js';
 
 class AhcPortfolio extends PageViewElement {
     _render(props) {
@@ -23,9 +25,9 @@ class AhcPortfolio extends PageViewElement {
        <custom-style>
          <style is="custom-style">
             #portfolio {
-              display: flex;
-              flex-direction: row;
-              flex-wrap: wrap;
+              @apply(--layout-horizontal);
+              @apply(--layout-wrap);
+
               justify-content: center;
             }
 
