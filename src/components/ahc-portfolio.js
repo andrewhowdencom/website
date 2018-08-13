@@ -55,10 +55,10 @@ class AhcPortfolio extends PageViewElement {
                     width: 33%;
                 }
 
-                paper-card:nth-of-type(2n) {
+                paper-card:nth-of-type(2n),
+                paper-card:nth-of-type(3) {
                     width: 66%;
                 }
-
 
                 paper-card:nth-of-type(4n) {
                     width: 33%;
@@ -68,7 +68,7 @@ class AhcPortfolio extends PageViewElement {
        </custom-style>
        <section id="portfolio">
          ${repeat(AhcPortfolio.properties.portfolio.value(), (i) => i.id, (i, index) => html`
-             <paper-card heading="${i.subtitle}">
+             <paper-card heading="${i.title}">
              <div class="card-content">
                <p>${i.content}</p>
              </div>
@@ -96,9 +96,8 @@ class AhcPortfolio extends PageViewElement {
                 value() {
                     return [
                         {
-                            id: 0,
-                            title: "MageAudit",
-                            subtitle: "Port the MageAudit Magento analysis tool from Laravel 2 to Magento 1.x",
+                            id: 'a2d603bc-9f29-11e8-8e33-931c0083bdde',
+                            title: "Port the MageAudit Magento analysis tool from Laravel 2 to Magento 1.x",
                             content: 'Most of the analysis existed, however the initial design had some inefficient designs, and the opportunity was taken to restructure the design to make additional analysis far easier to implement in future. MageAudit is still operating to this day.',
                             skills: [
                                 'PHP', 'Magento'
@@ -106,9 +105,17 @@ class AhcPortfolio extends PageViewElement {
                             company: 'Fontis'
                         },
                         {
-                            id: 1,
-                            title: "Kubernetes on CoreOS",
-                            subtitle: "Writing an Ansible specification for deploying Kubernetes onto a CoreOS Cluster on Google Cloud",
+                            id: 'ad0c02c8-9f29-11e8-94a5-bb7f01112aaf',
+                            title: "Drafted the incident response framework, structuring crisis management response",
+                            content: "This involved creating the processes for declaring an 'incident', managing staff reallocation for the crisis and creating effective post-mortems to prevent issue recurrence. This framework has been used successfully for over a year to manage a wide variety of unexpected but critical system failures with minimal stress, clear communication with stakeholders and a systematic reduction of risk across otherwise risky systems.",
+                            skills: [
+                                'Communication', 'Crisis Management'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'b3acb762-9f29-11e8-bd6e-6b6aee3a319c',
+                            title: "Writing an Ansible specification for deploying Kubernetes onto a CoreOS Cluster on Google Cloud",
                             content: "Still ongoing, but the goal is to have a Kubernetes stack that can be run on anything from bare metal to a cloud provider. This involved creating and understanding Systemd service units and how to drain CoreOS nodes of their Kubernetes workloads prior to the automated reboot scheduled by system upgrades.",
                             skills: [
                                 'Ansible', 'CoreOS', 'Kubernetes', 'Linux'
@@ -116,9 +123,8 @@ class AhcPortfolio extends PageViewElement {
                             company: 'Fontis'
                         },
                         {
-                            id: 2,
-                            title: "Checkout redesign",
-                            subtitle: "Redesign of the Bing Lee checkout",
+                            id: 'b8639f5a-9f29-11e8-9a4b-333f4fa17870',
+                            title: "Redesign of the Bing Lee checkout",
                             content: "A complete reimplementation of a one step checkout, requiring as little information from the user as is required by the other information specified during the checkout. This required considerable restructuring of Magentos core validation logic, additional validation and reasonably complex implementation of various JavaScript driven features.",
                             skills: [
                                 'JavaScript', 'PHP', 'Magento'
@@ -126,14 +132,40 @@ class AhcPortfolio extends PageViewElement {
                             company: 'Fontis'
                         },
                         {
-                            id: 3,
-                            title: "GAZ MAN redesign",
-                            subtitle: "Rebuilding the GAZ MAN website as a mobile first website",
+                            id: 'bc83b02a-9f29-11e8-94a9-dba2c3dad045',
+                            title: "Rebuilding the GAZ MAN website as a mobile first website",
                             content: "The design for the desktop site was kept as similar as possible to the current design, but the design was ported to bootstrap 3.x and made responsive.",
                             skills: [
                                 'CSS', 'JavaScript', 'PHP', 'Bootstrap'
                             ],
                             company: 'Fontis'
+                        },
+                        {
+                            id: '0dcbc9a4-9f2a-11e8-ad70-975c4f96174c',
+                            title: "Implemented time series data collection and alerting across production infrastructure.",
+                            content: "This involved deploying the time series data collection tool 'Prometheus' and accompanying Grafana, Blackbox exporter and Pushgateway onto a Kubernetes cluster, writing Ansible playbooks to install the Prometheus 'exporter' or exposition binaries and configuring Prometheus and the appropriate reverse proxies to serve this data behind HTTPS and basic authentication. It additionally involved outreach in the dev team teaching how to read and understand time series data, particularly with regards to the Prometheus tooling.",
+                            skills: [
+                                'Prometheus', 'Kubernetes', 'Ansible', 'Communication'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'c0983938-9f29-11e8-9c36-7330ad0c79b4',
+                            title: "Deploy a backup strategy for Kubernetes based on LVM snapshots",
+                            content: "This involved finding and working with a package maintainer to implement a tool that made disk snapshots on a schedule defined on disk metadata.",
+                            skills: [
+                                'Kubernetes', 'Helm', 'Python'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'd330bd54-9f29-11e8-94c4-2fdbc8df2dee',
+                            title: "Create continuous delivery pipelines based on Kubernetes, Ansible",
+                            content: "This involved creating a multi-step pipeline based on the BitBucket pipelines product. Specific issues that required solving were ensuring idempotency and reproducability with the build, allowing deployment to multiple environments, allowing tearing down of created environments, delivering to production safely and reliably and allowing automated restoration of production systems in the case of build failure.",
+                            skills: [
+                                "Ansible", "Kubernetes", "Pipelines", "Bash", "Python"
+                            ],
+                            company: 'Sitewards'
                         }
                     ]
                 }
