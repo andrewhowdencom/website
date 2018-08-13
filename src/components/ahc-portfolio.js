@@ -28,39 +28,63 @@ class AhcPortfolio extends PageViewElement {
               @apply(--layout-horizontal);
               @apply(--layout-wrap);
 
-              justify-content: center;
+              width: 100%;
+              box-sizing: border-box;
+              justify-content: space-between;
             }
 
             #portfolio > paper-card {
               box-sizing: border-box;
-              max-width: 500px;
-              margin: 3px;
-              flex: 1 1 auto;
+              flex: 1 0 auto;
+            }
+
+            paper-card {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-right: 4px;
+                margin-bottom: 4px;
+            }
+
+            .card-content {
+                flex: 1 0 auto;
+            }
+
+            @media (min-width: 768px) {
+                paper-card {
+                    width: 33%;
+                }
+
+                paper-card:nth-of-type(2n) {
+                    width: 66%;
+                }
+
+
+                paper-card:nth-of-type(4n) {
+                    width: 33%;
+                }
             }
          </style>
        </custom-style>
-       <section>
-         <div id="portfolio">
-           ${repeat(AhcPortfolio.properties.portfolio.value(), (i) => i.id, (i, index) => html`
-               <paper-card heading="${i.title}">
-               <div class="card-content">
-                 <h3>${i.subtitle}</h3>
-                 <p>${i.content}</p>
-               </div>
-               <!--
-               <div class="card-actions">
-                 <iron-icon src="/images/icons/skills.png"></iron-icon>
-                 <paper-button>PHP</paper-button>
-                 <paper-button>Magento</paper-button>
-               </div>
-               -->
-               <div class="card-actions">
-                 <iron-icon icon="icons:home"></iron-icon>
-                 <paper-button>${i.company}</paper-button>
-               </div>
-               </paper-card>
-           `)}
-         </div>
+       <section id="portfolio">
+         ${repeat(AhcPortfolio.properties.portfolio.value(), (i) => i.id, (i, index) => html`
+             <paper-card heading="${i.subtitle}">
+             <div class="card-content">
+               <p>${i.content}</p>
+             </div>
+             <!--
+             <div class="card-actions">
+               <iron-icon src="/images/icons/skills.png"></iron-icon>
+               <paper-button>PHP</paper-button>
+               <paper-button>Magento</paper-button>
+             </div>
+             -->
+             <div class="card-actions">
+               <iron-icon icon="icons:home"></iron-icon>
+               <paper-button>${i.company}</paper-button>
+             </div>
+             </paper-card>
+         `)}
        </section>
        `
     }
