@@ -64,24 +64,21 @@ class AhcPortfolio extends PageViewElement {
                     width: 33%;
                 }
             }
+
+            .card-actions iron-icon {
+                margin-right: 4px;
+            }
          </style>
        </custom-style>
        <section id="portfolio">
-         ${repeat(AhcPortfolio.properties.portfolio.value(), (i) => i.id, (i, index) => html`
+         ${repeat(AhcPortfolio.properties.portfolio.value(), (i) => html`
              <paper-card heading="${i.title}">
              <div class="card-content">
                <p>${i.content}</p>
              </div>
-             <!--
              <div class="card-actions">
-               <iron-icon src="/images/icons/skills.png"></iron-icon>
-               <paper-button>PHP</paper-button>
-               <paper-button>Magento</paper-button>
-             </div>
-             -->
-             <div class="card-actions">
-               <iron-icon icon="icons:home"></iron-icon>
-               <paper-button>${i.company}</paper-button>
+               <iron-icon src="/images/icons/skills.png"></iron-icon><em>${i.skills.join(', ')}</em><br />
+               <iron-icon icon="icons:home"></iron-icon><em>${i.company}</em>
              </div>
              </paper-card>
          `)}
