@@ -114,6 +114,15 @@ class AhcPortfolio extends PageViewElement {
                             company: 'Sitewards'
                         },
                         {
+                            id: '1b04d05a-a2b5-11e8-9fbc-4fb2b8fda64f',
+                            title: "Collaboratively detect, analyse and remediate a compromised machine",
+                            content: "This started as a routine investigation into unscheduled unavailability for > 5 minutes, triggering an alert. The unavailability was traced to a reboot, which was in turn triggered by a malicious actor to gain persistent root privileges. Detection involved scanning through the system log until we detected hardware USB insert events, at which point the data center was called for further information. Having no physical access recorded to the device, we discovered the IMPI interface and promptly disabled it. Remediation involved reflashing the machine with a new copy of the operating system, and using an Ansible definition to restore the machine to a known good state. The unauthorised access was detected and removed within approximately 3 hours, thanks to previously implemented time series data monitoring. Follow up work implemented the system monitoring tooling 'Falco', the remote analysis tool 'OSQuery' as well as log aggregation and other system utilities.",
+                            skills: [
+                                'Linux', 'Ansible', 'Security'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
                             id: 'b3acb762-9f29-11e8-bd6e-6b6aee3a319c',
                             title: "Writing an Ansible specification for deploying Kubernetes onto a CoreOS Cluster on Google Cloud",
                             content: "Still ongoing, but the goal is to have a Kubernetes stack that can be run on anything from bare metal to a cloud provider. This involved creating and understanding Systemd service units and how to drain CoreOS nodes of their Kubernetes workloads prior to the automated reboot scheduled by system upgrades.",
