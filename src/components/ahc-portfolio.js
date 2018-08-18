@@ -175,6 +175,60 @@ class AhcPortfolio extends PageViewElement {
                                 "Ansible", "Kubernetes", "Pipelines", "Bash", "Python"
                             ],
                             company: 'Sitewards'
+                        },
+                        {
+                            id: '762ec4ce-4178-4664-9e68-e96b0e4a9c93',
+                            title: 'Implement image optimisation based on browser window size',
+                            content: 'During a periodic analysis of a web service with the tool "Lighthouse", it was determined that the images are improperly sized given the bounds they\'re displayed in. To resolve this, the image proxy "Thumbor" was implemented, generating images that were stripped and degraded to reduce their size. Additionally and where possible, images were sized based on the Client Hints device width specification to further reduce the page weight.',
+                            skills: [
+                                'Web', 'Python', 'Ansible', 'Thumbor', 'JavaScript', 'Lighthouse'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'b8a7dd8c-a2c6-11e8-acb0-e7514a582152',
+                            title: 'Completed the "Certified Kubernetes Administrator" exam',
+                            content: 'As part of an effort to further increase adoption of the Kubernetes software orchestration tooling and to demonstrate capability to executive stakeholders I completed the "Certified Kubernetes Administrator" exam. Additionally, I am helping others to prepare and take the exam within the next 12 months.',
+                            skills: [
+                                'Kubernetes', 'Linux'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: '28c05860-a2c7-11e8-996b-d7568421bdfc',
+                            title: 'Diagnosed silent network failures that allowed MySQL replication to lag out of sync',
+                            content: 'One of the replicated databases operated as part of the infrastructure periodically failed to replicate until it drifted so far out of sync it needed to be manually reconciled. This involved doing a TCPDump of the connection, spotting the TCP RST and seeing that MySQL did not detect the connection, still waiting on "Waiting for master to send event". Further investigation determined this happened after a long period without any other traffic, and that the issue is fairly common with the AWS stateful firewall pruning connections. The solution was to reduce the heartbeat for the SQL connection to ~60 seconds.',
+                            skills: [
+                                'MySQL', 'Amazon Web Services', 'Networking'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'b3e28e5c-a2c9-11e8-b1a6-fb2ee9838b59',
+                            title: 'Started writing content on a Medium blog',
+                            content: 'As part of ongoing efforts to impart knowledge to other colleagues and to increase the perception of both personal and corporate technical competence I started writing articles of a fairly technical nature on Medium. These have proven extremely useful in internal discussions as well as have a monthly readership of > 1000 people.',
+                            skills: [
+                                'English', 'Writing', 'Communication'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'b3e28e5c-a2c9-11e8-b1a6-fb2ee9838b59',
+                            title: 'Assisted in general preparation for the General Data Protection Regulation',
+                            content: 'With the GDPR being enforceable from May 1st, 2018 a general audit was conducted of company software, systems and processes to determine whether there were any safety and privacy violations. Though the audit showed nothing serious, various improvements were made to data anonymisation and various software systems that employees had picked up without clear privacy policies were migrated to other software systems. A list of all software was written and is maintained, and data protection agreements signed with all software suppliers. Lastly, stricter guidelines were written for the use of work computers, limiting their personal use to prevent the inadvertent leakage of customer data to third party services.',
+                            skills: [
+                                'Security', 'Communication', 'Legal'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'd0d60d6c-a2ca-11e8-8e46-3362eeff117d',
+                            title: 'Transitioned between teams',
+                            content: 'As part of ongoing professional development I\'ve been able to develop a reasonable expertise in systems administration. This expertise was a better fit for another, larger project and I was thus transferred. This involved handing over the project to other colleagues and ensuring they understood and could debug all systems associated. This was largely smooth due to the habit of ongoing documentation for all changes in git, and a limited amount of documentation during the transition betwen projects.',
+                            skills: [
+                                'Communication'
+                            ],
+                            company: 'Sitewards'
                         }
                     ]
                 }
