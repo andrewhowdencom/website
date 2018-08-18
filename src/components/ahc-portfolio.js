@@ -68,6 +68,15 @@ class AhcPortfolio extends PageViewElement {
             .card-actions iron-icon {
                 margin-right: 4px;
             }
+
+            .links {
+                padding-left: 20px;
+                list-style-type: lower-alpha;
+            }
+
+            .links:empty {
+                display: none;
+            }
          </style>
        </custom-style>
        <section id="portfolio">
@@ -75,6 +84,8 @@ class AhcPortfolio extends PageViewElement {
              <paper-card heading="${i.title}">
              <div class="card-content">
                <p>${i.content}</p>
+               <p>${i.links ? 'Further details available at:': ''}</p>
+               <ul class="links">${i.links ? repeat(i.links, (j) => html`<li><a href="${j.href}" target="_blank" rel="noopener">${j.caption}</a>`) : ''}</ul>
              </div>
              <div class="card-actions">
                <iron-icon src="/images/icons/skills.png"></iron-icon><em>${i.skills.join(', ')}</em><br />
@@ -99,6 +110,16 @@ class AhcPortfolio extends PageViewElement {
                             skills: [
                                 'PHP', 'Magento'
                             ],
+                            links: [
+                                {
+                                    caption: 'The MageAudit tool',
+                                    href: 'https://www.fontis.com.au/mageaudit'
+                                },
+                                {
+                                    caption: 'The MageAudit release blog',
+                                    href: 'https://www.fontis.com.au/blog/mageaudit-updated-report-history'
+                                }
+                            ],
                             company: 'Fontis'
                         },
                         {
@@ -108,6 +129,16 @@ class AhcPortfolio extends PageViewElement {
                             skills: [
                                 'Communication', 'Crisis Management'
                             ],
+                            links: [
+                                {
+                                    caption: 'An explanation of the incident response process',
+                                    href: 'https://medium.com/sitewards/i-hereby-declare-this-an-incident-4219ba2573a6'
+                                },
+                                {
+                                    caption: 'A gentle introduction to post mortems to be systematic about finding issues',
+                                    href: 'https://medium.com/@andrewhowdencom/trust-me-i-know-what-im-doing-8d36de464dc4'
+                                }
+                            ],
                             company: 'Sitewards'
                         },
                         {
@@ -116,6 +147,16 @@ class AhcPortfolio extends PageViewElement {
                             content: "This started as a routine investigation into unscheduled unavailability for > 5 minutes, triggering an alert. The unavailability was traced to a reboot, which was in turn triggered by a malicious actor to gain persistent root privileges. Detection involved scanning through the system log until we detected hardware USB insert events, at which point the data center was called for further information. Having no physical access recorded to the device, we discovered the IMPI interface and promptly disabled it. Remediation involved reflashing the machine with a new copy of the operating system, and using an Ansible definition to restore the machine to a known good state. The unauthorised access was detected and removed within approximately 3 hours, thanks to previously implemented time series data monitoring. Follow up work implemented the system monitoring tooling 'Falco', the remote analysis tool 'OSQuery' as well as log aggregation and other system utilities.",
                             skills: [
                                 'Linux', 'Ansible', 'Security'
+                            ],
+                            links: [
+                                {
+                                    caption: 'A gentle introduction to evaluating security',
+                                    href: 'https://medium.com/sitewards/am-i-secure-b080aff2fe17'
+                                },
+                                {
+                                    caption: 'A description of our obligation to keep data safe with reference to the GDPR',
+                                    href: 'https://medium.com/sitewards/on-the-obligation-under-gpdr-to-handle-data-safely-eac9831c0e83'
+                                }
                             ],
                             company: 'Sitewards'
                         },
@@ -135,6 +176,12 @@ class AhcPortfolio extends PageViewElement {
                             skills: [
                                 'JavaScript', 'PHP', 'Magento'
                             ],
+                            links: [
+                                {
+                                    caption: 'The Bing Lee eCommerce store',
+                                    href: 'https://www.binglee.com.au/'
+                                }
+                            ],
                             company: 'Fontis'
                         },
                         {
@@ -144,6 +191,12 @@ class AhcPortfolio extends PageViewElement {
                             skills: [
                                 'CSS', 'JavaScript', 'PHP', 'Bootstrap'
                             ],
+                            links: [
+                                {
+                                    caption: 'The GAZ MAN eCommerce store',
+                                    href: 'https://www.gazman.com.au/'
+                                }
+                            ],
                             company: 'Fontis'
                         },
                         {
@@ -152,6 +205,12 @@ class AhcPortfolio extends PageViewElement {
                             content: "This involved deploying the time series data collection tool 'Prometheus' and accompanying Grafana, Blackbox exporter and Pushgateway onto a Kubernetes cluster, writing Ansible playbooks to install the Prometheus 'exporter' or exposition binaries and configuring Prometheus and the appropriate reverse proxies to serve this data behind HTTPS and basic authentication. It additionally involved outreach in the dev team teaching how to read and understand time series data, particularly with regards to the Prometheus tooling.",
                             skills: [
                                 'Prometheus', 'Kubernetes', 'Ansible', 'Communication'
+                            ],
+                            links: [
+                                {
+                                    caption: 'A guide to implementing Prometheus across disparate systems',
+                                    href: 'https://medium.com/sitewards/one-approach-to-implementing-prometheus-across-disparate-systems-b87f2009b8be'
+                                }
                             ],
                             company: 'Sitewards'
                         },
@@ -171,6 +230,12 @@ class AhcPortfolio extends PageViewElement {
                             skills: [
                                 "Ansible", "Kubernetes", "Pipelines", "Bash", "Python"
                             ],
+                            links: [
+                                {
+                                    caption: 'A description of the release pipeline, including CI/CD',
+                                    href: 'https://medium.com/sitewards/one-take-on-release-management-20dc202e8762'
+                                }
+                            ],
                             company: 'Sitewards'
                         },
                         {
@@ -188,6 +253,12 @@ class AhcPortfolio extends PageViewElement {
                             content: 'As part of an effort to further increase adoption of the Kubernetes software orchestration tooling and to demonstrate capability to executive stakeholders I completed the "Certified Kubernetes Administrator" exam. Additionally, I am helping others to prepare and take the exam within the next 12 months.',
                             skills: [
                                 'Kubernetes', 'Linux'
+                            ],
+                            links: [
+                                {
+                                    caption: 'Some notes about making production simpler with containers',
+                                    href: 'https://medium.com/sitewards/simpler-production-with-containers-f9b355087b12'
+                                }
                             ],
                             company: 'Sitewards'
                         },
@@ -207,6 +278,16 @@ class AhcPortfolio extends PageViewElement {
                             skills: [
                                 'English', 'Writing', 'Communication'
                             ],
+                            links: [
+                                {
+                                    caption: 'The personal Medium blog',
+                                    href: 'http://medium.com/@andrewhowdencom'
+                                },
+                                {
+                                    caption: 'The Sitewards Medium blog',
+                                    href: 'https://medium.com/sitewards'
+                                }
+                            ],
                             company: 'Sitewards'
                         },
                         {
@@ -216,6 +297,12 @@ class AhcPortfolio extends PageViewElement {
                             skills: [
                                 'Security', 'Communication', 'Legal'
                             ],
+                            links: [
+                                {
+                                    caption: 'A discussion about our responsibilities as development teams',
+                                    href: 'https://medium.com/sitewards/your-services-our-computers-83a964992930'
+                                }
+                            ],
                             company: 'Sitewards'
                         },
                         {
@@ -224,6 +311,24 @@ class AhcPortfolio extends PageViewElement {
                             content: 'As part of ongoing professional development I\'ve been able to develop a reasonable expertise in systems administration. This expertise was a better fit for another, larger project and I was thus transferred. This involved handing over the project to other colleagues and ensuring they understood and could debug all systems associated. This was largely smooth due to the habit of ongoing documentation for all changes in git, and a limited amount of documentation during the transition betwen projects.',
                             skills: [
                                 'Communication'
+                            ],
+                            links: [
+                                {
+                                    caption: 'Arguments for storing documentation canonically in version control',
+                                    href: 'https://medium.com/sitewards/docs-in-jira-eh-github-mm-git-histories-fuck-yeah-1576cc5a6c39'
+                                },
+                                {
+                                    caption: 'A guide to templating commit messages',
+                                    href: 'https://medium.com/sitewards/git-tips-template-your-commit-messages-187d8a2051b8'
+                                },
+                                {
+                                    caption: 'Some notes about the value of git commit messages',
+                                    href: 'https://medium.com/sitewards/git-tips-the-memoir-of-commit-messages-7d15ed2205ac'
+                                },
+                                {
+                                    caption: 'Some opinions on what makes a "good" commit message',
+                                    href: 'https://medium.com/@andrewhowdencom/anatomy-of-a-good-commit-message-acd9c4490437'
+                                }
                             ],
                             company: 'Sitewards'
                         }
