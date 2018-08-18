@@ -331,6 +331,122 @@ class AhcPortfolio extends PageViewElement {
                                 }
                             ],
                             company: 'Sitewards'
+                        },
+                        {
+                            id: '9c5b3222-a31c-11e8-ab72-a3408d589219',
+                            title: 'Implemented team analytics for health, mood and so on',
+                            content: 'To help facilitate discussion around contentious issues as well as allow the systematic evaluation of team health, I worked with several team members to implement the office communication app "OfficeVibe". This has been used successfully for many months, and has helped the team to share their discussions frankly with the executive team.',
+                            skills: [
+                                'Communication'
+                            ],
+                            links: [
+                                {
+                                    caption: 'The OfficeVibe product',
+                                    href: 'https://www.officevibe.com/'
+                                }
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: '9c5b34fc-a31c-11e8-ab73-dbf0bbcabb3c',
+                            title: 'Implement a central organisational documentation system',
+                            content: 'In my personal life, I find it easy to track the wealth of information I gather in some sort of structured data format, more recently being blog posts. After joining the company, I missed having such a system and felt it could be useful to other memebers of the team. Accordingly, we deployed Mediawiki onto a GKE cluster using Helm, which has since become the central "general information" knowledge repository for the organisation. It contains on-boarding procedures, helpful tips and other miscellaneous cultural knowledge that must otherwise be passed down in direct conversation.',
+                            skills: [
+                                'Communication',
+                                'Google Cloud',
+                                'Kubernetes',
+                                'Helm'
+                            ],
+                            links: [
+                                {
+                                    caption: 'The mediawiki software',
+                                    href: 'https://www.mediawiki.org/wiki/MediaWiki'
+                                },
+                                {
+                                    caption: 'The Helm chart for Mediawiki',
+                                    href: 'https://github.com/helm/charts/tree/master/stable/mediawiki'
+                                }
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: '9c5b3592-a31c-11e8-ab74-27f359103f7f',
+                            title: 'Developing chart for the OSQuery fleet manager "Kolide/Fleet"',
+                            content: 'As part of the knowledge gained from the aforementioned unauthorized system use, OSQuery was deployed across various projects. Unfortunately absent a mechanism to centrally manage OSQuery it proved of limited use. "kolide/fleet" is a OSQuery management tool that has excellent capabilities, a friendly user interface and generally exposes queryability of OSQuery well. Accordingly, I built and deployed a helm chart that installs OSQuery, and registered the deployed machines with it. At the time of writing however, more work is required to get the chart merged in.',
+                            skills: [
+                                'OSQuery',
+                                'SQL',
+                                'Linux',
+                                'Kubernetes',
+                                'Helm'
+                            ],
+                            links: [
+                                {
+                                    caption: 'The pull request',
+                                    href: 'https://github.com/helm/charts/pull/5093'
+                                },
+                                {
+                                    caption: 'The Kolide/Fleet product',
+                                    href: 'https://github.com/kolide/fleet'
+                                }
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: 'c49be324-a31e-11e8-93cf-47a9f8bb3790',
+                            title: 'Helped foster a systematic employee feedback scheme',
+                            content: 'As part of ongoing salary discussions the need for an objective evaluation of developer performance was required. This evaluation has now been developed and is in its prototypical stages, and should be rolled out across the team in the next 12 months.',
+                            skills: [
+                                'Negotiation',
+                                'Communication'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: '00db789a-a31f-11e8-90f2-d3a8b38f1971',
+                            title: 'Steering the "Dev Share"; a regular knowledge share',
+                            content: 'One of the nicer aspects of Sitewards is their continual investment in the upskilling of their development team. As part of this, the development team gathers once per week and shares some bespoke knowledge they\'ve gained. As much as possible I do not directly participate, preferring instead others to share their knowledge however I have presented on many occasions across a broad range of topics.',
+                            skills: [
+                                'Communication',
+                                'Planning'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: '4cd7c294-a31f-11e8-adc0-0f6b28a6a93d',
+                            title: 'Explained publicly technological solutions to our solved problems',
+                            content: 'As part of ongoing outreach and an attempt to build a set of centralised knowledge within the developer community I have participated in a number of local meetups or usergroups around PHP and Magento. Additionally, I have had a public speaking engagement on "Commerce Hero" discussing operations, as well a speaker slot at the larger conference "Magento Poland".',
+                            skills: [
+                                'Communication',
+                                'Planning'
+                            ],
+                            links: [
+                                {
+                                    caption: 'A YouTube Livestream discussion around AWS for Magento',
+                                    href: 'https://www.youtube.com/watch?v=WBXHDnT8c4g'
+                                },
+                                {
+                                    caption: 'Meet Magento Poland agenda',
+                                    href: 'https://pl.meet-magento.com/en/agenda-en/'
+                                }
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: '1aa6c4e0-a320-11e8-90a2-2fc6a1b5676b',
+                            title: 'Managed all development aspect of project for 9 months (solo)',
+                            content: 'A partner selected Sitewards as their development partners to manage their Magento 2 store. The development required was enough for one full time developer, but no more. As a result I was responsible for all aspects of this system including migration to AWS, building the CI/CD pipeline, writing and managing the Ansible specification for all systems and feature development, debugging and bug fixing on the service itself. The service consisted of the PHP application "Magento 2", NGINX, Varnish, MySQL and Thumbor as well as other ancillary services such as OSQuery and Prometheus',
+                            skills: [
+                                'Ansible',
+                                'Magento 2',
+                                'PHP',
+                                'CI/CD',
+                                'Bash',
+                                'Docker',
+                                'Linux',
+                                'Documentation'
+                            ],
+                            company: 'Sitewards'
                         }
                     ]
                 }
