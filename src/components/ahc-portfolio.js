@@ -447,6 +447,28 @@ class AhcPortfolio extends PageViewElement {
                                 'Documentation'
                             ],
                             company: 'Sitewards'
+                        },
+                        {
+                            id: 'b56a0f24-ade2-11e8-9933-03f4a4d19ae6',
+                            title: 'Scheduled and removed old, EOL hardware / software',
+                            content: 'Within the office there was still some legacy, end of life (Windows server 2003) software doing some minor administrative functions. Each of these functions was moved to another system that had a better support model, and the system was decomissioned.',
+                            skills: [
+                                'Security',
+                                'Communication',
+                                'Sales'
+                            ],
+                            company: 'Sitewards'
+                        },
+                        {
+                            id: '3ccafff2-ade1-11e8-a4bc-a37d23a4ef7a',
+                            title: 'Managed organisational transition from "Password Safe" to "1Password"',
+                            content: 'The solution "Password Safe" was the canonical way of managing resources that required shared password material, such as passwords received to access third party systems. This system had several limitations, such as being only available on an SMB fileshare, only available within a single network or via a VPN and itself and itself using a shared password to access it, thus making revocation or auditing essentially impossible. This became a blocker for work, as well as having ramifications for security. Various third party and open source password management solutions were evaluated, and a 30 day trial of 1Password was run. 1Password then replaced the "PasswordSafe" product, which was removed from public share. 1Password has been successfully operating for several months.',
+                            skills: [
+                                'Communication',
+                                'Security',
+                                'Sales'
+                            ],
+                            company: 'Sitewards'
                         }
                     ]
                 }
