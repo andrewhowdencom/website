@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element.js';
+import './ahc-book.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -18,15 +19,22 @@ class AhcResume extends PageViewElement {
   _render(props) {
     return html`
       ${SharedStyles}
+       <custom-style>
+         <style is="custom-style">
+            #books {
+                width: 100%;
+            }
+         </style>
+       </custom-style>
       <section>
         <h2>Resume</h2>
-        <p>Below is a short list of the more notable aspects of my career. If you're curious what I can do, ask me to do
-           it!</p>
+        <p>Below is a short list of the more notable aspects of my career. However, if you're curious what I can do
+           simply ask me to do it.</p>
       </section>
       <section>
         <h3>Education</h3>
         <p>I read a lot, and my colleagues are nice enough to impart knowledge upon me where they have it.</p>
-        <p>A (non-exhaustive) list of the books I've read):</p>
+        <p>A (non-exhaustive) list of the books I've read:</p>
         <ul>
             <li>"How Google Works" - Eric Schmidt and Jonathan Rosenberg</li>
             <li>"Packet Guide to Core Network Protocols" - Bruce Hartpence</li>
@@ -37,13 +45,30 @@ class AhcResume extends PageViewElement {
             <li>"Web Performance Daybook" - Stoyan Stefanov</li>
             <li>"High Performance Web Sites" - Steve Souders</li>
             <li>"High Performance Browser Networking" - Illya Grigorik</li>
+	    <li><a href="https://books.google.de/books/about/Network_Security_Assessment.html?id=zKhCEYRGFuYC" target="_blank">"Network Security Assessment" -
+		<a href="https://twitter.com/chrisforce1" target="_blank">Chris McNab</a></li>
+	    <li><a href="https://books.google.de/books/about/Accelerate.html?id=85XHAQAACAAJ" target="_blank">"Accelerate"</a> -
+		<a href="https://twitter.com/nicolefv" target="_blank">Nicole Forsgren</a>,
+		<a href="https://twitter.com/jezhumble" target="_blank">Jez Humble</a> and
+		<a href="https://twitter.com/RealGeneKim" target="_blank">Gene Kim</a>
+	    </li>
         </ul>
+        <p>I'm half way through a bunch of others. Additionally, the more notable papers or blogs are:</p>
+	<ul>
+	    <li><a href="https://www.usenix.org/system/files/login/articles/login_june_07_jones.pdf" rel="noopener" target="_blank">Hiring Site Reliability Engineers</a></li>
+	    <li><a href="https://www.usenix.org/conference/srecon17europe/program/presentation/looney-safety" rel="noopener" target="_blank">Psychological Safety in SRE teams</a></li>
+	</ul>
       </section>
       <section>
         <h3>Competencies</h3>
         <p>Predominantly, I have quite a bit of experience with Magento, and am passionate about performance, user
-           interface and, to a lesser extent, security. Competencies are all self-rated on a likert scale - "Some",
-           "Quite a bit", "An extreme amount", "All"</p>
+           interface and, to a lesser extent, security. Competencies are all self-rated on a likert scale, where</p>
+	<ul>
+	    <li><strong>Some</strong>: I have used the thing but would not feel comfortable without more practice.</li>
+	    <li><strong>Quite a bit</strong>: I have used the thing, and have some things to teach.</li>
+	    <li><strong>An extreme amount</strong>: I consider my expert with this thing.</li>
+	    <li><strong>All</strong>: I wrote, and provide support for, this thing.</li>
+	</ul>
         <h4>Languages</h4>
         <p>I'm pretty sure I could hack around in another language reasonably quickly; it might take me a couple of
            years to feel at home in it, though.</p>
@@ -66,12 +91,23 @@ class AhcResume extends PageViewElement {
         <h4>Tools</h4>
         <ul>
           <li>Git - An extreme amount</li>
+	  <li>Ansible - Quite a bit</li>
+	  <li>Helm - Quite a bit</li>
+	  <li>Prometheus - Quite a bit</li>
           <li>Lets Encrypt - Quite a bit</li>
           <li>Intellij IDEAs - Quite a bit</li>
+	  <li>Vim - Some</li>
           <li>Atom - Some</li>
           <li>Boilr - Some</li>
           <li>Modd - Some</li>
+	  <li>Jenkins - Some</li>
+	  <li>Sensu - Some</li>
         </ul>
+	<h4>Services</h4>
+	<ul>
+	  <li>Amazon Web Services - Quite a bit</li>
+	  <li>Google Cloud - Quite a bit</li>
+	</ul>
       </section>
       <section>
         <h3>Current Employment</h3>
@@ -79,8 +115,6 @@ class AhcResume extends PageViewElement {
       </section>
       <section>
         <h3>Employment History</h3>
-        <p>Just about all work has been collaborative, and I cannot take all credit for anything I've been involved
-           with.</p>
         <h4>10th October, 2016 → Now: Sitewards GmbH</h4>
         <p>Developer, specializing in the development, deployment and ongoing management of PHP Projects</p>
         <h4>3rd October, 2014 → 10th October, 2016: Fontis PTY LTD</h4>
@@ -95,6 +129,11 @@ class AhcResume extends PageViewElement {
         <p>If you'd like to talk to some people about the quality of my work, let me know (or just ask them. Large
            samples of my work are public)</p>
       </section>
+      <section>
+        <h3>See Also</h3>
+	<ul>
+	    <li><a href="https://github.com/andrewhowdencom" target="_blank">GitHub profile</a></li>
+	</ul>
     `;
   }
 }
