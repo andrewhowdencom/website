@@ -133,6 +133,7 @@ class AhcResume extends PageViewElement {
         <h3>See Also</h3>
 	<ul>
 	    <li><a href="https://github.com/andrewhowdencom" target="_blank">GitHub profile</a></li>
+	    <li><a href="/resources/cv.pdf" target="_blank">Document Resume</a></li>
 	</ul>
     `;
   }
