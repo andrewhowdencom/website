@@ -114,6 +114,11 @@ class AhcResume extends PageViewElement {
         <p>Full time software engineer at Sitewards GmbH</p>
       </section>
       <section>
+        <h3>Qualifications</h3>
+	<h4>Certified Kubernetes Administrator</h4>
+	<p>Completed March 17th, 2018 with a score of 89%. <a href="/resources/cka.pdf" target="_blank">See CKA-1800-0331-0100</a>.</p>
+      </section>
+      <section>
         <h3>Employment History</h3>
         <h4>10th October, 2016 → Now: Sitewards GmbH</h4>
         <p>Developer, specializing in the development, deployment and ongoing management of PHP Projects</p>
