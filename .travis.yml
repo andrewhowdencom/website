@@ -43,11 +43,12 @@ before_script:
   - "./ci/scripts/auth.sh"
 
 script:
-  - "make application.dependencies"
-  - "make application.content"
-  - "make container.build.nginx"
-  - "make container.push.nginx"
-  - "make deploy"
+  - |
+      make application.dependencies && \
+      make application.content && \
+      make container.build.nginx && \
+      make container.push.nginx && \
+      make deploy
 
 after_success:
 
