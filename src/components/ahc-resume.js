@@ -55,8 +55,11 @@ class AhcResume extends PageViewElement {
         </ul>
         <p>I'm half way through a bunch of others. Additionally, the more notable papers or blogs are:</p>
 	<ul>
+	    <li><a href="https://queue.acm.org/detail.cfm?id=2898444" rel="noopener" target="_blank">Borg, Omega, and Kubernetes</a></li>
 	    <li><a href="https://www.usenix.org/system/files/login/articles/login_june_07_jones.pdf" rel="noopener" target="_blank">Hiring Site Reliability Engineers</a></li>
 	    <li><a href="https://www.usenix.org/conference/srecon17europe/program/presentation/looney-safety" rel="noopener" target="_blank">Psychological Safety in SRE teams</a></li>
+	    <li><a href="https://queue.acm.org/detail.cfm?id=3096459" rel="noopener" target="_blank">The Calculus of Service Availability</a></li>
+	    <li><a href="https://queue.acm.org/detail.cfm?id=2371516" rel="noopener" target="_blank">Weathering the Unexpected</a></li>
 	</ul>
       </section>
       <section>
