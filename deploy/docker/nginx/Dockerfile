@@ -1,4 +1,4 @@
-FROM littleman/nginx:latest
+FROM quay.io/littlemanco/nginx:1.15.7-1
 MAINTAINER littleman.co <support@littleman.co>
 
 ADD build/es6-bundled /var/www/public
