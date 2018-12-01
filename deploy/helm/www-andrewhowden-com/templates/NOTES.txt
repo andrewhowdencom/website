@@ -1,10 +1,24 @@
-==========
-www-andrewhowden-com
-==========
+web
 
-Accessing www-andrewhowden-com
---------------------
+## Accessing web
+----------------------
+1. Get the web URL to visit by running these commands in the same shell:
+{{- if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ template "web.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT/login
 
-// Todo: Fill this in.
+{{- else if contains "LoadBalancer" .Values.service.type }}
+  NOTE: It may take a few minutes for the loadBalancer IP to be available.
+        You can watch the status of by running 'kubectl get svc --namespace {{ .Release.Namespace }} -w {{ template "web.fullname" . }}'
+  export SERVICE_IP=$(kubectl get svc {{ template "web.fullname" . }} --namespace {{ .Release.Namespace }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo http://$SERVICE_IP:{{ .Values.service.port }}/login
 
-For more information, see the README.
+{{- else if contains "ClusterIP"  .Values.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "component={{ template "web.fullname" . }}-master" -o jsonpath="{.items[0].metadata.name}")
+  echo http://127.0.0.1:{{ .Values.service.port }}
+  kubectl port-forward $POD_NAME {{ .Values.service.port }}:{{ .Values.service.port }}
+
+{{- end }}
+
+For more information, check the readme!

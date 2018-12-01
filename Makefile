@@ -46,7 +46,8 @@ application.content: ## Build site
 
 deploy: ## Deploys the app
 	helm upgrade --install \
+		--namespace="andrewhowden-com" \
 	    www-andrewhowd \
 	    deploy/helm/www-andrewhowden-com/ \
-	    --set="siteVersion=$(GIT_HASH)"
+	    --set="pod.nginx.image=gcr.io/littleman-co/www-andrewhowden-com-nginx:$(GIT_HASH)"
 	

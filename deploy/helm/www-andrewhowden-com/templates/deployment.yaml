@@ -1,0 +1,50 @@
+---
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  labels:
+    app: {{ template "web.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    heritage: "{{ .Release.Service }}"
+    release: "{{ .Release.Name }}"
+  name: {{ template "web.fullname" . }}
+spec:
+  replicas: {{ default 2 .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ template "web.fullname" . }}
+      release: "{{ .Release.Name }}"
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: "RollingUpdate"
+  template:
+    metadata:
+      annotations:
+{{- if .Values.pod.annotations }}
+{{ toYaml .Values.pod.annotations | indent 8 }}
+{{ end }}
+      labels:
+        app: {{ template "web.fullname" . }}
+        release: "{{ .Release.Name }}"
+    spec:
+      volumes:
+        - name: "picfit-config"
+          configMap:
+            name: "{{ template "web.fullname" . }}-picfit"
+      containers:
+        - name: picfit
+          image: {{ .Values.pod.picfit.image | quote }}
+          volumeMounts:
+          - name: picfit-config
+            mountPath: "/etc/picfit"
+        - name: nginx
+          image: {{ .Values.pod.nginx.image | quote }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          ports:
+            - containerPort: 80
+              protocol: "TCP"
+              name: "http"
+      restartPolicy: "Always"

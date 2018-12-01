@@ -1,14 +1,14 @@
 ---
 name: "www-andrewhowden-com"
-version: "1.0.0"
+version: "2.0.0"
 description: "Andrew Howdens personal website"
 keywords:
   - "Andrew Howden"
 home: "https://www.andrewhowden.com/"
 sources:
   - "https://github.com/andrewhowdencom/www.andrewhowden.com/"
-maintainers: 
+maintainers:
   - name: "Andrew Howden"
     email: "hello@andrewhowden.com"
-engine: gotpl 
-icon: "https://www.andrewhowden.com/picfit/images/favicon.png&w=125&h=125&op=resize" 
+engine: gotpl
+icon: "https://www.andrewhowden.com/picfit/images/favicon.png&w=125&h=125&op=resize"
