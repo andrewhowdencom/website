@@ -15,7 +15,7 @@ pod:
     image: "littleman/picfit:3.0.0-1"
 
 service:
-  type: "NodePort"
+  type: "ClusterIP"
   annotations: {}
     ## Attack arbitrary key → value pairs for the pod definition. For example
     # prometheus.io/probe: true

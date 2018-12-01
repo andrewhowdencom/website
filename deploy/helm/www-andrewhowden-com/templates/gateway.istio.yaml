@@ -1,0 +1,36 @@
+---
+apiVersion: "networking.istio.io/v1alpha3"
+kind: "Gateway"
+metadata:
+  labels:
+    app: {{ template "web.fullname" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    heritage: "{{ .Release.Service }}"
+    release: "{{ .Release.Name }}"
+  name: {{ template "web.fullname" . }}
+spec:
+  selector:
+    # use Istio default gateway implementation
+    istio: "ingressgateway"
+  servers:
+  - port:
+      number: 80
+      name: "http"
+      protocol: "HTTP"
+    hosts:
+    - "andrewhowden.com"
+    - "www.andrewhowden.com"
+    tls:
+      # sends 301 redirect for http requests
+      httpsRedirect: true
+  - port:
+      number: 443
+      name: "https"
+      protocol: "HTTPS"
+    tls:
+      mode: "SIMPLE"
+      serverCertificate: "/etc/istio/ingressgateway-certs/tls.crt"
+      privateKey: "/etc/istio/ingressgateway-certs/tls.key"
+    hosts:
+    - "andrewhowden.com"
+    - "www.andrewhowden.com"
