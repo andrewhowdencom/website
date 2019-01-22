@@ -52,7 +52,9 @@ class AhcResume extends PageViewElement {
 		<a href="https://twitter.com/jezhumble" target="_blank">Jez Humble</a> and
 		<a href="https://twitter.com/RealGeneKim" target="_blank">Gene Kim</a>
 	    </li>
-	    <li><a href="https://books.google.de/books?id=fElmDwAAQBAJ&redir_esc=y" target="_blank">"The Site Reliability Workbook: Practical ways to implement SRE" -
+	    <li><a href="https://www.amazon.com/Scarcity-Having-Little-Means-Much-ebook/dp/B00BMKOO6S" target="_blank">"Scarcity: Why having too little
+	        means so much"</a> - Sendhil Mullainathan</li>
+	    <li><a href="https://books.google.de/books?id=fElmDwAAQBAJ&redir_esc=y" target="_blank">"The Site Reliability Workbook: Practical ways to implement SRE"</a> -
 	        Betsy Beyer, Niall Richard Murphy, David K. Rensin, Kent Kawahara, Stephen Thorne</li>
         </ul>
         <p>I'm half way through a bunch of others. Additionally, the more notable papers or blogs are:</p>
