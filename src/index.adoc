@@ -1,0 +1,91 @@
+= Andrew Howden
+
+== Professional Background
+
+=== Global Fashion Group
+
+[cols="2,8"]
+|===
+h| Dates    | 2019-04 - Present
+h| Location | Berlin, Germany
+|===
+
+Achievements include:
+
+- Kicked off the replacement of Jenkins CI with the more modern, version control driven CircleCI
+
+=== Sitewards GmbH
+
+[cols="2,8"]
+|===
+h| Dates    | 2016-10 - 2019-04
+h| Location | Frankfurt, Germany
+|===
+
+Achievements include:
+
+- Designed and implemented the infrastructure, monitoring and deployment definitions of several production e-commerce
+  systems.
+- Transitioned the company from the monitoring service “New Newlic” to the open source “Prometheus”.
+- Designed and implemented CI/CD for a variety of PHP, Node, Ansible and static HTML services in both BitBucket 
+  Pipelines and Travis CI
+- Designed and implemented the “incident response” process used for technical crisis management and resolution.
+- Collaborated in the detection and remediation of unauthorized access to a significant service.
+- Qualified as a “Certified Kubernetes Administrator”.
+- Helped with the organisational understanding of and adjustment to the “General Data Protection Legislation” (GDPR) as
+ it applied to Germany.
+- Implemented a centralised, community managed knowledge base.
+- Evangelised the use, implementation and understanding of various kinds of diagnostic data such as time series, logs, 
+  traces and other system introspection tools.
+- Helped implement team analytics to determine the health, mood and stress levels of the organisation.
+- Developed or contributed to both helm chart and ansible roles for OSQuery and the OSQuery fleet management tool 
+  “Kolide Fleet”.
+- Organised and chaired development community meetings designed to facilitate knowledge sharing.
+- Helped facilitate an employee evaluation and growth framework.
+- Debugged countless complex production outages.
+
+=== Fontis PTY LTD
+
+[cols="2,8"]
+|===
+h| Dates    | 2014-10 - 2016-04
+h| Location | Melbourne, Australia
+|===
+
+Achievements include:
+
+- Collaborated in the maintenance, feature development, deployment and management of multi-million dollar e-commerce 
+  stores.
+- Primarily responsible for several major software migrations, site redesigns and feature developments such as the GAZ 
+  MAN redesign, Bing Lee checkout redesign and MageAudit.
+- Developed a structure for deploying applications onto Kubernetes continuously, including numerous safety checks.
+- Developed a structure for automatically checking the style and quality of code as part of the standard review process.
+- Developed provisioning tools that create and manage a Kubernetes cluster that tolerates failure of an application, 
+  machine or network partition.
+- Developed a template for a JavaScript module that can be loaded by dependency management systems asynchronously.
+- Contributed to open source projects such as Ecomdev_CheckItOut, Boilr and Modd.
+
+== Skills & Knowledge
+
+Specialising in developing open source software related to the development, deployment, monitoring and management of 
+internet facing software. List of competencies include:
+
+[cols="2,8"]
+|===
+h| Software Languages | PHP · HTML · CSS · SASS · Bash · ECMAScript (JavaScript) · Golang · Python · Make · Ruby · 
+                        JSON+LD · RDFa · sh · SQL
+h| Frameworks         | Magento · Laravel · Symfony · Joolma · Hugo · Bootstrap · PostCSS · Phing · Grunt · Polymer · 
+                        RequireJS · Composer · Bower
+h| Operating Systems  | Linux · Windows · Debian · Ubuntu · CentOS · Arch · CoreOS
+h| Infrastructure     | Docker · Rkt · Kubernetes ·Virtualbox · NGINX · Apache HTTP · Docker Compose · Calico · 
+                        Flannel · TravisCI · Jenkins · Netcat · Tcpdump · cURL · Aptitude ·Yum · Picfit
+h| Monitoring         | Prometheus · Sensu · Logstash · Beats · Elasticsearch · Kibana · Grafana
+h| Testing            | Selenium · Facebook Web Driver · PHPUnit
+h| Software Analysis  | PHP · PHPCS · eslint · scss-lint · jsonlint
+h| Website Analysis   | Google Analytics · Chrome DevTools · Lighthouse · Google PageSpeed Insights · Qualsys SSL Test
+h| Network Protocols  | HTTP/1.1 · HTTP/2 · FastCGI · TCP · UDP · TLS/SSL
+h| Cloud Services     | Amazon Web Services · Google Cloud · Let’s Encrypt
+h| Security           | Pass · PGP ·GnuPG · OpenSSL · HSTS · CSP · Nmap
+h| Development        | Boilr · Intellij IDEs · Atom · Git · Arcanist · Phabricator · GitHub · Request Tracker · Modd · 
+                        strace · strings · xdebug · xdd
+|===
