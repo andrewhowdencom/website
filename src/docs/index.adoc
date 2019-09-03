@@ -23,7 +23,7 @@ h| Dates    | 2019-04 - Present
 h| Location | Berlin, Germany
 |===
 
-Achievements include:
+==== Achievements
 
 - Kicked off the replacement of Jenkins CI with the more modern, version control driven CircleCI
 
@@ -35,7 +35,7 @@ h| Dates    | 2016-10 - 2019-04
 h| Location | Frankfurt, Germany
 |===
 
-Achievements include:
+==== Achievements
 
 - Designed and implemented the infrastructure, monitoring and deployment definitions of several production e-commerce
   systems.
@@ -65,7 +65,7 @@ h| Dates    | 2014-10 - 2016-04
 h| Location | Melbourne, Australia
 |===
 
-Achievements include:
+==== Achievements
 
 - Collaborated in the maintenance, feature development, deployment and management of multi-million dollar e-commerce 
   stores.
