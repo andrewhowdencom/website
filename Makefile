@@ -30,3 +30,4 @@ help: ## Show this menu
 
 compile: ## Creates the website
 	asciidoctor src/docs/* --destination-dir public/
+	asciidoctor-pdf src/docs/index.adoc --out-file public/media/pdf/resume.pdf

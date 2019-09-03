@@ -89,3 +89,5 @@ h| Security           | Pass · PGP ·GnuPG · OpenSSL · HSTS · CSP · Nmap
 h| Development        | Boilr · Intellij IDEs · Atom · Git · Arcanist · Phabricator · GitHub · Request Tracker · Modd · 
                         strace · strings · xdebug · xdd
 |===
+
+TIP: An up to date PDF  of this resume is available at: https://www.andrewhowden.com/public/media/pdf/resume.pdf
