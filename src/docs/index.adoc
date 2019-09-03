@@ -1,5 +1,6 @@
 = Andrew Howden
 :icons: font
+:docinfo: private-head
 
 == Personal Information
 

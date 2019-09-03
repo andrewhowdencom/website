@@ -29,5 +29,5 @@ help: ## Show this menu
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "    \033[32m%-30s\033[0m %s\n", $$1, $$2}'
 
 compile: ## Creates the website
-	asciidoctor src/docs/* --destination-dir public/
+	asciidoctor src/docs/*.adoc --destination-dir public/
 	asciidoctor-pdf src/docs/index.adoc --out-file public/media/pdf/resume.pdf
