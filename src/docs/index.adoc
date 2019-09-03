@@ -40,7 +40,7 @@ h| Location | Frankfurt, Germany
 
 - Designed and implemented the infrastructure, monitoring and deployment definitions of several production e-commerce
   systems.
-- Transitioned the company from the monitoring service “New Newlic” to the open source “Prometheus”.
+- Transitioned the company from the monitoring service “New Relic" to the open source “Prometheus”.
 - Designed and implemented CI/CD for a variety of PHP, Node, Ansible and static HTML services in both BitBucket 
   Pipelines and Travis CI
 - Designed and implemented the “incident response” process used for technical crisis management and resolution.
