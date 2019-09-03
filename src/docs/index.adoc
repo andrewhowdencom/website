@@ -1,4 +1,17 @@
 = Andrew Howden
+:icons: font
+
+== Personal Information
+
+[cols="2,8"]
+|===
+| Email     | mailto:hello@andrewhowden.com[hello@andrewhowden.com]
+| Telephone | +49 176 37658815
+| Website   | https://www.andrewhowden.com[www.andrewhowden.com]
+| Twitter   | https://www.twitter.com/@andrewhowdencom[@andrewhowdencom]
+| LinkedIn  | https://www.linkedin.com/in/andrewhowdencom/[andrewhowdencom]
+| GitHub    | https://www.github.com/andrewhowdencom/[@andrewhowdencom]
+|===
 
 == Professional Background
 
