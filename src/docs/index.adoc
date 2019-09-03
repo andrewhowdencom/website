@@ -103,4 +103,4 @@ h| Development        | Boilr · Intellij IDEs · Atom · Git · Arcanist · Pha
                         strace · strings · xdebug · xdd
 |===
 
-TIP: An up to date PDF  of this resume is available at: https://www.andrewhowden.com/public/media/pdf/resume.pdf
+TIP: An up to date PDF  of this resume is available at: https://www.andrewhowden.com/media/pdf/resume.pdf
