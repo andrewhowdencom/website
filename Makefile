@@ -30,4 +30,6 @@ help: ## Show this menu
 
 compile: ## Creates the website
 	asciidoctor src/docs/*.adoc --destination-dir public/
-	asciidoctor-pdf src/docs/index.adoc --out-file public/media/pdf/resume.pdf
+	asciidoctor-pdf src/docs/index.adoc \
+		-a pdf-style=$$(pwd)/src/theme/pdf/theme.yml \
+		--out-file public/media/pdf/resume.pdf

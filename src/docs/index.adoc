@@ -20,7 +20,7 @@
 
 [cols="2,8"]
 |===
-h| Dates    | 2019-04 - Present
+h| Dates    | 2019-04 - 2019-09
 h| Location | Berlin, Germany
 |===
 
