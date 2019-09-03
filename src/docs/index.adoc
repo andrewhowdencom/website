@@ -78,6 +78,7 @@ h| Location | Melbourne, Australia
 - Developed a template for a JavaScript module that can be loaded by dependency management systems asynchronously.
 - Contributed to open source projects such as Ecomdev_CheckItOut, Boilr and Modd.
 
+<<<
 == Skills & Knowledge
 
 Specialising in developing open source software related to the development, deployment, monitoring and management of 
