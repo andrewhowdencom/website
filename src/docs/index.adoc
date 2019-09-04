@@ -2,16 +2,22 @@
 :icons: font
 :docinfo: private-head
 
-== Personal Information
+ifdef::backend-pdf[]
+TIP: This resume is being regularly updated. An up to date copy is available in HTML at
+     https://www.andrewhowden.com[www.andrewhowden.com] or via downloadable PDF on
+     https://www.andrewhowden.com/media/pdf/resume.pdf[the same website].
+endif::[]
 
-[cols="2,8"]
+ifdef::backend-html5[]
+TIP: This resume is being regularly updated. However a printable PDF copy of the current version of this resume can be
+     found https://www.andrewhowden.com/media/pdf/resume.pdf[attached to this website].
+endif::[]
+
+[cols="3,8,3,8"]
 |===
-| Email     | mailto:hello@andrewhowden.com[hello@andrewhowden.com]
-| Telephone | +49 176 37658815
-| Website   | https://www.andrewhowden.com[www.andrewhowden.com]
-| Twitter   | https://www.twitter.com/@andrewhowdencom[@andrewhowdencom]
-| LinkedIn  | https://www.linkedin.com/in/andrewhowdencom/[andrewhowdencom]
-| GitHub    | https://www.github.com/andrewhowdencom/[@andrewhowdencom]
+h| Email     | mailto:hello@andrewhowden.com[hello@andrewhowden.com] h| GitHub    | https://www.github.com/andrewhowdencom/[@andrewhowdencom]
+h| Telephone | +49 176 37658815                                      h| LinkedIn  | https://www.linkedin.com/in/andrewhowdencom/[andrewhowdencom]
+h| Website   | https://www.andrewhowden.com[www.andrewhowden.com]    h| Twitter   | https://www.twitter.com/@andrewhowdencom[@andrewhowdencom]
 |===
 
 == Professional Background
@@ -125,5 +131,3 @@ h| Security           | Pass · PGP ·GnuPG · OpenSSL · HSTS · CSP · Nmap
 h| Development        | Boilr · Intellij IDEs · Atom · Git · Arcanist · Phabricator · GitHub · Request Tracker · Modd · 
                         strace · strings · xdebug · xdd
 |===
-
-TIP: An up to date PDF  of this resume is available at: https://www.andrewhowden.com/media/pdf/resume.pdf

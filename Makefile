@@ -29,7 +29,9 @@ help: ## Show this menu
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "    \033[32m%-30s\033[0m %s\n", $$1, $$2}'
 
 compile: ## Creates the website
-	asciidoctor src/docs/*.adoc --destination-dir public/
+	asciidoctor src/docs/*.adoc 	--destination-dir public/
+	asciidoctor src/docs/projects/* --destination-dir public/projects
 	asciidoctor-pdf src/docs/index.adoc \
 		-a pdf-style=$$(pwd)/src/theme/pdf/theme.yml \
+		--require='asciidoctor-bibtex' \
 		--out-file public/media/pdf/resume.pdf
