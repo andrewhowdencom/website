@@ -1,0 +1,10 @@
+= Switch from Jenkins CI to Circle CI 
+
+The existing CI/CD tooling was based on a self hosted Jenkins server hosted on "bare metal" servers and had become
+a tangled mess aggregating various git repositories into a build pipeline that few people understood or could debug.
+The Jenkins setup was deemed to great an operational overhead and I volunteered to do the necessary investigation and
+migration plan to a new CI service. CircleCI was chosen as it allowed a version controlled, docker driven flow but
+did not have the maintenance burden associated with hosting CI tooling as well it was understandable from all members
+of the development team. The goal with the migration was to allow the team to take more responsibility for the build
+and delivery process allowing the DevOps team to focus on more specialised work. In conjunction with team members I
+implemented lints and tests, and had started implementing a new release process when the project was terminated.

@@ -38,7 +38,7 @@ The product was based on PHP.
 
 ==== Achievements
 
-- Kicked off the replacement of Jenkins CI with the more modern, version control driven CircleCI
+- Replace the CI/CD system "Jenkins CI" with "CircleCI"^cite:[p.circleci]^
 
 === Sitewards GmbH
 
@@ -131,3 +131,8 @@ h| Security           | Pass · PGP ·GnuPG · OpenSSL · HSTS · CSP · Nmap
 h| Development        | Boilr · Intellij IDEs · Atom · Git · Arcanist · Phabricator · GitHub · Request Tracker · Modd · 
                         strace · strings · xdebug · xdd
 |===
+
+<<<
+== References
+
+bibliography::[]
