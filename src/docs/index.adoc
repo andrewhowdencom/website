@@ -24,6 +24,12 @@ h| Dates    | 2019-04 - 2019-09
 h| Location | Berlin, Germany
 |===
 
+At Global Fashion Group my responsibilities were as a general software engineer working on the "SellerCenter" product.
+This product allowed merchants to list their goods in the GFG venture platforms such as Dafiti, Lamoda, THE ICONIC and
+ZALORA.
+
+The product was based on PHP.
+
 ==== Achievements
 
 - Kicked off the replacement of Jenkins CI with the more modern, version control driven CircleCI
@@ -35,6 +41,13 @@ h| Location | Berlin, Germany
 h| Dates    | 2016-10 - 2019-04
 h| Location | Frankfurt, Germany
 |===
+
+
+At Sitewards my responsibilities mirrored my responsibilities at Fontis but included a much heavier responsibility
+designing and managing the production infrastructure and tooling for these systems.
+
+I worked with several projects all with some eCommerce property including Maschinenring, Schramm, Staedtler, Pluradent
+and so on.
 
 ==== Achievements
 
@@ -65,6 +78,14 @@ h| Location | Frankfurt, Germany
 h| Dates    | 2014-10 - 2016-04
 h| Location | Melbourne, Australia
 |===
+
+At Fontis my responsibilities were varied and included nearly all aspects of software management. In conjunction
+with my time I was responsible for working directly with business partners to design a roadmap for software, the
+technical plan for how such software could be implemented, the implementation of that roadmap subject to changing
+business requirements and periodically revisiting the technical direction with a view to maximise business return on
+invest and finally the production management of that software. 
+
+I worked with several large eCommerce projects including Quiksilver, Bing Lee, Teds and so on.
 
 ==== Achievements
 
