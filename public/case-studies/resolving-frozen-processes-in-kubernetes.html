@@ -462,6 +462,27 @@ Download <a href="https://www.andrewhowden.com/case-studies/design-extensible-ku
 </div>
 </div>
 <div class="sect1">
+<h2 id="_skills">Skills</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Understanding of Linux, syscalls, POSIX filsystem semantics, network filesystems</p>
+</li>
+<li>
+<p>Ability to research gaps in knowledge to debug systems further</p>
+</li>
+<li>
+<p>Ability to reason through implementations of unknown filesystems (At the time, NFS was largely unknown)</p>
+</li>
+<li>
+<p>Ability to pcap and verify the transit of NFS RPC messages.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_problem">Problem</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -488,34 +509,167 @@ it was easiest to use <code>nsenter --all --target ${PID}</code><sup>[<a href="#
 <code>sudo strace -f -s 8096 -p ${PID}</code><sup>[<a href="#man.strace">4</a>]</sup> to listen to what syscalls that process was making to the kernel,
 hopefully including the last syscall with arguments that was executed. Unfortunately this did not work; rather, <code>strace</code>
 got stuck and could not be terminated with <code>SIGINT</code> (<code>ctrl + c</code>) nor <code>SIGKILL</code>. That reduced the problem down to
-something in "kernel land".</p>
+something in "kernel land". The process did eventually quit, which likely meant that it was some process getting stuck
+in the kernel rather than something fundamentally broken.</p>
+</div>
+<div class="paragraph">
+<p>Any issues in the kernel are generally well documented in <code>dmesg</code><sup>[<a href="#man.dmesg">5</a>]</sup>. Within dmesg there were a stack
+of messages that looked like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">[927063.519245] lockd: server 10.1.84.31 not responding, still trying
+[927077.175116] lockd: server 10.1.84.31 OK</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>As well some:</p>
 </div>
-<div class="sect1">
-<h2 id="_resolution">Resolution</h2>
-<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">[  +0.000062] nlmclnt_lock: VFS is out of sync with lock manager!
+[Aug26 15:05] Process 14437(php-fpm) has RLIMIT_CORE set to 1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>lockd</code><sup>[<a href="#man.lockd">6</a>]</sup> is documented in <code>man</code><sup>[<a href="#man.man">7</a>]</sup>, which indicated:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The rpc.lockd program starts the NFS lock manager (NLM) on kernels that don&#8217;t start it automatically. However, since
+most kernels do start it automatically, rpc.lockd. is usually not required. Even so, running it anyway is harmless.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>At the time, it wasn&#8217;t clear whether NFS could manage locks. Its a network filesystem, and they sometimes come with
+less than well known limitations such as the inability to <code>flock</code>. It wasn&#8217;t clear whether this was likely to be an
+network problem, NFS problem or ZFS problem.</p>
+</div>
+<div class="paragraph">
+<p>Shortly thereafter it was determined that the problem workload and the NFS server were indeed on different servers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ kubectl describe pod php-fpm-${REDACTED} -n ${REDACTED}
+Name:           php-fpm-${REDACTED}
+Namespace:      ${REDACTED}
+Priority:       0
+Node:           ${REDACTED}
 
+$ kubectl get nodes -o wide | grep  ${IP}
+${REDACTED}        Ready    worker   8d      v1.15.1   ${REDACTED}    &lt;none&gt;        Ubuntu 19.04   5.0.0-1011-aws   docker://18.9.5</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The pattern was identified across several nodes (correlated by the logs in dmesg), as well as with several upstream NFS
+servers. That meant either that there was a systemic network problem, or that there was some problem with all NFS
+upstreams. Both were possible as there had been both network changes and changes to the upstream file storage structure.</p>
+</div>
+<div class="paragraph">
+<p>Eventually the issue was narrowed down specifically to the following syscall pattern via <code>strace</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">open("/srv/path/to/file/that/would/be/written.js", O_RDONLY) = 11
+fstat(11, {st_mode=S_IFREG|0666, st_size=1252708, ...}) = 0
+lseek(11, 0, SEEK_CUR)                  = 0
+flock(11, LOCK_EX</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As well, only some <code>flock</code> calls were problematic:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ cat strace.log | grep 'flock'
+flock(11, LOCK_SH)                      = 0
+flock(11, LOCK_UN)                      = 0
+flock(11, LOCK_SH)                      = 0
+flock(11, LOCK_UN)                      = 0
+flock(11, LOCK_EX</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That made the problem visible at "only exclusive flock calls" and allowed a minimal test case reproducible just by using
+the <code>flock</code><sup>[<a href="#man.flock">8</a>]</sup> command.</p>
+</div>
+<div class="paragraph">
+<p>At this point, it was determined the problem was likely due to inability for NFS to acquire locks. However, it was
+not yet clear why this would be the case&#8201;&#8212;&#8201;NFS could clearly communicate for other file traffic.</p>
+</div>
+<div class="paragraph">
+<p>Further reading about NFS showed that NFS handles the locks process with a separate binary and communication layer (
+the aforementioned <code>lockd</code> service) as well as another service to manage communication between nodes (<code>rpc.statd</code>). A
+short investigation later showed some servers with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">rpc-statd.service - NFS status monitor for NFSv2/3 locking.
+   Loaded: loaded (/lib/systemd/system/rpc-statd.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The service was enabled after verifying this would have no negative consequences for production.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_evaluation">Evaluation</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>At the time of writing, it is believed that <code>rpc.statd</code> functions both in a client and a server component. So, nodes
+that had workloads that were client workloads as well as having workloads that exposed an NFS server would work by
+chance when the node started <code>rpc.statd</code> with the NFS client.</p>
+</div>
+<div class="paragraph">
+<p>However, nodes which had fewer workloads and no NFS clients would not start <code>rpc.statd</code> automatically and
+correspondingly could not fulfil the NFS lock contract.</p>
+</div>
+<div class="paragraph">
+<p>The solution was to start this service everywhere as well as add it to the infrastructure as code definition.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_references">References</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>bibilography::[]</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a id="man.pid_namespaces"></a> <a href="http://man7.org/linux/man-pages/man7/pid_namespaces.7.html" class="bare">http://man7.org/linux/man-pages/man7/pid_namespaces.7.html</a> .</p>
+</li>
+<li>
+<p><a id="man.ps"></a> <a href="https://linux.die.net/man/1/ps" class="bare">https://linux.die.net/man/1/ps</a> .</p>
+</li>
+<li>
+<p><a id="man.nsenter"></a> <a href="http://man7.org/linux/man-pages/man1/nsenter.1.html" class="bare">http://man7.org/linux/man-pages/man1/nsenter.1.html</a> .</p>
+</li>
+<li>
+<p><a id="man.strace"></a> <a href="http://man7.org/linux/man-pages/man1/strace.1.html" class="bare">http://man7.org/linux/man-pages/man1/strace.1.html</a> .</p>
+</li>
+<li>
+<p><a id="man.dmesg"></a> <a href="http://man7.org/linux/man-pages/man1/dmesg.1.html" class="bare">http://man7.org/linux/man-pages/man1/dmesg.1.html</a> .</p>
+</li>
+<li>
+<p><a id="man.lockd"></a> <a href="https://linux.die.net/man/8/rpc.lockd" class="bare">https://linux.die.net/man/8/rpc.lockd</a> .</p>
+</li>
+<li>
+<p><a id="man.man"></a> <a href="https://linux.die.net/man/1/man" class="bare">https://linux.die.net/man/1/man</a> .</p>
+</li>
+<li>
+<p><a id="man.flock"></a> <a href="https://linux.die.net/man/2/flock" class="bare">https://linux.die.net/man/2/flock</a> .</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-09-05 12:30:10 +0200
+Last updated 2019-09-05 16:09:54 +0200
 </div>
 </div>
 </body>
