@@ -19,6 +19,16 @@ ifdef::backend-html5[]
 TIP: Download https://www.andrewhowden.com/case-studies/design-extensible-kubernetes-infrastructure-in-aws.pdf[a PDF copy of this case study]
 endif::[]
 
+== Skills 
+
+This case study required:
+
+- An in depth knowledge of Kubernetes components
+- An in depth knowledge of Linux, bash
+- The ability to quickly learn and apply Terraform to a production system
+- The ability to reconcile multiple sources of truth into a single production infrastructure specification
+- The ability to with with colleagues with different specialisations to bring together a large, production cluster
+
 == Requirements
 
 As part of some work in conjunction with a major eCommerce hosting parther the underlying infrastructure on which their

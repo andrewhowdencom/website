@@ -19,6 +19,17 @@ ifdef::backend-html5[]
 TIP: Download https://www.andrewhowden.com/case-studies/switch-from-jenkins-ci-to-circle-ci.pdf[a PDF copy of this case study]
 endif::[]
 
+== Skills
+
+This case study required:
+
+- Several years of experience with CI/CD systems and how they evolve over time
+- Implementation of CI/CD in several servers
+- Ability to use, build, store and manipulate containers
+- Ability to understand Linux within the context of a container
+- Understanding of CPU / memory usage and how that affects workloads, including how the CFS scheduler limits workloads.
+- Using professional networks to reach out to the CircleCI engineering team
+
 == Requirements
 
 The application on which I worked was deployed via the continuous integration server Jenkins, which functioned
