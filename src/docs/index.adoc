@@ -30,6 +30,23 @@ h| Website   | https://www.andrewhowden.com[www.andrewhowden.com]    h| Twitter 
 
 == Professional Background
 
+=== MageMojo
+
+[cols="2,8"]
+|===
+h|Dates     | 2018-12 - present
+h|Location  | Remote
+|===
+
+While my commitments to MageMojo are only part time my responsibilities have included helping in the design of new
+clusters, debugging complex networking issues, designing network topologies for large clusters, helping with the
+implementation of infrastructure as code and CI/CD.
+
+==== Achievements
+
+- Helping design and release large scale Kubernetes infrastructure^cite:[p.stratus29]^
+- Debugging complex issues such as processes frozen in D state^cite:[p.dstate]^
+
 === Global Fashion Group
 
 [cols="2,8"]
