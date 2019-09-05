@@ -2,14 +2,22 @@
 :icons: font
 :docinfo: private-head
 
+// Google Analytics
+ifdef::backend-html5[]
+++++
+include::ga.html[]
+++++
+endif::[]
+
+// Crosslinking
 ifdef::backend-pdf[]
-TIP: This resume is being regularly updated. An up to date copy is available in HTML at
-     https://www.andrewhowden.com[www.andrewhowden.com] or via downloadable PDF on
+TIP: This resume is being regularly updated. An up to date copy is available in HTML at 
+     https://www.andrewhowden.com[www.andrewhowden.com] or via downloadable PDF on 
      https://www.andrewhowden.com/media/pdf/resume.pdf[the same website].
 endif::[]
 
 ifdef::backend-html5[]
-TIP: This resume is being regularly updated. However a printable PDF copy of the current version of this resume can be
+TIP: This resume is being regularly updated. However a printable PDF copy of the current version of this resume can be 
      found https://www.andrewhowden.com/media/pdf/resume.pdf[attached to this website].
 endif::[]
 

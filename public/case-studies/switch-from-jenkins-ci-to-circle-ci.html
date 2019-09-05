@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<title>Andrew Howden</title>
+<title>Case Study: Switch from Jenkins CI to Circle CI</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -433,7 +433,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Andrew Howden</h1>
+<h1>Case Study: Switch from Jenkins CI to Circle CI</h1>
 </div>
 <div id="content">
 <div id="preamble">
@@ -454,312 +454,167 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-This resume is being regularly updated. However a printable PDF copy of the current version of this resume can be
-     found <a href="https://www.andrewhowden.com/media/pdf/resume.pdf">attached to this website</a>.
+Download <a href="https://www.andrewhowden.com/case-studies/switch-from-jenkins-ci-to-circle-ci.pdf">a PDF copy of this case study</a>
 </td>
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 13.6363%;">
-<col style="width: 36.3636%;">
-<col style="width: 13.6363%;">
-<col style="width: 36.3638%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Email</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="mailto:hello@andrewhowden.com">hello@andrewhowden.com</a></p></td>
-<th class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.github.com/andrewhowdencom/">@andrewhowdencom</a></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Telephone</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">+49 176 37658815</p></td>
-<th class="tableblock halign-left valign-top"><p class="tableblock">LinkedIn</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.linkedin.com/in/andrewhowdencom/">andrewhowdencom</a></p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Website</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.andrewhowden.com">www.andrewhowden.com</a></p></td>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Twitter</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://www.twitter.com/@andrewhowdencom">@andrewhowdencom</a></p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_professional_background">Professional Background</h2>
+<h2 id="_requirements">Requirements</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_global_fashion_group">Global Fashion Group</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Dates</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2019-04 - 2019-09</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Location</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Berlin, Germany</p></td>
-</tr>
-</tbody>
-</table>
 <div class="paragraph">
-<p>At Global Fashion Group my responsibilities were as a general software engineer working on the "SellerCenter" product.
-This product allowed merchants to list their goods in the GFG venture platforms such as Dafiti, Lamoda, THE ICONIC and
-ZALORA.</p>
+<p>The application on which I worked was deployed via the continuous integration server Jenkins, which functioned
+reasonably well. However, it suffered from some issues which meant it required an uncomfortable amount of time and
+money to support.</p>
 </div>
 <div class="paragraph">
-<p>The product was based on PHP.</p>
+<p>Specifically:</p>
 </div>
-<div class="sect3">
-<h4 id="_achievements">Achievements</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Replace the CI/CD system "Jenkins CI" with "CircleCI"<sup>[<a href="#p.circleci">1</a>]</sup></p>
+<p>It had not been updated in a very long time</p>
+</li>
+<li>
+<p>It was running on bare metal infrastructure not managed by infrastructure as code techniques</p>
+</li>
+<li>
+<p>The definitions themselves were only expressed in groovy script in the UI</p>
+</li>
+<li>
+<p>The small helper scripts and other tooling to launch the system was written in a variety of languages, none of which
+the organisation was familiar.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To address this, the organisation planned to move away from the Jenkins CI serer to another server. After interviewing
+many of the team leads, team members and systems team members I wrote a proposal in the form of an RFC<sup>[<a href="#m.ahc.rfc">1</a>]</sup>
+with the judgement criteria for success being:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reduce maintenance on the CI/CD pipeline</p>
+</li>
+<li>
+<p>Reduced time to ship changes to production</p>
+</li>
+<li>
+<p>Increased number of developers who had made changes to the CI pipeline</p>
+</li>
+<li>
+<p>Decreased perceived complexity of the pipeline</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_plan">Plan</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the past I had written CI/CD pipelines on several different servers, including DroneCI, TravisCI, BitBucket
+Pipelines, Google Cloud Build and Jenkins. In my experience to ensure the pipeline was predictable and maintainable
+it needed to be subject to the same software delivery life cycle as the application itself, such as including a testing
+period, code review, QA and so fourth.</p>
+</div>
+<div class="paragraph">
+<p>Further, the advent of Docker had created a whole series of CI tooling for which environments were both cheap and could
+be discarded at the end of the build. This prevented the aggregation of tooling that no one understands, as well as
+dependency problems over year-long periods.</p>
+</div>
+<div class="paragraph">
+<p>Initially my goal was to use the open source DroneCI, deployed as a helm chart on top of Google Container Engine but
+there was concern from the systems team that hosting the CI software at all would create too great a maintenance
+burden. The next CI that most closely matched my experience was CircleCI.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementation">Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The implementation was completed in stages:</p>
+</div>
 <div class="sect2">
-<h3 id="_sitewards_gmbh">Sitewards GmbH</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Dates</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2016-10 - 2019-04</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Location</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Frankfurt, Germany</p></td>
-</tr>
-</tbody>
-</table>
+<h3 id="_lints">Lints</h3>
 <div class="paragraph">
-<p>At Sitewards my responsibilities mirrored my responsibilities at Fontis but included a much heavier responsibility
-designing and managing the production infrastructure and tooling for these systems.</p>
+<p>In the first iteration of CircleCI a new test, not previously implemented in the CI pipeline was introduced into
+CircleCI to see whether the system was stable and provided value. More specifically the linting tool PHPCS was added
+to the pipeline to enforce PSR2 lints.</p>
 </div>
 <div class="paragraph">
-<p>I worked with several projects all with some eCommerce property including Maschinenring, Schramm, Staedtler, Pluradent
-and so on.</p>
+<p>The pipeline itself functioned admirably well after a small period adjusting on which files the linter ran, however the
+results of the linter indicated the way in which the code was written did not adhere to the guidelines it was supposed
+to and there was some tension in determining whether to refactor old code to meet these guidelines.</p>
 </div>
-<div class="sect3">
-<h4 id="_achievements_2">Achievements</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Designed and implemented the infrastructure, monitoring and deployment definitions of several production e-commerce
-systems.</p>
-</li>
-<li>
-<p>Transitioned the company from the monitoring service “New Relic" to the open source “Prometheus”.</p>
-</li>
-<li>
-<p>Designed and implemented CI/CD for a variety of PHP, Node, Ansible and static HTML services in both BitBucket
-Pipelines and Travis CI</p>
-</li>
-<li>
-<p>Designed and implemented the “incident response” process used for technical crisis management and resolution.</p>
-</li>
-<li>
-<p>Collaborated in the detection and remediation of unauthorized access to a significant service.</p>
-</li>
-<li>
-<p>Qualified as a “Certified Kubernetes Administrator”.</p>
-</li>
-<li>
-<p>Helped with the organisational understanding of and adjustment to the “General Data Protection Legislation” (GDPR) as
-it applied to Germany.</p>
-</li>
-<li>
-<p>Implemented a centralised, community managed knowledge base.</p>
-</li>
-<li>
-<p>Evangelised the use, implementation and understanding of various kinds of diagnostic data such as time series, logs,
-traces and other system introspection tools.</p>
-</li>
-<li>
-<p>Helped implement team analytics to determine the health, mood and stress levels of the organisation.</p>
-</li>
-<li>
-<p>Developed or contributed to both helm chart and ansible roles for OSQuery and the OSQuery fleet management tool
-“Kolide Fleet”.</p>
-</li>
-<li>
-<p>Organised and chaired development community meetings designed to facilitate knowledge sharing.</p>
-</li>
-<li>
-<p>Helped facilitate an employee evaluation and growth framework.</p>
-</li>
-<li>
-<p>Debugged countless complex production outages.</p>
-</li>
-</ul>
-</div>
+<div class="paragraph">
+<p>The pipeline aspect of this had no issues, so the decision was made to go ahead.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_fontis_pty_ltd">Fontis PTY LTD</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Dates</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2014-10 - 2016-04</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Location</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Melbourne, Australia</p></td>
-</tr>
-</tbody>
-</table>
+<h3 id="_unit_tests_integration_tests">Unit Tests, Integration Tests</h3>
 <div class="paragraph">
-<p>At Fontis my responsibilities were varied and included nearly all aspects of software management. In conjunction
-with my time I was responsible for working directly with business partners to design a roadmap for software, the
-technical plan for how such software could be implemented, the implementation of that roadmap subject to changing
-business requirements and periodically revisiting the technical direction with a view to maximise business return on
-invest and finally the production management of that software.</p>
+<p>The next task was to implement both Unit Tests and Integration Tests into the pipeline.</p>
 </div>
 <div class="paragraph">
-<p>I worked with several large eCommerce projects including Quiksilver, Bing Lee, Teds and so on.</p>
+<p>These tests were somewhat flaky, and had dependencies on the Jenkins environment in which they were being executed that
+were not well documented such as the PHP version, direct access to Docker and so fourth.</p>
 </div>
-<div class="sect3">
-<h4 id="_achievements_3">Achievements</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Collaborated in the maintenance, feature development, deployment and management of multi-million dollar e-commerce
-stores.</p>
-</li>
-<li>
-<p>Primarily responsible for several major software migrations, site redesigns and feature developments such as the GAZ
-MAN redesign, Bing Lee checkout redesign and MageAudit.</p>
-</li>
-<li>
-<p>Developed a structure for deploying applications onto Kubernetes continuously, including numerous safety checks.</p>
-</li>
-<li>
-<p>Developed a structure for automatically checking the style and quality of code as part of the standard review process.</p>
-</li>
-<li>
-<p>Developed provisioning tools that create and manage a Kubernetes cluster that tolerates failure of an application,
-machine or network partition.</p>
-</li>
-<li>
-<p>Developed a template for a JavaScript module that can be loaded by dependency management systems asynchronously.</p>
-</li>
-<li>
-<p>Contributed to open source projects such as Ecomdev_CheckItOut, Boilr and Modd.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>This part of work was completed primarily by a colleague who showed a particular interest in learning more about the
+CI/CD process but had extensive knowledge of the application and its design.</p>
 </div>
-<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Together we implemented the unit tests and integration tests.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deployment">Deployment</h3>
+<div class="paragraph">
+<p>Unfortunately, the deployment was not successfully implemented. The deployment relied on a redesign of the
+infrastructure slated for completion but not completed for some period of time while the new system was running.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_skills_knowledge">Skills &amp; Knowledge</h2>
+<h2 id="_evaluation">Evaluation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Specialising in developing open source software related to the development, deployment, monitoring and management of
-internet facing software. List of competencies include:</p>
+<p>The move to CircleCI was moderately successful. However, there was an issue in which the tests would take a much longer
+period of time (+100%) on the CircleCI machines than on the bare metal servers.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 80%;">
-</colgroup>
-<tbody>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Software Languages</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PHP · HTML · CSS · SASS · Bash · ECMAScript (JavaScript) · Golang · Python · Make · Ruby ·
-                        JSON+LD · RDFa · sh · SQL</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Frameworks</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Magento · Laravel · Symfony · Joolma · Hugo · Bootstrap · PostCSS · Phing · Grunt · Polymer ·
-                        RequireJS · Composer · Bower</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Operating Systems</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Linux · Windows · Debian · Ubuntu · CentOS · Arch · CoreOS</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Infrastructure</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Docker · Rkt · Kubernetes ·Virtualbox · NGINX · Apache HTTP · Docker Compose · Calico ·
-                        Flannel · TravisCI · Jenkins · Netcat · Tcpdump · cURL · Aptitude ·Yum · Picfit</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Monitoring</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prometheus · Sensu · Logstash · Beats · Elasticsearch · Kibana · Grafana</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Testing</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Selenium · Facebook Web Driver · PHPUnit</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Software Analysis</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PHP · PHPCS · eslint · scss-lint · jsonlint</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Website Analysis</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Google Analytics · Chrome DevTools · Lighthouse · Google PageSpeed Insights · Qualsys SSL Test</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Network Protocols</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HTTP/1.1 · HTTP/2 · FastCGI · TCP · UDP · TLS/SSL</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Cloud Services</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Amazon Web Services · Google Cloud · Let’s Encrypt</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Security</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pass · PGP ·GnuPG · OpenSSL · HSTS · CSP · Nmap</p></td>
-</tr>
-<tr>
-<th class="tableblock halign-left valign-top"><p class="tableblock">Development</p></th>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Boilr · Intellij IDEs · Atom · Git · Arcanist · Phabricator · GitHub · Request Tracker · Modd ·
-                        strace · strings · xdebug · xdd</p></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>This was investigated and the likely determinant being the clock speed on the CircleCI build servers being considerably
+slower (~2.8 - 3.2GHz*) than the bare metal servers (~4Ghz). That, in conjunction with the multi-tenant nature of
+CircleCI meant that the builds were slower.</p>
 </div>
+<div class="paragraph">
+<p>Ultimately the systems team decided that this speed loss was too great, and the only way to address it was to put the
+service on AWS build service where the amount of compute available was potentially greater. The CircleCI service was
+torn down and replaced with AWS build service which reduced time spent in the integration test period by ~20 - 40%
+from the increased CircleCI period.</p>
 </div>
-<div class="sect1">
-<h2 id="_references">References</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
+<div class="paragraph">
+<p>At the time of writing it is believed that the new deployments were still not completed.</p>
+</div>
+<div class="ulist">
+<ul>
 <li>
-<p><a id="p.circleci"></a>A. Howden, “Switch from JenkinsCI to CircleCI.” <a href="https://www.andrewhowden.com/projects/switch-from-jenkins-ci-to-circle-ci.html" class="bare">https://www.andrewhowden.com/projects/switch-from-jenkins-ci-to-circle-ci.html</a> , Sep-2019.</p>
+<p>If memory serves. It was ~ 3Ghz.</p>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-09-05 10:39:37 +0200
+Last updated 2019-09-05 10:40:03 +0200
 </div>
 </div>
 </body>

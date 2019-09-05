@@ -29,9 +29,22 @@ help: ## Show this menu
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "    \033[32m%-30s\033[0m %s\n", $$1, $$2}'
 
 compile: ## Creates the website
-	asciidoctor src/docs/*.adoc 	--destination-dir public/
-	asciidoctor src/docs/projects/* --destination-dir public/projects
+	# Resume
+	asciidoctor src/docs/*.adoc 		--destination-dir public
 	asciidoctor-pdf src/docs/index.adoc \
 		-a pdf-style=$$(pwd)/src/theme/pdf/theme.yml \
 		--require='asciidoctor-bibtex' \
 		--out-file public/media/pdf/resume.pdf
+	# Case Studies
+	asciidoctor src/docs/case-studies/* --destination-dir public/case-studies
+	asciidoctor-pdf src/docs/case-studies/* \
+		-a pdf-style=$$(pwd)/src/theme/pdf/theme.yml \
+		--require='asciidoctor-bibtex' \
+		--destination-dir public/case-studies
+
+.PHONY: letters
+letters: ## Creates the cover letters
+	asciidoctor-pdf src/docs/cover-letters/* \
+		--require='asciidoctor-bibtex' \
+		-a pdf-style=$$(pwd)/src/theme/pdf/theme.yml \
+		--destination-dir letters

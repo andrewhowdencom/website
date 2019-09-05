@@ -1,4 +1,23 @@
 = Case Study: Switch from Jenkins CI to Circle CI 
+:icons: font
+:docinfo: private-head
+
+// Google Analytics
+ifdef::backend-html5[]
+++++
+include::../ga.html[]
+++++
+endif::[]
+
+// Cross Linking
+ifdef::backend-pdf[]
+TIP: See an up to date, HTML version of this case study on
+     https://www.andrewhowden.com/case-studies/switch-from-jenkins-ci-to-circle-ci.html[andrewhowden.com]
+endif::[]
+
+ifdef::backend-html5[]
+TIP: Download https://www.andrewhowden.com/case-studies/switch-from-jenkins-ci-to-circle-ci.pdf[a PDF copy of this case study]
+endif::[]
 
 == Requirements
 
