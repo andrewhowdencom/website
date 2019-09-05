@@ -1,0 +1,51 @@
+= Case Study: Resolving frozen processes in kubernetes 
+:icons: font
+:docinfo: private-head
+
+// Google Analytics
+ifdef::backend-html5[]
+++++
+include::../ga.html[]
+++++
+endif::[]
+
+// Cross Linking
+ifdef::backend-pdf[]
+TIP: See an up to date, HTML version of this case study on
+     https://www.andrewhowden.com/case-studies/design-extensible-kubernetes-infrastructure-in-aws.html[andrewhowden.com]
+endif::[]
+
+ifdef::backend-html5[]
+TIP: Download https://www.andrewhowden.com/case-studies/design-extensible-kubernetes-infrastructure-in-aws.pdf[a PDF copy of this case study]
+endif::[]
+
+== Problem
+
+In previous work it was determined that there were outstanding issues with the kernel implementation in NFSv4 and a
+change was made to shift from the NFSv4 protocol to NFSv3. At the same a few PHP workloads started becoming "stuck" 
+during their application bootstrap.
+
+Colleagues were able to refine the issue down to a single workload that would reliably break during the first requests
+to a newly created version of that workload.
+
+== Investigation
+
+The processes were easily identifiable from the host `pid` namespace^cite:[man.pid_namespaces]^ as they were a series 
+of php-fpm worker processes under a single fpm manager process, all of which were in D^cite:[man.ps]^ state. Given this,
+it was easiest to use `nsenter --all --target ${PID}`^cite:[man.nsenter]^.
+
+From there, the goal is to determine exactly what the process was doing when it got stuck. To that end I executed
+`sudo strace -f -s 8096 -p ${PID}`^cite:[man.strace]^ to listen to what syscalls that process was making to the kernel, 
+hopefully including the last syscall with arguments that was executed. Unfortunately this did not work; rather, `strace`
+got stuck and could not be terminated with `SIGINT` (`ctrl + c`) nor `SIGKILL`. That reduced the problem down to 
+something in "kernel land".
+
+// Todo: Keep going here.
+
+== Resolution
+
+== Evaluation
+
+== References
+
+bibilography::[]
