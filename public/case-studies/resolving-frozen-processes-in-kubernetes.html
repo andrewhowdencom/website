@@ -506,20 +506,20 @@ to a newly created version of that workload.</p>
 <h2 id="_investigation">Investigation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The processes were easily identifiable from the host <code>pid</code> namespace<sup>cite:[man.pid_namespaces]</sup> as they were a series
-of php-fpm worker processes under a single fpm manager process, all of which were in D<sup>cite:[man.ps]</sup> state. Given this,
-it was easiest to use <code>nsenter --all --target ${PID}</code><sup>cite:[man.nsenter]</sup>.</p>
+<p>The processes were easily identifiable from the host <code>pid</code> namespace<sup>[<a href="#man.pid_namespaces">1</a>]</sup> as they were a series
+of php-fpm worker processes under a single fpm manager process, all of which were in D<sup>[<a href="#man.ps">2</a>]</sup> state. Given this,
+it was easiest to use <code>nsenter --all --target ${PID}</code><sup>[<a href="#man.nsenter">3</a>]</sup>.</p>
 </div>
 <div class="paragraph">
 <p>From there, the goal is to determine exactly what the process was doing when it got stuck. To that end I executed
-<code>sudo strace -f -s 8096 -p ${PID}</code><sup>cite:[man.strace]</sup> to listen to what syscalls that process was making to the kernel,
+<code>sudo strace -f -s 8096 -p ${PID}</code><sup>[<a href="#man.strace">4</a>]</sup> to listen to what syscalls that process was making to the kernel,
 hopefully including the last syscall with arguments that was executed. Unfortunately this did not work; rather, <code>strace</code>
 got stuck and could not be terminated with <code>SIGINT</code> (<code>ctrl + c</code>) nor <code>SIGKILL</code>. That reduced the problem down to
 something in "kernel land". The process did eventually quit, which likely meant that it was some process getting stuck
 in the kernel rather than something fundamentally broken.</p>
 </div>
 <div class="paragraph">
-<p>Any issues in the kernel are generally well documented in <code>dmesg</code><sup>cite:[man.dmesg]</sup>. Within dmesg there were a stack
+<p>Any issues in the kernel are generally well documented in <code>dmesg</code><sup>[<a href="#man.dmesg">5</a>]</sup>. Within dmesg there were a stack
 of messages that looked like:</p>
 </div>
 <div class="listingblock">
@@ -538,7 +538,7 @@ of messages that looked like:</p>
 </div>
 </div>
 <div class="paragraph">
-<p><code>lockd</code><sup>cite:[man.lockd]</sup> is documented in <code>man</code><sup>cite:[man.man]</sup>, which indicated:</p>
+<p><code>lockd</code><sup>[<a href="#man.lockd">6</a>]</sup> is documented in <code>man</code><sup>[<a href="#man.man">7</a>]</sup>, which indicated:</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -599,7 +599,7 @@ flock(11, LOCK_EX</code></pre>
 </div>
 <div class="paragraph">
 <p>That made the problem visible at "only exclusive flock calls" and allowed a minimal test case reproducible just by using
-the <code>flock</code><sup>cite:[man.flock]</sup> command.</p>
+the <code>flock</code><sup>[<a href="#man.flock">8</a>]</sup> command.</p>
 </div>
 <div class="paragraph">
 <p>At this point, it was determined the problem was likely due to inability for NFS to acquire locks. However, it was
@@ -642,8 +642,33 @@ correspondingly could not fulfil the NFS lock contract.</p>
 <div class="sect1">
 <h2 id="_references">References</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>bibliography::[]</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a id="man.pid_namespaces"></a> <a href="http://man7.org/linux/man-pages/man7/pid_namespaces.7.html" class="bare">http://man7.org/linux/man-pages/man7/pid_namespaces.7.html</a> .</p>
+</li>
+<li>
+<p><a id="man.ps"></a> <a href="https://linux.die.net/man/1/ps" class="bare">https://linux.die.net/man/1/ps</a> .</p>
+</li>
+<li>
+<p><a id="man.nsenter"></a> <a href="http://man7.org/linux/man-pages/man1/nsenter.1.html" class="bare">http://man7.org/linux/man-pages/man1/nsenter.1.html</a> .</p>
+</li>
+<li>
+<p><a id="man.strace"></a> <a href="http://man7.org/linux/man-pages/man1/strace.1.html" class="bare">http://man7.org/linux/man-pages/man1/strace.1.html</a> .</p>
+</li>
+<li>
+<p><a id="man.dmesg"></a> <a href="http://man7.org/linux/man-pages/man1/dmesg.1.html" class="bare">http://man7.org/linux/man-pages/man1/dmesg.1.html</a> .</p>
+</li>
+<li>
+<p><a id="man.lockd"></a> <a href="https://linux.die.net/man/8/rpc.lockd" class="bare">https://linux.die.net/man/8/rpc.lockd</a> .</p>
+</li>
+<li>
+<p><a id="man.man"></a> <a href="https://linux.die.net/man/1/man" class="bare">https://linux.die.net/man/1/man</a> .</p>
+</li>
+<li>
+<p><a id="man.flock"></a> <a href="https://linux.die.net/man/2/flock" class="bare">https://linux.die.net/man/2/flock</a> .</p>
+</li>
+</ol>
 </div>
 </div>
 </div>

@@ -30,13 +30,13 @@ help: ## Show this menu
 
 compile: ## Creates the website
 	# Resume
-	asciidoctor src/docs/*.adoc 		--destination-dir public
+	asciidoctor --require=asciidoctor-bibtex src/docs/*.adoc 		--destination-dir public
 	asciidoctor-pdf src/docs/index.adoc \
 		-a pdf-style=$$(pwd)/src/theme/pdf/theme.yml \
 		--require='asciidoctor-bibtex' \
 		--out-file public/media/pdf/resume.pdf
 	# Case Studies
-	asciidoctor src/docs/case-studies/* --destination-dir public/case-studies
+	asciidoctor --require=asciidoctor-bibtex src/docs/case-studies/* --destination-dir public/case-studies
 	asciidoctor-pdf src/docs/case-studies/* \
 		-a pdf-style=$$(pwd)/src/theme/pdf/theme.yml \
 		--require='asciidoctor-bibtex' \
