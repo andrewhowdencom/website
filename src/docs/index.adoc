@@ -21,6 +21,10 @@ TIP: This resume is being regularly updated. However a printable PDF copy of the
      found https://www.andrewhowden.com/media/pdf/resume.pdf[attached to this website].
 endif::[]
 
+CAUTION: At this time I am not looking for any new employment opportunities.
+
+== Personal Information
+
 [cols="3,8,3,8"]
 |===
 h| Email     | mailto:hello@andrewhowden.com[hello@andrewhowden.com] h| GitHub    | https://www.github.com/andrewhowdencom/[@andrewhowdencom]
@@ -29,6 +33,14 @@ h| Website   | https://www.andrewhowden.com[www.andrewhowden.com]    h| Twitter 
 |===
 
 == Professional Background
+
+=== Zalando SE
+
+[cols="2,8"]
+|===
+h| Dates    | 2019-10 - Present
+h| Location | Berlin, Germany
+|===
 
 === MageMojo
 
